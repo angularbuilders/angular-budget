@@ -14,7 +14,6 @@ export class NewProjectComponent implements OnInit {
   ngOnInit(): void {}
 
   saveProject(newProject: ProjectModel) {
-    newProject.projectId = new Date().toISOString();
     this.projects = this.projectsService.saveProject(newProject);
   }
 

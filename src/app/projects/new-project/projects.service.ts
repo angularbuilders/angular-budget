@@ -10,6 +10,7 @@ export class ProjectsService {
   constructor() {}
 
   saveProject(newProject: ProjectModel): ProjectModel[] {
+    newProject.projectId = new Date().getTime().toString();
     this.projects.push(newProject);
     console.log(newProject.name);
     return [...this.projects];

@@ -1,5 +1,7 @@
 <ul>
   <li *ngFor="let project of projects" >
-    {{ project.name }} <button (click)="onDeleteClick(project)" >🗑</button>
+   <a [routerLink]="['../../',project.projectId]">
+    {{ project.name }}
+   </a>   <button (click)="onDeleteClick(project)" >🗑</button>
   </li>
 </ul>
