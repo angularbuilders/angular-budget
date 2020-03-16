@@ -29,3 +29,17 @@ export class ProjectsService {
     return this.projects.find(p => p.projectId === projectId);
   }
 }
+
+/*
+import { HttpClientModule } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+'https://api-base.herokuapp.com/api/pub/projects'
+this.httpClient
+  .post('https://api-base.herokuapp.com/api/pub/projects', { name: 'covid' })
+  .subscribe(o => {
+    this.httpClient.get('https://api-base.herokuapp.com/api/pub/projects').subscribe(
+      p => console.log({ p }),
+      e => console.error({ e })
+    );
+  });
+*/
