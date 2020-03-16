@@ -1,7 +1,18 @@
-<ul>
-  <li *ngFor="let project of projects" >
-   <a [routerLink]="['../../',project.projectId]">
-    {{ project.name }}
-   </a>   <button (click)="onDeleteClick(project)" >🗑</button>
-  </li>
-</ul>
+<section *ngIf="projects.length>0; else empty">
+  <p>Current {{projects.length}}projects...</p>
+  <ul>
+    <li *ngFor="let project of projects" >
+     <a [routerLink]="['../../',project.projectId]">
+      {{ project.name }}
+     </a>   <button (click)="onDeleteClick(project)" >🗑</button>
+    </li>
+  </ul>
+</section>
+<ng-template #empty>
+  <p>No projects yet...</p>
+</ng-template>
+<div>
+  <a [routerLink]="['../../']">
+    Back to projects
+   </a>
+</div>

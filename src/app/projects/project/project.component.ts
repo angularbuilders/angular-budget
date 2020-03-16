@@ -23,5 +23,7 @@ export class ProjectComponent implements OnInit {
 
   onDeleteClick(project: ProjectModel) {
     this.projectsService.deleteProject(project);
+    this.project = null;
+    this.projectId = '';
   }
 }

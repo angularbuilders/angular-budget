@@ -1,10 +1,15 @@
 <h3>My Projects</h3>
 <a routerLink="new-project">New project</a>
-<h4>Listado</h4>
-<ul>
-  <li *ngFor="let project of projects" >
-    <a [routerLink]="[project.projectId]">
-     {{ project.name }}
-    </a>
-   </li>
-</ul>
+<section *ngIf="projects.length>0; else empty">
+  <h4>Listado</h4>
+  <ul>
+    <li *ngFor="let project of projects" >
+      <a [routerLink]="[project.projectId]">
+       {{ project.name }}
+      </a>
+     </li>
+  </ul>
+</section>
+<ng-template #empty>
+  <p>No projects yet...</p>
+</ng-template>
