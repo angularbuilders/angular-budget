@@ -9,7 +9,7 @@ export class HeaderComponent implements OnInit {
   title: string;
 
   constructor() {
-    this.title = 'Java';
+    this.title = 'Basic Angular Tutorial';
   }
 
   ngOnInit(): void {}
