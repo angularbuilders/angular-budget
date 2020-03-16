@@ -2,6 +2,9 @@
 <a routerLink="new-project">Nuevo proyecto</a>
 <h4>Listado</h4>
 <ul>
-  <li><a routerLink="1" >Chuquel</a></li>
-  <li><a routerLink="2">Coronavirus</a></li>
+  <li *ngFor="let project of projects" >
+    <a [routerLink]="[project.projectId]">
+     {{ project.name }}
+    </a>
+   </li>
 </ul>

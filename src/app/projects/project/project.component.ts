@@ -12,12 +12,16 @@ export class ProjectComponent implements OnInit {
   projectId: string;
   project: ProjectModel;
 
-  constructor(route: ActivatedRoute, projectsService: ProjectsService) {
+  constructor(private route: ActivatedRoute, private projectsService: ProjectsService) {
     route.params.subscribe(params => {
       this.projectId = params.projectId;
-      this.project = projectsService.findById(this.projectId);
+      this.project = this.projectsService.findById(this.projectId);
     });
   }
 
   ngOnInit(): void {}
+
+  onDeleteClick(project: ProjectModel) {
+    this.projectsService.deleteProject(project);
+  }
 }

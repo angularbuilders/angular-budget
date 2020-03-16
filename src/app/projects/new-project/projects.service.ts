@@ -9,6 +9,10 @@ export class ProjectsService {
 
   constructor() {}
 
+  getProjects(): ProjectModel[] {
+    return [...this.projects];
+  }
+
   saveProject(newProject: ProjectModel): ProjectModel[] {
     newProject.projectId = new Date().getTime().toString();
     this.projects.push(newProject);

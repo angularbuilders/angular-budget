@@ -1,2 +1,9 @@
 <h4>Project: {{ project.name }}</h4>
 <pre>{{ project | json }}</pre>
+<button (click)="onDeleteClick(project)" >🗑 Delete project</button>
+
+<div>
+  <a [routerLink]="['../../']">
+    Back to projects
+   </a>
+</div>
