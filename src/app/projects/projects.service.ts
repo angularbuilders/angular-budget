@@ -1,45 +1,33 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ProjectModel } from './new-project/new-project.component';
+import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
+import { ProjectModel } from './ProjectModel';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProjectsService {
-  private projects: ProjectModel[] = [];
+  private projectsUrl = environment.apiUrl + '/projects';
 
-  constructor() {}
+  constructor(private httpClient: HttpClient) {}
 
-  getProjects(): ProjectModel[] {
-    return [...this.projects];
+  getProjects$(): Observable<ProjectModel[]> {
+    return this.httpClient.get<ProjectModel[]>(this.projectsUrl);
   }
 
-  saveProject(newProject: ProjectModel): ProjectModel[] {
+  getProjectById$(projectId: string): Observable<ProjectModel> {
+    const url = this.projectsUrl + '/' + projectId;
+    return this.httpClient.get<ProjectModel>(url);
+  }
+
+  postProject$(newProject: ProjectModel): Observable<ProjectModel> {
     newProject.projectId = new Date().getTime().toString();
-    this.projects.push(newProject);
-    console.log(newProject.name);
-    return [...this.projects];
+    return this.httpClient.post<ProjectModel>(this.projectsUrl, newProject);
   }
 
-  deleteProject(project: ProjectModel): any[] {
-    this.projects = this.projects.filter(p => p.name !== project.name);
-    return [...this.projects];
-  }
-
-  findById(projectId: string): ProjectModel {
-    return this.projects.find(p => p.projectId === projectId);
+  deleteProject$(project: ProjectModel): Observable<any> {
+    const url = this.projectsUrl + '/' + project._id;
+    return this.httpClient.delete(url);
   }
 }
-
-/*
-import { HttpClientModule } from '@angular/common/http';
-import { HttpClient } from '@angular/common/http';
-'https://api-base.herokuapp.com/api/pub/projects'
-this.httpClient
-  .post('https://api-base.herokuapp.com/api/pub/projects', { name: 'covid' })
-  .subscribe(o => {
-    this.httpClient.get('https://api-base.herokuapp.com/api/pub/projects').subscribe(
-      p => console.log({ p }),
-      e => console.error({ e })
-    );
-  });
-*/

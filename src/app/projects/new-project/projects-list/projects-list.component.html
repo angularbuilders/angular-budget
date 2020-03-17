@@ -2,7 +2,7 @@
   <p>Current {{projects.length}}projects...</p>
   <ul>
     <li *ngFor="let project of projects" >
-     <a [routerLink]="['../../',project.projectId]">
+     <a [routerLink]="['../../',project._id]">
       {{ project.name }}
      </a>   <button (click)="onDeleteClick(project)" >🗑</button>
     </li>

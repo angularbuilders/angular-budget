@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { ProjectModel } from '../new-project.component';
+import { ProjectModel } from '../../ProjectModel';
 
 @Component({
   selector: 'ab-form-presenter',

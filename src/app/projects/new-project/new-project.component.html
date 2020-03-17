@@ -1,6 +1,9 @@
 <ab-form-presenter (save)="saveProject($event)">
 
 </ab-form-presenter>
+
+{{ project | json }}
+
 <ab-projects-list [projects]="projects" (delete)="deleteProject($event)" >
 
 </ab-projects-list>

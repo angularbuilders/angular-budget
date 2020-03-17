@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProjectModel } from '../ProjectModel';
 import { ProjectsService } from '../projects.service';
 
 @Component({
@@ -7,22 +8,31 @@ import { ProjectsService } from '../projects.service';
   styleUrls: ['./new-project.component.css'],
 })
 export class NewProjectComponent implements OnInit {
+  project: ProjectModel = null;
   projects: ProjectModel[] = [];
 
   constructor(private projectsService: ProjectsService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getProjects();
+  }
 
   saveProject(newProject: ProjectModel) {
-    this.projects = this.projectsService.saveProject(newProject);
+    this.projectsService.postProject$(newProject).subscribe(project => {
+      this.project = project;
+      this.getProjects();
+    });
   }
 
   deleteProject(project: ProjectModel) {
-    this.projects = this.projectsService.deleteProject(project);
+    this.projectsService.deleteProject$(project).subscribe(() => {
+      this.getProjects();
+    });
   }
-}
 
-export interface ProjectModel {
-  projectId?: string;
-  name: string;
+  private getProjects() {
+    this.projectsService.getProjects$().subscribe(apiResult => {
+      this.projects = apiResult;
+    });
+  }
 }
