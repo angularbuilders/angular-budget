@@ -1,14 +1,14 @@
 <h3>My Projects</h3>
 <a routerLink="new-project">New project</a>
 
-<section *ngIf="projects.length>0; else empty">
-  <h4>Listado</h4>
+<section *ngIf="projects && projects.length>0; else empty">
+  <h4>Projects list</h4>
   <ul>
-    <li *ngFor="let project of projects" >
+    <li *ngFor="let project of projects">
       <a [routerLink]="[project._id]">
-       {{ project.name }}
+        {{ project.name }}
       </a>
-     </li>
+    </li>
   </ul>
 </section>
 
