@@ -1,0 +1,100 @@
+/* Setup */
+html {
+  /* Change default typefaces here */
+  font-family: 'Lato', serif;
+  font-size: 137.5%;
+  color: #3a4856;
+  -webkit-font-smoothing: antialiased;
+}
+/* Copy & Lists */
+p {
+  line-height: 1.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0;
+}
+ul,
+ol {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+ul li,
+ol li {
+  line-height: 1.5rem;
+}
+ul ul,
+ol ul,
+ul ol,
+ol ol {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+blockquote {
+  line-height: 1.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+/* Headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  /* Change heading typefaces here */
+  font-family: 'Comfortaa', sans-serif;
+  margin-top: 1.5rem;
+  margin-bottom: 0;
+  line-height: 1.5rem;
+}
+h1 {
+  font-size: 2.828rem;
+  line-height: 4rem;
+  margin-top: 2rem;
+}
+h2 {
+  font-size: 2.121rem;
+  line-height: 2rem;
+  margin-top: 2rem;
+}
+h3 {
+  font-size: 1.414rem;
+}
+h4 {
+  font-size: 1rem;
+}
+h5 {
+  font-size: 0.707rem;
+}
+h6 {
+  font-size: 0.471rem;
+}
+/* Tables */
+table {
+  margin-top: 1.5rem;
+  border-spacing: 0px;
+  border-collapse: collapse;
+}
+table td,
+table th {
+  padding: 0;
+  line-height: 33px;
+}
+/* Code blocks */
+code {
+  vertical-align: bottom;
+}
+a {
+  color: #3a4856;
+  text-decoration: none;
+  border-bottom: 2px solid #40b1f9;
+}
+a:hover {
+  color: #ffffff;
+  background-color: #40b1f9;
+  text-decoration: none;
+}
+a:visited {
+  color: #3a4856;
+  text-decoration: none;
+  border-bottom: 2px solid #40b1f9;
+}
