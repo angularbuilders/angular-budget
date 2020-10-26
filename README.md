@@ -4,7 +4,15 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `npm start` for a dev server. Navigate to `http://localhost:420/`. The app will automatically reload if you change any of the source files.1
+
+## Versión release
+
+Run `npm run release` for a new release pushed to remote origin.
+
+## GitHub Pages Deploy
+
+Run `npm run deploy` for build for production. Navigate to `https://angularbuilders.github.io/angular-budget/`
 
 ## Code scaffolding
 
@@ -25,3 +33,7 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## Credits
+
+[Alberto Basalo](https://twitter.com/albertobasalo)
