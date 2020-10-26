@@ -1,5 +1,6 @@
 {
   "name": "angular-budget",
+  "description": "Sample Angular Application. Project and budget manager.",
   "version": "10.1.0",
   "scripts": {
     "ng": "ng",
