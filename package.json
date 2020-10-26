@@ -9,7 +9,8 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "prerelease": "standard-version",
-    "release": "git push --follow-tags "
+    "release": "git push --follow-tags ",
+    "deploy": "ng deploy --base-href=/angular-budget/"
   },
   "private": true,
   "dependencies": {
@@ -32,6 +33,7 @@
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^12.11.1",
+    "angular-cli-ghpages": "^0.6.2",
     "codelyzer": "^6.0.0",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~5.0.0",
