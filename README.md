@@ -36,7 +36,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ### Work in pogress 
 
-> Actions: on push close issue
+> Actions: on push closes issue if #
 
 ## Credits
 
