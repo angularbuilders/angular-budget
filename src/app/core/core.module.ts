@@ -1,7 +1,8 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LayoutComponent } from './layout/layout.component';
+import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { HeaderComponent } from './layout/header/header.component';
+import { LayoutComponent } from './layout/layout.component';
 import { MainComponent } from './layout/main/main.component';
 
 
@@ -9,7 +10,8 @@ import { MainComponent } from './layout/main/main.component';
 @NgModule({
   declarations: [LayoutComponent, HeaderComponent, MainComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule
   ],
   exports: [LayoutComponent]
 })
