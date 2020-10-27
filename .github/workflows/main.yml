@@ -25,4 +25,4 @@ jobs:
       - uses: peter-evans/close-issue@v1
         name: Close Issue
         with:
-          issue-number: steps.split.outputs._1
+          issue-number: ${{ steps.split.outputs._1 }}
