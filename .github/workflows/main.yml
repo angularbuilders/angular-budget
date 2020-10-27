@@ -22,8 +22,7 @@ jobs:
         with:
           msg: github.event.head_commit.message
           seperator: '#'
-      - if: steps.split.outputs._1 != null
+      - uses: peter-evans/close-issue@v1
         name: Close Issue
-        uses: peter-evans/close-issue@v1
         with:
           issue-number: steps.split.outputs._1
