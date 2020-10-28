@@ -8,14 +8,18 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: logCommit
+        run: echo Message_ ${{ github.event.head_commit.message }}.
       - uses: jungwinter/split@v1
         id: split
         with:
           msg: github.event.head_commit.message
           seperator: '.'
-      - name: log
-        run: echo '::debug::{steps.split.outputs._1}'
-      - uses: peter-evans/close-issue@v1
-        name: Close Issue
-        with:
-          issue-number: ${{ steps.split.outputs._1 }}
+      - name: logSplitted0
+        run: echo Split0_ ${{steps.split.outputs._0 }}.
+      - name: logSplitted1
+        run: echo Split1_ ${{steps.split.outputs._1 }}.
+      #- uses: peter-evans/close-issue@v1
+       # name: Close Issue
+        #with:
+         # issue-number: ${{ steps.split.outputs._1 }}
