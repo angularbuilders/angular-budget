@@ -40,6 +40,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 log0
 uno.dos.tres
 lleva#hash
+otro #11
 
 ## Credits
 
