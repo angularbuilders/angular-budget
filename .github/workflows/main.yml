@@ -12,7 +12,7 @@ jobs:
         id: split
         with:
           msg: github.event.head_commit.message
-          seperator: '#'
+          seperator: '.'
       - name: log
         run: echo '::debug::{steps.split.outputs._1}'
       - uses: peter-evans/close-issue@v1
