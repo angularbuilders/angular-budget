@@ -8,6 +8,7 @@ export interface Project extends Id {
   start?: Date;
   end?: Date;
   budget: number;
+  totalExpenses?: number;
   status: Status;
   tasks: Task[];
   expenses: Expense[];

@@ -4,16 +4,10 @@
       Estado general de mis proyectos
     </h2>
   </header>
-  <aside>
-    <h3><a routerLink="projects/1">Mi primer proyecto</a></h3>
-    <p>Presupuesto: <b>1.000€</b></p>
-    <p>Gastos: <b>900€</b></p>
-    <p><i>20-10-2020 - 9-11-2020</i></p>
-  </aside>
-  <aside>
-    <h3><a routerLink="projects/2">El super proyecto</a></h3>
-    <p>Presupuesto: <b>9.000€</b></p>
-    <p>Gastos: <b>11.654€</b></p>
-    <p><i>15-08-2020 - 15-12-2020</i></p>
+  <aside *ngFor="let project of projects">
+    <h3><a [routerLink]="['projects', project.id]">{{ project.title }}</a></h3>
+    <p>Presupuesto: <b>{{ project.budget | number }} €</b></p>
+    <p>Gastos: <b> {{ project.totalExpenses | number }} €</b></p>
+    <p><i>{{ project.start | date:'dd/MM/yyyy' }} - {{ project.end | date:'dd/MM/yyyy' }}</i></p>
   </aside>
 </section>
