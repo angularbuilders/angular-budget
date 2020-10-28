@@ -14,12 +14,13 @@ jobs:
         id: split
         with:
           msg: ${{ github.event.head_commit.message }}
-          seperator: '.'
+          seperator: '#'
       - name: logSplitted0
         run: echo Split0_ ${{steps.split.outputs._0 }}.
       - name: logSplitted1
         run: echo Split1_ ${{steps.split.outputs._1 }}.
-      #- uses: peter-evans/close-issue@v1
-       # name: Close Issue
-        #with:
-         # issue-number: ${{ steps.split.outputs._1 }}
+      - uses: peter-evans/close-issue@v1
+        name: Close Issue
+        if: ${{ steps.split.outputs._1 }}
+        with:
+          issue-number: ${{ steps.split.outputs._1 }}
