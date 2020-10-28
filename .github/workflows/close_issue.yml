@@ -1,9 +1,9 @@
-name: Close On commit message
+name: Close Issue On commit message
 
 on: push
 
 jobs:
-  build:
+  close_if_hash:
     runs-on: ubuntu-latest
     steps:
       - name: logCommit
@@ -12,10 +12,8 @@ jobs:
         id: split
         with:
           msg: ${{ github.event.head_commit.message }}
-          seperator: '#'
-      - name: logSplitted0
-        run: echo Split0_ ${{steps.split.outputs._0 }}.
-      - name: logSplitted1
+          seperator: 'close#'
+      - name: logIssueId
         run: echo Split1_ ${{steps.split.outputs._1 }}.
       - uses: peter-evans/close-issue@v1
         name: Close Issue
