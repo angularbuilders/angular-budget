@@ -1,7 +1,7 @@
 /* https://raw.githubusercontent.com/xz/new.css/master/new.css */
 :root {
-	--nc-font-sans: Arial, Helvetica, sans-serif;
-	--nc-font-mono: 'Courier New', Courier, monospace;
+	--nc-font-sans: sans-serif;
+	--nc-font-mono: monospace;
 
 	/* Light theme */
 	--nc-tx-1: #2d5487;
