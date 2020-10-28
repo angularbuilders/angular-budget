@@ -13,7 +13,7 @@ jobs:
       - uses: jungwinter/split@v1
         id: split
         with:
-          msg: github.event.head_commit.message
+          msg: ${{ github.event.head_commit.message }}
           seperator: '.'
       - name: logSplitted0
         run: echo Split0_ ${{steps.split.outputs._0 }}.
