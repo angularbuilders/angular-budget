@@ -1,8 +1,6 @@
 name: Close On commit message
 
-on:
-  push:
-    branches: [ '**' ]
+on: push
 
 jobs:
   build:
