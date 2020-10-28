@@ -39,6 +39,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 > Actions: on push closes issue if # 11 punto
 log0
 uno.dos.tres
+lleva#hash
 
 ## Credits
 
