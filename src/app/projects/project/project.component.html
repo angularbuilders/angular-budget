@@ -4,78 +4,28 @@
       Nombre del proyecto
     </h2>
     <p>Descripción del proyecto</p>
+    <nav>
+      <ul>
+        <li>
+          <a><b>Gastos</b></a>
+        </li>
+        <li>
+          <a><b>Tareas</b></a>
+        </li>
+        <li>
+          <a><i>Otros</i></a>
+          <ul>
+            <li>
+              <a><i>Cerrar Proyecto</i></a>
+              <a><i>Borrar Proyecto</i></a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
   </header>
   <main>
-    <h3>Datos generales</h3>
-    <p>Fechas, importes y gastos totales</p>
-    <router-outlet></router-outlet>
-    <!-- To Do: mover a un módulo con ruta aparte
-    <h3>Gastos</h3>
-    <h4>Listado</h4>
-    <table>
-      <thead>
-        <tr>
-          <th>
-            Gasto
-          </th>
-          <th>
-            Fecha
-          </th>
-          <th>
-            Importe
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th>
-            Compra
-          </th>
-          <th>
-            17-10-2020
-          </th>
-          <th>
-            900
-          </th>
-        </tr>
-        <tr>
-          <th>
-            Otra Compra
-          </th>
-          <th>
-            19-10-2020
-          </th>
-          <th>
-            500
-          </th>
-        </tr>
-      </tbody>
-    </table>
-    <h4>Nuevo gasto</h4>
-    <form>
-      <label for="description">Descripción:</label>
-      <input type="text"
-             id="description"
-             name="ndescriptioname"
-             size="20">
-      <label for="date">Fecha:</label>
-      <input type="date"
-             id="date"
-             name="date">
-      <label for="amount">Importe:</label>
-      <input type="number"
-             id="amount"
-             name="amount">
-      <button type="submit">Crear</button>
-    </form>
-    <h3>Acciones</h3>
-    <form>
-      <div>
-        <button>🔐 Cerrar proyecto</button>
-      </div>
-      <div>
-        <button>🗑 Eliminar proyecto</button>
-      </div>
-    </form> -->
+    <p>Presupuesto: <b>1.000€</b> Gastos: <b>900€</b><i> Inicio: 20-10-2020 Fin: 9-11-2020 </i> <mark>Atención al
+        presupuesto</mark></p>
   </main>
 </article>
