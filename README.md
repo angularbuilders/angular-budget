@@ -34,7 +34,7 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
-### Work in pogress 
+### Work in pogress
 
 > Actions: on push closes issue if # 11 punto
 log0
@@ -44,6 +44,7 @@ otro #11
 otro #11
 otro #11
 esperando
+desde vs
 
 ## Credits
 
