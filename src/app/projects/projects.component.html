@@ -43,7 +43,7 @@
     <tbody>
       <tr *ngFor="let projectView of projectViews">
         <td>
-          <a [routerLink]="['projects', projectView.id]">{{ projectView.title }}</a>
+          <a [routerLink]="[projectView.id]">{{ projectView.title }}</a>
         </td>
         <td>
           {{ projectView.start | date:'dd/MM/yyyy' }}

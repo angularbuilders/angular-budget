@@ -1,29 +1,42 @@
-<section>
-  <form>
+<article>
+  <h2>Alta de proyectos</h2>
+  <form #f="ngForm"
+        (ngSubmit)="saveNewProject()">
     <header>
       <h2>Nuevo proyecto</h2>
+      <p>¿Listo para dominar el mundo?</p>
     </header>
     <label for="name">Nombre:</label>
-    <input type="text"
+    <input [(ngModel)]="newProject.title"
+           required
+           type="text"
            id="name"
            name="name"
            size="20">
     <label for="start">Inicio:</label>
-    <input type="date"
+    <input [ngModel]="newProject.start | date:'yyyy-MM-dd'"
+           (ngModelChange)="newProject.start = $event"
+           type="date"
            id="start"
            name="start">
     <label for="end">Fin:</label>
-    <input type="date"
+    <input [(ngModel)]="newProject.end"
+           type="date"
            id="end"
            name="end">
     <label for="budget">Presupuesto:</label>
-    <input type="number"
+    <input [(ngModel)]="newProject.budget"
+           required
+           type="number"
            id="budget"
            name="budget">
     <label for="description">Descripción:</label>
-    <textarea cols="40"
-              rows="5"
+    <textarea [(ngModel)]="newProject.description"
+              cols="27"
+              rows="3"
+              name="description"
               id="description"></textarea>
-    <button type="submit">Crear</button>
+    <button type="submit"
+            [disabled]="!f.valid">Crear</button>
   </form>
-</section>
+</article>
