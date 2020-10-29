@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [10.4.0](https://github.com/angularbuilders/angular-budget/compare/v10.3.0...v10.4.0) (2020-10-29)
+
+
+### Features
+
+* datos y modelo en memoria - close[#20](https://github.com/angularbuilders/angular-budget/issues/20) ([4489ddf](https://github.com/angularbuilders/angular-budget/commit/4489ddfe9f8c65c10366a3cd1580fcd839d51448))
+* fromualrio para alta de proyectos - close[#23](https://github.com/angularbuilders/angular-budget/issues/23) ([36f9133](https://github.com/angularbuilders/angular-budget/commit/36f913392407c1ab6dc8433d2b3eecb42d2f461d))
+* presentación dinámica de datos - close[#21](https://github.com/angularbuilders/angular-budget/issues/21) ([009b631](https://github.com/angularbuilders/angular-budget/commit/009b6312dedd9fb2aba06c2c87bb29b1b54c7dfb))
+* projects tasks transactions - close[#25](https://github.com/angularbuilders/angular-budget/issues/25) ([8257c3b](https://github.com/angularbuilders/angular-budget/commit/8257c3b35f0e47b2bf2b4ae79f0cce853d431e19))
+* tabla de proyectos con datos - close[#22](https://github.com/angularbuilders/angular-budget/issues/22) ([261e88f](https://github.com/angularbuilders/angular-budget/commit/261e88f989db428e255728fbec52c6c253a1c18c))
+* viaulizar proyectos y tareas cuadro de mando - close[#21](https://github.com/angularbuilders/angular-budget/issues/21) ([e33eff3](https://github.com/angularbuilders/angular-budget/commit/e33eff35829fc7eee7bb3206d0755e4491036353))
+* vista detallada de proyecto - close[#24](https://github.com/angularbuilders/angular-budget/issues/24) ([211ca99](https://github.com/angularbuilders/angular-budget/commit/211ca99189705d2fd4aef1f8848e6ea38f5bea0a))
+
 ## [10.3.0](https://github.com/angularbuilders/angular-budget/compare/v10.2.0...v10.3.0) (2020-10-28)
 
 
