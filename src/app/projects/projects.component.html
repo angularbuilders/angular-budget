@@ -29,42 +29,44 @@
         <th>
           Gastos
         </th>
+        <th>
+          Ingresos
+        </th>
+        <th>
+          Beneficio
+        </th>
+        <th>
+          Saldo
+        </th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <th>
-          <a routerLink="1">Mi primer proyecto</a>
-        </th>
-        <th>
-          20-10-2020
-        </th>
-        <th>
-          9-11-2020
-        </th>
-        <th>
-          1.000€
-        </th>
-        <th>
-          900€
-        </th>
-      </tr>
-      <tr>
-        <th>
-          <a routerLink="2">El super proyecto</a>
-        </th>
-        <th>
-          15-08-2020
-        </th>
-        <th>
-          15-12-2020
-        </th>
-        <th>
-          9.000€
-        </th>
-        <th>
-          11.654€
-        </th>
+      <tr *ngFor="let projectView of projectViews">
+        <td>
+          <a [routerLink]="[projectView.id]">{{ projectView.title }}</a>
+        </td>
+        <td>
+          {{ projectView.start | date:'dd/MM/yyyy' }}
+        </td>
+        <td>
+          {{ projectView.end | date:'dd/MM/yyyy' }}
+        </td>
+        <td>
+          {{ projectView.budget | number }} €
+        </td>
+        <td>
+          {{ projectView.totalExpenses | number }} €
+        </td>
+        <td>
+          {{ projectView.totalIncomes | number }} €
+        </td>
+        <td>
+          {{ projectView.profit | number }} €
+        </td>
+        <td>
+          {{ projectView.balance | number }} €
+          <sup *ngIf="projectView.balance<0">*</sup>
+        </td>
       </tr>
     </tbody>
   </table>
