@@ -6,7 +6,7 @@ const routes: Routes = [
     path: '',
     loadChildren: () => import('./home/home.module').then(m => m.HomeModule),
     data: {
-      title: 'Control',
+      title: 'Cuadro de mando',
     },
   },
   {

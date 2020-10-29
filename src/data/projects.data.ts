@@ -5,7 +5,7 @@ export const PROJECTS: Project[] = [
   {
     id: 'mi-primer-proyecto',
     title: 'Mi primer proyecto',
-    description: 'Este es un proyecto de prueba. Para ve de qué soy capaz.',
+    description: 'Este es un proyecto de prueba. Para ver de qué soy capaz.',
     start: new Date(2020, 9, 10),
     end: new Date(2020, 9, 30),
     budget: 1000,

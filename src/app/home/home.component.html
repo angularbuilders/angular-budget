@@ -1,13 +1,28 @@
 <section>
   <header>
     <h2>
-      Estado general de mis proyectos
+      Estado general de mis proyectos y tareas
     </h2>
   </header>
-  <aside *ngFor="let project of projects">
-    <h3><a [routerLink]="['projects', project.id]">{{ project.title }}</a></h3>
-    <p>Presupuesto: <b>{{ project.budget | number }} €</b></p>
-    <p>Gastos: <b> {{ project.totalExpenses | number }} €</b></p>
-    <p><i>{{ project.start | date:'dd/MM/yyyy' }} - {{ project.end | date:'dd/MM/yyyy' }}</i></p>
+  <aside *ngFor="let projectView of projectViews">
+    <h3>
+      <a [routerLink]="['projects', projectView.id]">{{ projectView.title }}</a>
+    </h3>
+    <p><i>
+        {{ projectView.start | date:'dd/MM/yyyy' }} - {{ projectView.end | date:'dd/MM/yyyy' }}
+      </i></p>
+    <p>Presupuesto: <b>{{ projectView.budget | number }} €</b></p>
+    <p>Gastos: <b> {{ projectView.totalExpenses | number }} €</b></p>
+    <p>Ingresos: <b> {{ projectView.totalIncomes | number }} €</b></p>
+    <p>Beneficio: <b> {{ projectView.profit | number }} €</b></p>
+    <p>
+      Saldo: <b> {{ projectView.balance | number }} €</b>
+      <sup *ngIf="projectView.balance<0">*</sup>
+    </p>
+  </aside>
+  <aside>
+    <h3>Tareas</h3>
+    <p>Totales: <b>{{ tasksViews.total | number }} </b></p>
+    <p>Pendientes: <b> {{ tasksViews.pending | number }} </b></p>
   </aside>
 </section>
