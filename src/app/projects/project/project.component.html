@@ -1,31 +1,55 @@
 <article>
   <header>
     <h2>
-      Nombre del proyecto
+      {{ project.title }}
     </h2>
-    <p>Descripción del proyecto</p>
+    <p>{{ project.description }}</p>
+    <p>
+      Presupuesto: <b>{{ project.budget | number }} €</b>
+      <i> Inicio: {{ project.start | date:'shortDate' }} Fin :{{ project.end | date:'shortDate' }} </i>
+    </p>
+    <!--  -->
+  </header>
+  <section>
+    <aside>
+      <header>
+        <h3>Tareas</h3>
+      </header>
+      <ul>
+        <li *ngFor="let task of tasks">
+          <mark *ngIf="task.done"> {{ task.title }} </mark>
+          <span *ngIf="!task.done"> {{ task.title }} </span>
+        </li>
+      </ul>
+    </aside>
+    <aside>
+      <header>
+        <h3>Transacciones</h3>
+      </header>
+      <ul>
+        <li *ngFor="let transaction of transactions">
+          <mark *ngIf="transaction.type==='Ingreso'"> {{ transaction.title }} +{{ transaction.amount  | number}} €
+          </mark>
+          <span *ngIf="transaction.type==='Gasto'"> {{ transaction.title }} -{{ transaction.amount | number }} €
+            <sup>!</sup>
+          </span>
+        </li>
+      </ul>
+    </aside>
+  </section>
+  <footer>
     <nav>
       <ul>
         <li>
-          <a><b>Gastos</b></a>
+          <a><i>Cancelar Proyecto</i></a>
         </li>
         <li>
-          <a><b>Tareas</b></a>
+          <a><i>Borrar Proyecto</i></a>
         </li>
         <li>
-          <a><i>Otros</i></a>
-          <ul>
-            <li>
-              <a><i>Cerrar Proyecto</i></a>
-              <a><i>Borrar Proyecto</i></a>
-            </li>
-          </ul>
+          <a routerLink="../new"><i>Crear Proyecto</i></a>
         </li>
       </ul>
     </nav>
-  </header>
-  <main>
-    <p>Presupuesto: <b>1.000€</b> Gastos: <b>900€</b><i> Inicio: 20-10-2020 Fin: 9-11-2020 </i> <mark>Atención al
-        presupuesto</mark></p>
-  </main>
+  </footer>
 </article>

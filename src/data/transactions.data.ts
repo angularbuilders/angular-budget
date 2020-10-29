@@ -10,6 +10,13 @@ export const TRANSACTIONS: Transaction[] = [
     projectId: 'mi-primer-proyecto',
   },
   {
+    id: 'vender-cosas',
+    title: 'Vender cosas',
+    amount: 1200,
+    type: TransactionType.Incoming,
+    projectId: 'mi-primer-proyecto',
+  },
+  {
     id: 'publicidad',
     title: 'Publicidad',
     amount: 8000,
@@ -21,6 +28,13 @@ export const TRANSACTIONS: Transaction[] = [
     title: 'Materiales',
     amount: 3654,
     type: TransactionType.Expense,
+    projectId: 'el-super-proyecto',
+  },
+  {
+    id: 'servicios',
+    title: 'Servicios',
+    amount: 6824,
+    type: TransactionType.Incoming,
     projectId: 'el-super-proyecto',
   },
 ];

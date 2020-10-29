@@ -14,7 +14,8 @@
     <p>Presupuesto: <b>{{ projectView.budget | number }} €</b></p>
     <p>Gastos: <b> {{ projectView.totalExpenses | number }} €</b></p>
     <p>Ingresos: <b> {{ projectView.totalIncomes | number }} €</b></p>
-    <p>Beneficio: <b> {{ projectView.profit | number }} €</b></p>
+    <p>Beneficio: <b> {{ projectView.profit | number }} €</b><sup *ngIf="projectView.profit<0">*</sup>
+    </p>
     <p>
       Saldo: <b> {{ projectView.balance | number }} €</b>
       <sup *ngIf="projectView.balance<0">*</sup>
@@ -22,7 +23,7 @@
   </aside>
   <aside>
     <h3>Tareas</h3>
-    <p>Totales: <b>{{ tasksViews.total | number }} </b></p>
-    <p>Pendientes: <b> {{ tasksViews.pending | number }} </b></p>
+    <p>Completadas: <mark><b>{{ tasksViews.total - tasksViews.pending | number }}</b></mark></p>
+    <p>Pendientes: <b> {{ tasksViews.pending | number }} </b><sup>!</sup></p>
   </aside>
 </section>
