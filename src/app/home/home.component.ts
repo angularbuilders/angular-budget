@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.projects.forEach(project => {
-      project.totalExpenses = project.expenses
+      project.totalExpenses = project.transactions
         .map(expense => expense.amount)
         .reduce((accumulator, current) => accumulator + current);
     });

@@ -1,15 +1,15 @@
-import { Expense } from './expense.interface';
 import { Id } from './id.interface';
 import { Status } from './status.enum';
 import { Task } from './task.interface';
+import { Transaction } from './transaction.interface';
 
 export interface Project extends Id {
+  budget: number;
+  status: Status;
   description?: string;
   start?: Date;
   end?: Date;
-  budget: number;
   totalExpenses?: number;
-  status: Status;
-  tasks: Task[];
-  expenses: Expense[];
+  tasks?: Task[];
+  transactions?: Transaction[];
 }

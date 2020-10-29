@@ -10,22 +10,6 @@ export const PROJECTS: Project[] = [
     end: new Date(2020, 9, 30),
     budget: 1000,
     status: Status.InProgress,
-    tasks: [
-      {
-        id: 'hacer-de-todo',
-        title: 'Hacer de todo',
-        done: false,
-        projectId: 'mi-primer-proyecto',
-      },
-    ],
-    expenses: [
-      {
-        id: 'comprar-cosas',
-        title: 'Compar cosas',
-        amount: 900,
-        projectId: 'mi-primer-proyecto',
-      },
-    ],
   },
   {
     id: 'el-super-proyecto',
@@ -35,39 +19,5 @@ export const PROJECTS: Project[] = [
     end: new Date(2020, 11, 31),
     budget: 9000,
     status: Status.InProgress,
-    tasks: [
-      {
-        id: 'preparar',
-        title: 'Preparar',
-        done: true,
-        projectId: 'el-super-proyecto',
-      },
-      {
-        id: 'transformar',
-        title: 'Transformar',
-        done: false,
-        projectId: 'el-super-proyecto',
-      },
-      {
-        id: 'prsentar',
-        title: 'Presentar',
-        done: false,
-        projectId: 'el-super-proyecto',
-      },
-    ],
-    expenses: [
-      {
-        id: 'publicidad',
-        title: 'Publicidad',
-        amount: 8000,
-        projectId: 'el-super-proyecto',
-      },
-      {
-        id: 'materiales',
-        title: 'Materiales',
-        amount: 3654,
-        projectId: 'el-super-proyecto',
-      },
-    ],
   },
 ];
