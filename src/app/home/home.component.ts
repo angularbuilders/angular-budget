@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { PROJECTS } from 'src/data/projects.data';
 import { TASKS } from 'src/data/tasks.data';
 import { TRANSACTIONS } from 'src/data/transactions.data';
+import { ProjectView } from '../core/model/project-view.interface';
+import { TasksView } from '../core/model/tasksView.interface';
 import { TransactionType } from '../core/model/transaction-type.enum';
-import { ProjectView } from './model/project-view.interface';
-import { TasksView } from './model/tasksView.interface';
 
 @Component({
   selector: 'ab-home',
