@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { PROJECTS } from 'src/data/projects.data';
 import { TASKS } from 'src/data/tasks.data';
@@ -14,7 +15,7 @@ import { TransactionType } from '../core/model/transaction-type.enum';
 export class HomeComponent implements OnInit {
   projectViews: ProjectView[] = [];
   tasksViews?: TasksView;
-  constructor() {}
+  constructor(private httpClient: HttpClient) {}
 
   ngOnInit(): void {
     this.setProjectsView();
