@@ -1,11 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { PROJECTS } from 'src/data/projects.data';
-import { TASKS } from 'src/data/tasks.data';
-import { TRANSACTIONS } from 'src/data/transactions.data';
 import { ProjectView } from '../core/model/project-view.interface';
+import { Project } from '../core/model/project.interface';
+import { Task } from '../core/model/task.interface';
 import { TasksView } from '../core/model/tasksView.interface';
 import { TransactionType } from '../core/model/transaction-type.enum';
+import { Transaction } from '../core/model/transaction.interface';
 
 @Component({
   selector: 'ab-home',
@@ -15,17 +15,47 @@ import { TransactionType } from '../core/model/transaction-type.enum';
 export class HomeComponent implements OnInit {
   projectViews: ProjectView[] = [];
   tasksViews?: TasksView;
+  loaded = false;
+  private projects: Project[];
+  private transactions: Transaction[];
+  private tasks: Task[];
+  private readonly rootUrl = `https://api-base.herokuapp.com/api/pub`;
+
   constructor(private httpClient: HttpClient) {}
 
   ngOnInit(): void {
+    this.loadData();
+  }
+
+  private loadData(): void {
+    this.httpClient.get<Project[]>(`${this.rootUrl}/projects`).subscribe({
+      next: projectsData => {
+        this.projects = projectsData;
+        this.httpClient.get<Transaction[]>(`${this.rootUrl}/transactions`).subscribe({
+          next: transactionsData => {
+            this.transactions = transactionsData;
+            this.httpClient.get<Task[]>(`${this.rootUrl}/tasks`).subscribe({
+              next: tasksData => {
+                this.tasks = tasksData;
+                this.setDataViews();
+              },
+            });
+          },
+        });
+      },
+    });
+  }
+
+  private setDataViews(): void {
     this.setProjectsView();
     this.setTasksView();
+    this.loaded = true;
   }
 
   private setProjectsView(): void {
-    this.projectViews = PROJECTS.map(project => {
+    this.projectViews = this.projects.map(project => {
       const projectView: ProjectView = { ...project };
-      const transactions = TRANSACTIONS.filter(transaction => transaction.projectId === projectView.id);
+      const transactions = this.transactions.filter(transaction => transaction.projectId === projectView.id);
       const expenses = transactions.filter(transaction => transaction.type === TransactionType.Expense);
       if (expenses.length > 0) {
         projectView.totalExpenses = expenses
@@ -49,8 +79,8 @@ export class HomeComponent implements OnInit {
   }
   private setTasksView(): void {
     this.tasksViews = {
-      total: TASKS.length,
-      pending: TASKS.filter(task => !task.done).length,
+      total: this.tasks.length,
+      pending: this.tasks.filter(task => !task.done).length,
     };
   }
 }

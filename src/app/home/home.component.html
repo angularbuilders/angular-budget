@@ -1,4 +1,4 @@
-<section>
+<section *ngIf="loaded;else noDataYet">
   <header>
     <h2>
       Estado general de mis proyectos y tareas
@@ -27,3 +27,8 @@
     <p>Pendientes: <b> {{ tasksViews.pending | number }} </b><sup>!</sup></p>
   </aside>
 </section>
+<ng-template #noDataYet>
+  <section>
+    <blockquote>Esperando datos...</blockquote>
+  </section>
+</ng-template>
