@@ -19,7 +19,28 @@ export class HomeComponent implements OnInit {
   private projects: Project[];
   private transactions: Transaction[];
   private tasks: Task[];
-  private readonly rootUrl = `https://api-base.herokuapp.com/api/pub`;
+  private rootUrl = `https://api-base.herokuapp.com/api/pub`;
+
+  private onProjectsLoaded = {
+    next: projectsData => {
+      this.projects = projectsData;
+      this.httpClient.get<Transaction[]>(`${this.rootUrl}/transactions`).subscribe(this.onTranasactionsLoaded);
+    },
+  };
+
+  private onTranasactionsLoaded = {
+    next: transactionsData => {
+      this.transactions = transactionsData;
+      this.httpClient.get<Task[]>(`${this.rootUrl}/tasks`).subscribe(this.onTasksLoaded);
+    },
+  };
+
+  private onTasksLoaded = {
+    next: tasksData => {
+      this.tasks = tasksData;
+      this.setDataViews();
+    },
+  };
 
   constructor(private httpClient: HttpClient) {}
 
@@ -28,22 +49,7 @@ export class HomeComponent implements OnInit {
   }
 
   private loadData(): void {
-    this.httpClient.get<Project[]>(`${this.rootUrl}/projects`).subscribe({
-      next: projectsData => {
-        this.projects = projectsData;
-        this.httpClient.get<Transaction[]>(`${this.rootUrl}/transactions`).subscribe({
-          next: transactionsData => {
-            this.transactions = transactionsData;
-            this.httpClient.get<Task[]>(`${this.rootUrl}/tasks`).subscribe({
-              next: tasksData => {
-                this.tasks = tasksData;
-                this.setDataViews();
-              },
-            });
-          },
-        });
-      },
-    });
+    this.httpClient.get<Project[]>(`${this.rootUrl}/projects`).subscribe(this.onProjectsLoaded);
   }
 
   private setDataViews(): void {
@@ -53,30 +59,41 @@ export class HomeComponent implements OnInit {
   }
 
   private setProjectsView(): void {
-    this.projectViews = this.projects.map(project => {
-      const projectView: ProjectView = { ...project };
-      const transactions = this.transactions.filter(transaction => transaction.projectId === projectView.id);
-      const expenses = transactions.filter(transaction => transaction.type === TransactionType.Expense);
-      if (expenses.length > 0) {
-        projectView.totalExpenses = expenses
-          .map(expense => expense.amount)
-          .reduce((accumulator, current) => accumulator + current);
-      } else {
-        projectView.totalExpenses = 0;
-      }
-      const incomes = transactions.filter(transaction => transaction.type === TransactionType.Incoming);
-      if (incomes.length > 0) {
-        projectView.totalIncomes = incomes
-          .map(income => income.amount)
-          .reduce((accumulator, current) => accumulator + current);
-      } else {
-        projectView.totalIncomes = 0;
-      }
-      projectView.profit = projectView.totalIncomes - projectView.totalExpenses;
-      projectView.balance = projectView.budget + projectView.profit;
-      return projectView;
-    });
+    this.projectViews = this.projects.map(project => this.getViewFromProject(project));
   }
+
+  private getViewFromProject(project: Project): ProjectView {
+    const projectView: ProjectView = { ...project };
+    const transactions = this.transactions.filter(transaction => transaction.projectId === projectView.id);
+    this.processExpenses(transactions, projectView);
+    this.processIncomes(transactions, projectView);
+    projectView.profit = projectView.totalIncomes - projectView.totalExpenses;
+    projectView.balance = projectView.budget + projectView.profit;
+    return projectView;
+  }
+
+  private processExpenses(transactions: Transaction[], projectView: ProjectView): void {
+    const expenses = transactions.filter(transaction => transaction.type === TransactionType.Expense);
+    if (expenses.length > 0) {
+      projectView.totalExpenses = expenses
+        .map(expense => expense.amount)
+        .reduce((accumulator, current) => accumulator + current);
+    } else {
+      projectView.totalExpenses = 0;
+    }
+  }
+
+  private processIncomes(transactions: Transaction[], projectView: ProjectView): void {
+    const incomes = transactions.filter(transaction => transaction.type === TransactionType.Incoming);
+    if (incomes.length > 0) {
+      projectView.totalIncomes = incomes
+        .map(income => income.amount)
+        .reduce((accumulator, current) => accumulator + current);
+    } else {
+      projectView.totalIncomes = 0;
+    }
+  }
+
   private setTasksView(): void {
     this.tasksViews = {
       total: this.tasks.length,
