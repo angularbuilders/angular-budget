@@ -1,4 +1,4 @@
-<article>
+<article *ngIf="loaded;else noDataYet">
   <header>
     <h2>
       {{ project.title }}
@@ -53,3 +53,8 @@
     </nav>
   </footer>
 </article>
+<ng-template #noDataYet>
+  <section>
+    <blockquote>Esperando datos...</blockquote>
+  </section>
+</ng-template>

@@ -24,11 +24,11 @@ export class HomeComponent implements OnInit {
   private onProjectsLoaded = {
     next: projectsData => {
       this.projects = projectsData;
-      this.httpClient.get<Transaction[]>(`${this.rootUrl}/transactions`).subscribe(this.onTranasactionsLoaded);
+      this.httpClient.get<Transaction[]>(`${this.rootUrl}/transactions`).subscribe(this.onTransactionsLoaded);
     },
   };
 
-  private onTranasactionsLoaded = {
+  private onTransactionsLoaded = {
     next: transactionsData => {
       this.transactions = transactionsData;
       this.httpClient.get<Task[]>(`${this.rootUrl}/tasks`).subscribe(this.onTasksLoaded);

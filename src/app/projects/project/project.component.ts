@@ -1,11 +1,9 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Project } from 'src/app/core/model/project.interface';
 import { Task } from 'src/app/core/model/task.interface';
 import { Transaction } from 'src/app/core/model/transaction.interface';
-import { PROJECTS } from 'src/data/projects.data';
-import { TASKS } from 'src/data/tasks.data';
-import { TRANSACTIONS } from 'src/data/transactions.data';
 
 @Component({
   selector: 'ab-project',
@@ -16,12 +14,37 @@ export class ProjectComponent implements OnInit {
   project: Project;
   tasks: Task[];
   transactions: Transaction[];
-  constructor(private activatetedRpute: ActivatedRoute) {}
+  loaded = false;
+  private projectSlug: string;
+  private rootUrl = `https://api-base.herokuapp.com/api/pub`;
+
+  private onProjectLoaded = {
+    next: projectData => {
+      this.project = projectData;
+      this.httpClient.get<Transaction[]>(`${this.rootUrl}/transactions`).subscribe(this.onTransactionsLoaded);
+    },
+  };
+  private onTransactionsLoaded = {
+    next: transactionsData => {
+      this.transactions = transactionsData.filter(tranasaction => tranasaction.projectId === this.projectSlug);
+      this.httpClient.get<Task[]>(`${this.rootUrl}/tasks`).subscribe(this.onTasksLoaded);
+    },
+  };
+  private onTasksLoaded = {
+    next: tasksData => {
+      this.tasks = tasksData.filter(task => task.projectId === this.projectSlug);
+      this.loaded = true;
+    },
+  };
+
+  constructor(private activatedRoute: ActivatedRoute, private httpClient: HttpClient) {}
 
   ngOnInit(): void {
-    const projectSlug = this.activatetedRpute.snapshot.params.id;
-    this.project = PROJECTS.find(project => project.id === projectSlug);
-    this.tasks = TASKS.filter(task => task.projectId === projectSlug);
-    this.transactions = TRANSACTIONS.filter(tranasaction => tranasaction.projectId === projectSlug);
+    this.projectSlug = this.activatedRoute.snapshot.params.id;
+    this.loadData();
+  }
+
+  private loadData(): void {
+    this.httpClient.get<Project[]>(`${this.rootUrl}/projects/${this.projectSlug}`).subscribe(this.onProjectLoaded);
   }
 }
