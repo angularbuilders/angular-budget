@@ -1,7 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Project } from 'src/app/core/model/project.interface';
 import { Status } from 'src/app/core/model/status.enum';
-import { PROJECTS } from 'src/data/projects.data';
 
 @Component({
   selector: 'ab-new-project',
@@ -10,7 +10,16 @@ import { PROJECTS } from 'src/data/projects.data';
 })
 export class NewProjectComponent implements OnInit {
   newProject: Project;
-  constructor() {}
+  loaded = false;
+  private projectSlug: string;
+  private rootUrl = `https://api-base.herokuapp.com/api/pub`;
+
+  private onProjectSaved = {
+    next: projectData => {
+      this.resetNewProjet();
+    },
+  };
+  constructor(private httpClient: HttpClient) {}
 
   ngOnInit(): void {
     this.resetNewProjet();
@@ -29,8 +38,7 @@ export class NewProjectComponent implements OnInit {
 
   saveNewProject(): void {
     this.newProject.id = this.slugify(this.newProject.title);
-    PROJECTS.push({ ...this.newProject });
-    this.resetNewProjet();
+    this.httpClient.post(`${this.rootUrl}/projects/`, this.newProject).subscribe(this.onProjectSaved);
   }
   slugify(text: string): string {
     return text
