@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Project } from 'src/app/core/model/project.interface';
-import { Status } from 'src/app/core/model/status.enum';
 import { DataService } from 'src/app/core/services/data.service';
+import { LogicService } from 'src/app/core/services/logic.service';
 
 @Component({
   selector: 'ab-new-project',
@@ -14,34 +14,21 @@ export class NewProjectComponent implements OnInit {
 
   private onProjectSaved = {
     next: () => {
-      this.resetNewProjet();
+      this.resetToNewProjet();
     },
   };
-  constructor(private dataService: DataService) {}
+  constructor(private dataService: DataService, private logicService: LogicService) {}
 
   ngOnInit(): void {
-    this.resetNewProjet();
-  }
-
-  resetNewProjet(): void {
-    this.newProject = {
-      id: '',
-      title: '',
-      start: new Date(),
-      budget: 0,
-      description: '',
-      status: Status.InProgress,
-    };
+    this.resetToNewProjet();
   }
 
   saveNewProject(): void {
-    this.newProject.id = this.slugify(this.newProject.title);
+    this.newProject.id = this.logicService.slugify(this.newProject.title);
     this.dataService.postProject$(this.newProject).subscribe(this.onProjectSaved);
   }
-  slugify(text: string): string {
-    return text
-      .toLowerCase()
-      .trim()
-      .replace(/[\s\W-]+/g, '-');
+
+  private resetToNewProjet(): void {
+    this.newProject = this.logicService.createNewProject();
   }
 }

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjectView } from '../core/model/project-view.interface';
 import { Project } from '../core/model/project.interface';
-import { TransactionType } from '../core/model/transaction-type.enum';
 import { Transaction } from '../core/model/transaction.interface';
 import { DataService } from '../core/services/data.service';
+import { LogicService } from '../core/services/logic.service';
 
 @Component({
   selector: 'ab-projects',
@@ -17,20 +17,20 @@ export class ProjectsComponent implements OnInit {
   private transactions: Transaction[];
 
   private onProjectsLoaded = {
-    next: projectsData => {
+    next: (projectsData: Project[]) => {
       this.projects = projectsData;
       this.dataService.getTransactions$().subscribe(this.onTransactionsLoaded);
     },
   };
 
   private onTransactionsLoaded = {
-    next: transactionsData => {
+    next: (transactionsData: Transaction[]) => {
       this.transactions = transactionsData;
       this.setDataViews();
     },
   };
 
-  constructor(private dataService: DataService) {
+  constructor(private dataService: DataService, private logicService: LogicService) {
     this.loadData();
   }
 
@@ -43,41 +43,7 @@ export class ProjectsComponent implements OnInit {
   }
 
   private setDataViews(): void {
-    this.setProjectsView();
+    this.projectViews = this.logicService.composeProjectViews(this.projects, this.transactions);
     this.loaded = true;
-  }
-
-  private setProjectsView(): void {
-    this.projectViews = this.projects.map(project => {
-      const projectView: ProjectView = { ...project };
-      const transactions = this.transactions.filter(transaction => transaction.projectId === projectView.id);
-      this.processExpenses(transactions, projectView);
-      this.processIncomes(transactions, projectView);
-      projectView.profit = projectView.totalIncomes - projectView.totalExpenses;
-      projectView.balance = projectView.budget + projectView.profit;
-      return projectView;
-    });
-  }
-
-  private processIncomes(transactions: Transaction[], projectView: ProjectView): void {
-    const incomes = transactions.filter(transaction => transaction.type === TransactionType.Incoming);
-    if (incomes.length > 0) {
-      projectView.totalIncomes = incomes
-        .map(income => income.amount)
-        .reduce((accumulator, current) => accumulator + current);
-    } else {
-      projectView.totalIncomes = 0;
-    }
-  }
-
-  private processExpenses(transactions: Transaction[], projectView: ProjectView): void {
-    const expenses = transactions.filter(transaction => transaction.type === TransactionType.Expense);
-    if (expenses.length > 0) {
-      projectView.totalExpenses = expenses
-        .map(expense => expense.amount)
-        .reduce((accumulator, current) => accumulator + current);
-    } else {
-      projectView.totalExpenses = 0;
-    }
   }
 }

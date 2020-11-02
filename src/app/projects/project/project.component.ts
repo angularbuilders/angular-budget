@@ -4,6 +4,7 @@ import { Project } from 'src/app/core/model/project.interface';
 import { Task } from 'src/app/core/model/task.interface';
 import { Transaction } from 'src/app/core/model/transaction.interface';
 import { DataService } from 'src/app/core/services/data.service';
+import { LogicService } from 'src/app/core/services/logic.service';
 
 @Component({
   selector: 'ab-project',
@@ -18,25 +19,29 @@ export class ProjectComponent implements OnInit {
   private projectSlug: string;
 
   private onProjectLoaded = {
-    next: projectData => {
+    next: (projectData: Project) => {
       this.project = projectData;
       this.dataService.getTransactions$().subscribe(this.onTransactionsLoaded);
     },
   };
   private onTransactionsLoaded = {
-    next: transactionsData => {
-      this.transactions = transactionsData.filter(tranasaction => tranasaction.projectId === this.projectSlug);
+    next: (transactionsData: Transaction[]) => {
+      this.transactions = this.logicService.filterTransactionsByProjectId(transactionsData, this.projectSlug);
       this.dataService.getTasks$().subscribe(this.onTasksLoaded);
     },
   };
   private onTasksLoaded = {
-    next: tasksData => {
-      this.tasks = tasksData.filter(task => task.projectId === this.projectSlug);
+    next: (tasksData: Task[]) => {
+      this.tasks = this.logicService.filterTasksByProjectId(tasksData, this.projectSlug);
       this.loaded = true;
     },
   };
 
-  constructor(private activatedRoute: ActivatedRoute, private dataService: DataService) {}
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private dataService: DataService,
+    private logicService: LogicService
+  ) {}
 
   ngOnInit(): void {
     this.projectSlug = this.activatedRoute.snapshot.params.id;

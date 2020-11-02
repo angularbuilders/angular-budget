@@ -23,8 +23,8 @@
   </aside>
   <aside>
     <h3>Tareas</h3>
-    <p>Completadas: <mark><b>{{ tasksViews.total - tasksViews.pending | number }}</b></mark></p>
-    <p>Pendientes: <b> {{ tasksViews.pending | number }} </b><sup>!</sup></p>
+    <p>Completadas: <mark><b>{{ tasksView.total - tasksView.pending | number }}</b></mark></p>
+    <p>Pendientes: <b> {{ tasksView.pending | number }} </b><sup>!</sup></p>
   </aside>
 </section>
 <ng-template #noDataYet>
