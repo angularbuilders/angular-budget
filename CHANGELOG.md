@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [10.5.0](https://github.com/angularbuilders/angular-budget/compare/v10.4.0...v10.5.0) (2020-11-02)
+
+
+### Features
+
+* carga de datos desde servidor - close[#26](https://github.com/angularbuilders/angular-budget/issues/26) ([1c0a913](https://github.com/angularbuilders/angular-budget/commit/1c0a913930062b1617aebe5788b217e0fd89d25c))
+* componente projects dedes api - close[#28](https://github.com/angularbuilders/angular-budget/issues/28) ([1195133](https://github.com/angularbuilders/angular-budget/commit/119513393df50d9bee71b05ca48b2b5599108ea3))
+* guardar proyecto en servidor remoto - close[#29](https://github.com/angularbuilders/angular-budget/issues/29) ([5843e11](https://github.com/angularbuilders/angular-budget/commit/5843e117050ad90e60c0658f82cb74d7e4debf6c))
+* obtención de datos de un proyecto por http - close[#29](https://github.com/angularbuilders/angular-budget/issues/29) ([452234b](https://github.com/angularbuilders/angular-budget/commit/452234be13d7d55f344d3adb05e420cc4931c403))
+
 ## [10.4.0](https://github.com/angularbuilders/angular-budget/compare/v10.3.0...v10.4.0) (2020-10-29)
 
 
