@@ -16,16 +16,16 @@ export class DataService {
   getProjects$(): Observable<Project[]> {
     return this.httpClient.get<Project[]>(`${this.rootUrl}/projects`);
   }
-  getProject(projectId: string): Observable<Project> {
+  getProject$(projectId: string): Observable<Project> {
     return this.httpClient.get<Project>(`${this.rootUrl}/projects/${projectId}`);
   }
-  postProject(newProject: Project): Observable<Project> {
+  postProject$(newProject: Project): Observable<Project> {
     return this.httpClient.post<Project>(`${this.rootUrl}/projects/`, newProject);
   }
-  putProject(updatedProject: Project): Observable<Project> {
+  putProject$(updatedProject: Project): Observable<Project> {
     return this.httpClient.put<Project>(`${this.rootUrl}/projects/${updatedProject.id}`, updatedProject);
   }
-  deleteProject(projectId: string): Observable<Project> {
+  deleteProject$(projectId: string): Observable<Project> {
     return this.httpClient.delete<Project>(`${this.rootUrl}/projects/${projectId}`);
   }
   getTasks$(): Observable<Task[]> {

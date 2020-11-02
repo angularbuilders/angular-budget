@@ -1,9 +1,9 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ProjectView } from '../core/model/project-view.interface';
 import { Project } from '../core/model/project.interface';
 import { TransactionType } from '../core/model/transaction-type.enum';
 import { Transaction } from '../core/model/transaction.interface';
+import { DataService } from '../core/services/data.service';
 
 @Component({
   selector: 'ab-projects',
@@ -15,12 +15,11 @@ export class ProjectsComponent implements OnInit {
   loaded = false;
   private projects: Project[];
   private transactions: Transaction[];
-  private rootUrl = `https://api-base.herokuapp.com/api/pub`;
 
   private onProjectsLoaded = {
     next: projectsData => {
       this.projects = projectsData;
-      this.httpClient.get<Transaction[]>(`${this.rootUrl}/transactions`).subscribe(this.onTransactionsLoaded);
+      this.dataService.getTransactions$().subscribe(this.onTransactionsLoaded);
     },
   };
 
@@ -31,7 +30,7 @@ export class ProjectsComponent implements OnInit {
     },
   };
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private dataService: DataService) {
     this.loadData();
   }
 
@@ -40,7 +39,7 @@ export class ProjectsComponent implements OnInit {
   }
 
   private loadData(): void {
-    this.httpClient.get<Project[]>(`${this.rootUrl}/projects`).subscribe(this.onProjectsLoaded);
+    this.dataService.getProjects$().subscribe(this.onProjectsLoaded);
   }
 
   private setDataViews(): void {

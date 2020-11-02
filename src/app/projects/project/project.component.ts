@@ -1,9 +1,9 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Project } from 'src/app/core/model/project.interface';
 import { Task } from 'src/app/core/model/task.interface';
 import { Transaction } from 'src/app/core/model/transaction.interface';
+import { DataService } from 'src/app/core/services/data.service';
 
 @Component({
   selector: 'ab-project',
@@ -16,18 +16,17 @@ export class ProjectComponent implements OnInit {
   transactions: Transaction[];
   loaded = false;
   private projectSlug: string;
-  private rootUrl = `https://api-base.herokuapp.com/api/pub`;
 
   private onProjectLoaded = {
     next: projectData => {
       this.project = projectData;
-      this.httpClient.get<Transaction[]>(`${this.rootUrl}/transactions`).subscribe(this.onTransactionsLoaded);
+      this.dataService.getTransactions$().subscribe(this.onTransactionsLoaded);
     },
   };
   private onTransactionsLoaded = {
     next: transactionsData => {
       this.transactions = transactionsData.filter(tranasaction => tranasaction.projectId === this.projectSlug);
-      this.httpClient.get<Task[]>(`${this.rootUrl}/tasks`).subscribe(this.onTasksLoaded);
+      this.dataService.getTasks$().subscribe(this.onTasksLoaded);
     },
   };
   private onTasksLoaded = {
@@ -37,7 +36,7 @@ export class ProjectComponent implements OnInit {
     },
   };
 
-  constructor(private activatedRoute: ActivatedRoute, private httpClient: HttpClient) {}
+  constructor(private activatedRoute: ActivatedRoute, private dataService: DataService) {}
 
   ngOnInit(): void {
     this.projectSlug = this.activatedRoute.snapshot.params.id;
@@ -45,6 +44,6 @@ export class ProjectComponent implements OnInit {
   }
 
   private loadData(): void {
-    this.httpClient.get<Project>(`${this.rootUrl}/projects/${this.projectSlug}`).subscribe(this.onProjectLoaded);
+    this.dataService.getProject$(this.projectSlug).subscribe(this.onProjectLoaded);
   }
 }

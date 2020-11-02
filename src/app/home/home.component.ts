@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ProjectView } from '../core/model/project-view.interface';
 import { Project } from '../core/model/project.interface';
@@ -6,6 +5,7 @@ import { Task } from '../core/model/task.interface';
 import { TasksView } from '../core/model/tasksView.interface';
 import { TransactionType } from '../core/model/transaction-type.enum';
 import { Transaction } from '../core/model/transaction.interface';
+import { DataService } from '../core/services/data.service';
 
 @Component({
   selector: 'ab-home',
@@ -19,19 +19,18 @@ export class HomeComponent implements OnInit {
   private projects: Project[];
   private transactions: Transaction[];
   private tasks: Task[];
-  private rootUrl = `https://api-base.herokuapp.com/api/pub`;
 
   private onProjectsLoaded = {
     next: projectsData => {
       this.projects = projectsData;
-      this.httpClient.get<Transaction[]>(`${this.rootUrl}/transactions`).subscribe(this.onTransactionsLoaded);
+      this.dataService.getTransactions$().subscribe(this.onTransactionsLoaded);
     },
   };
 
   private onTransactionsLoaded = {
     next: transactionsData => {
       this.transactions = transactionsData;
-      this.httpClient.get<Task[]>(`${this.rootUrl}/tasks`).subscribe(this.onTasksLoaded);
+      this.dataService.getTasks$().subscribe(this.onTasksLoaded);
     },
   };
 
@@ -42,14 +41,14 @@ export class HomeComponent implements OnInit {
     },
   };
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private dataService: DataService) {}
 
   ngOnInit(): void {
     this.loadData();
   }
 
   private loadData(): void {
-    this.httpClient.get<Project[]>(`${this.rootUrl}/projects`).subscribe(this.onProjectsLoaded);
+    this.dataService.getProjects$().subscribe(this.onProjectsLoaded);
   }
 
   private setDataViews(): void {
