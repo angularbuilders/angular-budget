@@ -45,6 +45,6 @@ export class ProjectComponent implements OnInit {
   }
 
   private loadData(): void {
-    this.httpClient.get<Project[]>(`${this.rootUrl}/projects/${this.projectSlug}`).subscribe(this.onProjectLoaded);
+    this.httpClient.get<Project>(`${this.rootUrl}/projects/${this.projectSlug}`).subscribe(this.onProjectLoaded);
   }
 }
