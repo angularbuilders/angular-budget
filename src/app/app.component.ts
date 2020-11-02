@@ -8,8 +8,6 @@ import { UtilService } from './core/services/util.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'angular-budget';
-
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private utilService: UtilService) {
     this.setTitleOnRouteChange();
   }
@@ -17,7 +15,7 @@ export class AppComponent {
   private setTitleOnRouteChange(): void {
     this.router.events.subscribe({
       next: (event: Event) => {
-        this.utilService.setTitleFromRouterEvent(event, this.activatedRoute, this.title);
+        this.utilService.setTitleFromRouterEvent(event, this.activatedRoute);
       },
     });
   }

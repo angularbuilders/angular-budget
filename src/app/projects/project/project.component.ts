@@ -5,6 +5,7 @@ import { Task } from 'src/app/core/model/task.interface';
 import { Transaction } from 'src/app/core/model/transaction.interface';
 import { DataService } from 'src/app/core/services/data.service';
 import { LogicService } from 'src/app/core/services/logic.service';
+import { UtilService } from 'src/app/core/services/util.service';
 
 @Component({
   selector: 'ab-project',
@@ -21,6 +22,7 @@ export class ProjectComponent implements OnInit {
   private onProjectLoaded = {
     next: (projectData: Project) => {
       this.project = projectData;
+      this.utilService.setDocumentTitle(this.project.title);
       this.dataService.getTransactions$().subscribe(this.onTransactionsLoaded);
     },
   };
@@ -40,7 +42,8 @@ export class ProjectComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private dataService: DataService,
-    private logicService: LogicService
+    private logicService: LogicService,
+    private utilService: UtilService
   ) {}
 
   ngOnInit(): void {

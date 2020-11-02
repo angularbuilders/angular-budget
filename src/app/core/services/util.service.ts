@@ -6,21 +6,28 @@ import { ActivatedRoute, Event, NavigationEnd } from '@angular/router';
   providedIn: 'root',
 })
 export class UtilService {
+  private siteTitle = 'Angular.Budget';
+
   constructor(private titleService: Title) {}
 
-  public setTitleFromRouterEvent(event: Event, activatedRoute: ActivatedRoute, defaultTitle: string): void {
+  public setTitleFromRouterEvent(event: Event, activatedRoute: ActivatedRoute): void {
     if (event instanceof NavigationEnd) {
-      const childRoute = this.getChild(activatedRoute);
-      const title = this.getTitle(childRoute, defaultTitle);
-      this.titleService.setTitle(title);
+      const childRoute = this.getChildOfRoute(activatedRoute);
+      const title = this.getTitleFromRoute(childRoute);
+      this.setDocumentTitle(title);
     }
   }
-  private getTitle(activatedRoute: ActivatedRoute, defaultTitle: string): string {
-    return activatedRoute.snapshot.data.title || defaultTitle;
+  public setDocumentTitle(title: string) {
+    const documentTitle = title ? `${title} | ${this.siteTitle}` : this.siteTitle;
+    this.titleService.setTitle(documentTitle);
   }
-  private getChild(activatedRoute: ActivatedRoute): ActivatedRoute {
+
+  private getTitleFromRoute(activatedRoute: ActivatedRoute): string {
+    return activatedRoute.snapshot.data.title;
+  }
+  private getChildOfRoute(activatedRoute: ActivatedRoute): ActivatedRoute {
     if (activatedRoute.firstChild) {
-      return this.getChild(activatedRoute.firstChild);
+      return this.getChildOfRoute(activatedRoute.firstChild);
     } else {
       return activatedRoute;
     }
