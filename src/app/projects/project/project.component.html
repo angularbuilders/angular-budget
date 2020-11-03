@@ -10,52 +10,49 @@
     </p>
   </header>
   <main>
-    <section *ngIf="loaded;else noDataYet">
-      <aside>
-        <header>
-          <h3>Tareas</h3>
-        </header>
-        <ul>
-          <li *ngFor="let task of tasks">
-            <mark *ngIf="task.done"> {{ task.title }} </mark>
-            <span *ngIf="!task.done"> {{ task.title }} </span>
-          </li>
-        </ul>
-      </aside>
-      <aside>
-        <header>
-          <h3>Transacciones</h3>
-        </header>
-        <ul>
-          <li *ngFor="let transaction of transactions">
-            <mark *ngIf="transaction.type==='Ingreso'"> {{ transaction.title }} +{{ transaction.amount  | number}} €
-            </mark>
-            <span *ngIf="transaction.type==='Gasto'"> {{ transaction.title }} -{{ transaction.amount | number }} €
-              <sup>!</sup>
-            </span>
-          </li>
-        </ul>
-      </aside>
-    </section>
-    <footer>
-      <nav>
-        <ul>
-          <li>
-            <a><i>Cancelar Proyecto</i></a>
-          </li>
-          <li>
-            <a><i>Borrar Proyecto</i></a>
-          </li>
-          <li>
-            <a routerLink="../new"><i>Crear Proyecto</i></a>
-          </li>
-        </ul>
-      </nav>
-    </footer>
-    <ng-template #noDataYet>
+    <ab-data-waiter [loaded]="loaded">
       <section>
-        <blockquote>Esperando datos...</blockquote>
+        <aside>
+          <header>
+            <h3>Tareas</h3>
+          </header>
+          <ul>
+            <li *ngFor="let task of tasks">
+              <mark *ngIf="task.done"> {{ task.title }} </mark>
+              <span *ngIf="!task.done"> {{ task.title }} </span>
+            </li>
+          </ul>
+        </aside>
+        <aside>
+          <header>
+            <h3>Transacciones</h3>
+          </header>
+          <ul>
+            <li *ngFor="let transaction of transactions">
+              <mark *ngIf="transaction.type==='Ingreso'"> {{ transaction.title }} +{{ transaction.amount  | number}} €
+              </mark>
+              <span *ngIf="transaction.type==='Gasto'"> {{ transaction.title }} -{{ transaction.amount | number }} €
+                <sup>!</sup>
+              </span>
+            </li>
+          </ul>
+        </aside>
       </section>
-    </ng-template>
+      <footer>
+        <nav>
+          <ul>
+            <li>
+              <a><i>Cancelar Proyecto</i></a>
+            </li>
+            <li>
+              <a><i>Borrar Proyecto</i></a>
+            </li>
+            <li>
+              <a routerLink="../new"><i>Crear Proyecto</i></a>
+            </li>
+          </ul>
+        </nav>
+      </footer>
+    </ab-data-waiter>
   </main>
 </ab-article>

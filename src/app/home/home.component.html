@@ -5,7 +5,7 @@
     </h2>
   </header>
   <main>
-    <section *ngIf="loaded;else noDataYet">
+    <ab-data-waiter [loaded]="loaded">
       <aside *ngFor="let projectView of projectViews">
         <h3>
           <a [routerLink]="['projects', projectView.id]">{{ projectView.title }}</a>
@@ -28,11 +28,6 @@
         <p>Completadas: <mark><b>{{ tasksView.total - tasksView.pending | number }}</b></mark></p>
         <p>Pendientes: <b> {{ tasksView.pending | number }} </b><sup>!</sup></p>
       </aside>
-    </section>
-    <ng-template #noDataYet>
-      <section>
-        <blockquote>Esperando datos...</blockquote>
-      </section>
-    </ng-template>
+    </ab-data-waiter>
   </main>
 </ab-article>
