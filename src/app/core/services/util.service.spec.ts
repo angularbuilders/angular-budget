@@ -1,16 +1,34 @@
-import { TestBed } from '@angular/core/testing';
-
 import { UtilService } from './util.service';
 
-describe('UtilService', () => {
-  let service: UtilService;
-
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(UtilService);
-  });
-
-  it('should be created', () => {
-    expect(service).toBeTruthy();
+fdescribe('The UtilsService', () => {
+  beforeEach(() => {});
+  it('SHOULD set the correct title', () => {
+    const titleServiceSpy = jasmine.createSpyObj('TitleService', ['setTitle']);
+    const stubTitle = 'Merendar';
+    titleServiceSpy.setTitle.and.returnValue(stubTitle);
+    const sut = new UtilService(titleServiceSpy);
+    sut.setDocumentTitle('Merendar');
+    const actual = titleServiceSpy.setTitle.calls.mostRecent().returnValue;
+    const expected = 'Merendar';
+    expect(actual).toEqual(expected);
   });
 });
+
+/**
+ * Original Angular CLI generated Code
+ */
+
+// import { TestBed } from '@angular/core/testing';
+
+// describe('UtilService', () => {
+//   let service: UtilService;
+
+//   beforeEach(() => {
+//     TestBed.configureTestingModule({});
+//     service = TestBed.inject(UtilService);
+//   });
+
+//   it('should be created', () => {
+//     expect(service).toBeTruthy();
+//   });
+// });
