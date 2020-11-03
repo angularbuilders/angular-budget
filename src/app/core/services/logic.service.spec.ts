@@ -1,50 +1,49 @@
 import { LogicService } from './logic.service';
 
-/**
- * GIVEN: un servicio de lógica
- * WHEN: lo inicializo sin argumentos
- * THEN: obtengo una instancia
- */
 describe('', () => {
   beforeEach(() => {});
   it('', () => {
+    const sut = null;
     const actual = null;
     const expected = null;
     expect(actual).toEqual(expected);
   });
 });
-fdescribe('GIVEN the LogicService class', () => {
+
+/**
+ * GIVEN: the slugify method
+ * WHEN: slugify Angular 10.1
+ * THEN: returns angular-10-1
+ */
+fdescribe('GIVEN: the slugify method', () => {
   beforeEach(() => {});
-  it('WHEN Initialized THEN returns an instance', () => {
+  it('WHEN receives Angular 10.1 THEN returns angular-10-1', () => {
     const sut = new LogicService();
-    const actual = typeof sut;
-    const expected = 'object';
+    const actual = sut.slugify('Angular 10.1');
+    const expected = 'angular-10-1';
     expect(actual).toEqual(expected);
   });
 });
 
-fdescribe('GIVEN: A LogicService', () => {
-  let sut: LogicService;
-  beforeAll(() => {
-    sut = new LogicService();
-  });
-  it('WHEN call slugify THEN return ', () => {
-    const actual = sut.slugify('Web testing Angular 10.1');
-    const expected = 'web-testing-angular-10-1';
-    expect(actual).toEqual(expected);
-  });
-});
-
+/**
+ * The slugify method
+ * SHOULD return a web safe text
+ */
 fdescribe('The slugify method', () => {
   beforeEach(() => {});
   it('SHOULD return a web safe text', () => {
     const sut = new LogicService();
-    const actual = sut.slugify('Web testing Angular 10.1');
-    const expected = 'web-testing-angular-10-1';
+    const actual = sut.slugify('Angular 10.1');
+    const expected = 'angular-10-1';
     expect(actual).toEqual(expected);
   });
 });
 
+/**
+ * The slugify method
+ * SHOULD sanitize spaces and dots
+ * SHOULD sanitize spanish chars
+ */
 fdescribe('The slugify method', () => {
   let sut: LogicService;
   beforeAll(() => {
@@ -61,6 +60,10 @@ fdescribe('The slugify method', () => {
     expect(actual).toEqual(expected);
   });
 });
+
+/**
+ * Original Angular CLI generated Code
+ */
 
 // import { TestBed } from '@angular/core/testing';
 
