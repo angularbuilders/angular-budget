@@ -1,1 +1,13 @@
-<p>article works!</p>
+<article *ngIf="loaded;else noDataYet">
+  <header>
+    <ng-content select="header"></ng-content>
+  </header>
+  <section>
+    <ng-content select="main"></ng-content>
+  </section>
+</article>
+<ng-template #noDataYet>
+  <section>
+    <blockquote>Esperando datos...</blockquote>
+  </section>
+</ng-template>
