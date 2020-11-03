@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./article.component.css'],
 })
 export class ArticleComponent implements OnInit {
-  public loading = false;
+  public loaded = true;
   constructor() {}
 
   ngOnInit(): void {}
