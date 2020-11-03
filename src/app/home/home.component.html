@@ -1,32 +1,34 @@
-<section *ngIf="loaded;else noDataYet">
+<article *ngIf="loaded;else noDataYet">
   <header>
     <h2>
       Estado general de mis proyectos y tareas
     </h2>
   </header>
-  <aside *ngFor="let projectView of projectViews">
-    <h3>
-      <a [routerLink]="['projects', projectView.id]">{{ projectView.title }}</a>
-    </h3>
-    <p><i>
-        {{ projectView.start | date:'dd/MM/yyyy' }} - {{ projectView.end | date:'dd/MM/yyyy' }}
-      </i></p>
-    <p>Presupuesto: <b>{{ projectView.budget | number }} €</b></p>
-    <p>Gastos: <b> {{ projectView.totalExpenses | number }} €</b></p>
-    <p>Ingresos: <b> {{ projectView.totalIncomes | number }} €</b></p>
-    <p>Beneficio: <b> {{ projectView.profit | number }} €</b><sup *ngIf="projectView.profit<0">*</sup>
-    </p>
-    <p>
-      Saldo: <b> {{ projectView.balance | number }} €</b>
-      <sup *ngIf="projectView.balance<0">*</sup>
-    </p>
-  </aside>
-  <aside>
-    <h3>Tareas</h3>
-    <p>Completadas: <mark><b>{{ tasksView.total - tasksView.pending | number }}</b></mark></p>
-    <p>Pendientes: <b> {{ tasksView.pending | number }} </b><sup>!</sup></p>
-  </aside>
-</section>
+  <section>
+    <aside *ngFor="let projectView of projectViews">
+      <h3>
+        <a [routerLink]="['projects', projectView.id]">{{ projectView.title }}</a>
+      </h3>
+      <p><i>
+          {{ projectView.start | date:'dd/MM/yyyy' }} - {{ projectView.end | date:'dd/MM/yyyy' }}
+        </i></p>
+      <p>Presupuesto: <b>{{ projectView.budget | number }} €</b></p>
+      <p>Gastos: <b> {{ projectView.totalExpenses | number }} €</b></p>
+      <p>Ingresos: <b> {{ projectView.totalIncomes | number }} €</b></p>
+      <p>Beneficio: <b> {{ projectView.profit | number }} €</b><sup *ngIf="projectView.profit<0">*</sup>
+      </p>
+      <p>
+        Saldo: <b> {{ projectView.balance | number }} €</b>
+        <sup *ngIf="projectView.balance<0">*</sup>
+      </p>
+    </aside>
+    <aside>
+      <h3>Tareas</h3>
+      <p>Completadas: <mark><b>{{ tasksView.total - tasksView.pending | number }}</b></mark></p>
+      <p>Pendientes: <b> {{ tasksView.pending | number }} </b><sup>!</sup></p>
+    </aside>
+  </section>
+</article>
 <ng-template #noDataYet>
   <section>
     <blockquote>Esperando datos...</blockquote>

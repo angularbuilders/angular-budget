@@ -1,4 +1,4 @@
-<section *ngIf="loaded;else noDataYet">
+<article *ngIf="loaded;else noDataYet">
   <header>
     <nav>
       <h2>
@@ -70,7 +70,7 @@
       </tr>
     </tbody>
   </table>
-</section>
+</article>
 <ng-template #noDataYet>
   <section>
     <blockquote>Esperando datos...</blockquote>
