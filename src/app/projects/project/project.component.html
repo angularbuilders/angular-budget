@@ -1,5 +1,5 @@
-<article *ngIf="loaded;else noDataYet">
-  <header>
+<ab-article>
+  <header *ngIf="loaded">
     <h2>
       {{ project.title }}
     </h2>
@@ -8,53 +8,54 @@
       Presupuesto: <b>{{ project.budget | number }} €</b>
       <i> Inicio: {{ project.start | date:'shortDate' }} Fin :{{ project.end | date:'shortDate' }} </i>
     </p>
-    <!--  -->
   </header>
-  <section>
-    <aside>
-      <header>
-        <h3>Tareas</h3>
-      </header>
-      <ul>
-        <li *ngFor="let task of tasks">
-          <mark *ngIf="task.done"> {{ task.title }} </mark>
-          <span *ngIf="!task.done"> {{ task.title }} </span>
-        </li>
-      </ul>
-    </aside>
-    <aside>
-      <header>
-        <h3>Transacciones</h3>
-      </header>
-      <ul>
-        <li *ngFor="let transaction of transactions">
-          <mark *ngIf="transaction.type==='Ingreso'"> {{ transaction.title }} +{{ transaction.amount  | number}} €
-          </mark>
-          <span *ngIf="transaction.type==='Gasto'"> {{ transaction.title }} -{{ transaction.amount | number }} €
-            <sup>!</sup>
-          </span>
-        </li>
-      </ul>
-    </aside>
-  </section>
-  <footer>
-    <nav>
-      <ul>
-        <li>
-          <a><i>Cancelar Proyecto</i></a>
-        </li>
-        <li>
-          <a><i>Borrar Proyecto</i></a>
-        </li>
-        <li>
-          <a routerLink="../new"><i>Crear Proyecto</i></a>
-        </li>
-      </ul>
-    </nav>
-  </footer>
-</article>
-<ng-template #noDataYet>
-  <section>
-    <blockquote>Esperando datos...</blockquote>
-  </section>
-</ng-template>
+  <main>
+    <section *ngIf="loaded;else noDataYet">
+      <aside>
+        <header>
+          <h3>Tareas</h3>
+        </header>
+        <ul>
+          <li *ngFor="let task of tasks">
+            <mark *ngIf="task.done"> {{ task.title }} </mark>
+            <span *ngIf="!task.done"> {{ task.title }} </span>
+          </li>
+        </ul>
+      </aside>
+      <aside>
+        <header>
+          <h3>Transacciones</h3>
+        </header>
+        <ul>
+          <li *ngFor="let transaction of transactions">
+            <mark *ngIf="transaction.type==='Ingreso'"> {{ transaction.title }} +{{ transaction.amount  | number}} €
+            </mark>
+            <span *ngIf="transaction.type==='Gasto'"> {{ transaction.title }} -{{ transaction.amount | number }} €
+              <sup>!</sup>
+            </span>
+          </li>
+        </ul>
+      </aside>
+    </section>
+    <footer>
+      <nav>
+        <ul>
+          <li>
+            <a><i>Cancelar Proyecto</i></a>
+          </li>
+          <li>
+            <a><i>Borrar Proyecto</i></a>
+          </li>
+          <li>
+            <a routerLink="../new"><i>Crear Proyecto</i></a>
+          </li>
+        </ul>
+      </nav>
+    </footer>
+    <ng-template #noDataYet>
+      <section>
+        <blockquote>Esperando datos...</blockquote>
+      </section>
+    </ng-template>
+  </main>
+</ab-article>
