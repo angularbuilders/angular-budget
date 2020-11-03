@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [10.6.0](https://github.com/angularbuilders/angular-budget/compare/v10.5.0...v10.6.0) (2020-11-02)
+
+
+### Features
+
+* titulo del proyecto activo en el documento html - close[#34](https://github.com/angularbuilders/angular-budget/issues/34) ([7954bf5](https://github.com/angularbuilders/angular-budget/commit/7954bf5f537adc2fe13ede071f6417ac402a4bb4))
+
 ## [10.5.0](https://github.com/angularbuilders/angular-budget/compare/v10.4.0...v10.5.0) (2020-11-02)
 
 
