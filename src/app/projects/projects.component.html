@@ -1,4 +1,4 @@
-<article>
+<ab-article>
   <header>
     <nav>
       <h2>
@@ -12,7 +12,10 @@
     </nav>
   </header>
   <main>
-    <ab-data-waiter [loaded]="loaded">
+    <ng-template #noDataYet>
+      <ab-no-data-yet></ab-no-data-yet>
+    </ng-template>
+    <ng-container *ngIf="loaded else noDataYet">
       <table>
         <thead>
           <tr>
@@ -72,6 +75,6 @@
           </tr>
         </tbody>
       </table>
-    </ab-data-waiter>
+    </ng-container>
   </main>
-</article>
+</ab-article>

@@ -10,7 +10,10 @@
     </p>
   </header>
   <main>
-    <ab-data-waiter [loaded]="loaded">
+    <ng-template #noDataYet>
+      <ab-no-data-yet></ab-no-data-yet>
+    </ng-template>
+    <ng-container *ngIf="loaded else noDataYet">
       <section>
         <aside>
           <header>
@@ -53,6 +56,6 @@
           </ul>
         </nav>
       </footer>
-    </ab-data-waiter>
+    </ng-container>
   </main>
 </ab-article>
