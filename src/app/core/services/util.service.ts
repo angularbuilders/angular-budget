@@ -17,7 +17,7 @@ export class UtilService {
       this.setDocumentTitle(title);
     }
   }
-  public setDocumentTitle(title: string) {
+  public setDocumentTitle(title: string): void {
     const documentTitle = title ? `${title} | ${this.siteTitle}` : this.siteTitle;
     this.titleService.setTitle(documentTitle);
   }
