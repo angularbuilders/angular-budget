@@ -3,18 +3,22 @@ import { UtilService } from './util.service';
 fdescribe('The UtilsService', () => {
   beforeEach(() => {});
   it('SHOULD set the correct title', () => {
+    // Arrange
     const titleServiceSpy = jasmine.createSpyObj('TitleService', ['setTitle']);
+    const setTitleSpy = titleServiceSpy.setTitle;
     const stubTitle = 'Merendar';
-    titleServiceSpy.setTitle.and.returnValue(stubTitle);
+    setTitleSpy.and.returnValue(stubTitle);
     const sut = new UtilService(titleServiceSpy);
+    // Act
     sut.setDocumentTitle('Merendar');
-    const actual = titleServiceSpy.setTitle.calls.mostRecent().returnValue;
+    const actual = setTitleSpy.calls.mostRecent().returnValue;
+    // Assert
     const expected = 'Merendar';
     expect(actual).toEqual(expected);
   });
 });
 
-/**
+/*
  * Original Angular CLI generated Code
  */
 

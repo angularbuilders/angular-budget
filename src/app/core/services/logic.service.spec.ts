@@ -1,15 +1,5 @@
 import { LogicService } from './logic.service';
 
-describe('', () => {
-  beforeEach(() => {});
-  it('', () => {
-    const sut = null;
-    const actual = null;
-    const expected = null;
-    expect(actual).toEqual(expected);
-  });
-});
-
 /**
  * GIVEN: the slugify method
  * WHEN: slugify Angular 10.1

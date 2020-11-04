@@ -3,8 +3,11 @@ import { AboutComponent } from './about.component';
 fdescribe('GIVEN: the AboutComponent', () => {
   beforeEach(() => {});
   it('WHEN Ask for title THEN equals Angular Budget', () => {
+    // Arrange
     const sut = new AboutComponent();
+    // Act
     const actual = sut.title;
+    // Assert
     const expected = 'Angular Budget';
     expect(actual).toEqual(expected);
   });
