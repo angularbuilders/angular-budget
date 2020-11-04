@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [10.7.0](https://github.com/angularbuilders/angular-budget/compare/v10.6.1...v10.7.0) (2020-11-04)
+
+
+### Features
+
+* etiqueta dato ok-ko - close[#42](https://github.com/angularbuilders/angular-budget/issues/42) ([3582fab](https://github.com/angularbuilders/angular-budget/commit/3582fabc89747ab3cbbfd6c185fca2942839588f))
+* fechas desde hasta - close[#41](https://github.com/angularbuilders/angular-budget/issues/41) ([5870392](https://github.com/angularbuilders/angular-budget/commit/5870392d1415d0ab27fd83ff8c653666e49eed57))
+* image loading - close[#40](https://github.com/angularbuilders/angular-budget/issues/40) ([c35af7e](https://github.com/angularbuilders/angular-budget/commit/c35af7e7a8bd5653c8958cc49aa638454f583842))
+* layaout articulo comun - close[#36](https://github.com/angularbuilders/angular-budget/issues/36) ([53ec12f](https://github.com/angularbuilders/angular-budget/commit/53ec12f1a6fc5172a63a54f4518d9d52ddeb1b4f))
+
+
+### Bug Fixes
+
+* página articulo sin loading - close[#36](https://github.com/angularbuilders/angular-budget/issues/36) ([bdc1e62](https://github.com/angularbuilders/angular-budget/commit/bdc1e6249eba2d3358d3854bbb089ed55d5ffa70))
+* simplificacion articulo nodata - close[#37](https://github.com/angularbuilders/angular-budget/issues/37) ([b199893](https://github.com/angularbuilders/angular-budget/commit/b1998933fc50a98e725e0736e3b7c713c084ab59))
+
+### [10.6.1](https://github.com/angularbuilders/angular-budget/compare/v10.6.0...v10.6.1) (2020-11-03)
+
 ## [10.6.0](https://github.com/angularbuilders/angular-budget/compare/v10.5.0...v10.6.0) (2020-11-02)
 
 

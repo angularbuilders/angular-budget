@@ -1,42 +1,46 @@
-<article>
-  <h2>Alta de proyectos</h2>
-  <form #f="ngForm"
-        (ngSubmit)="saveNewProject()">
-    <header>
-      <h2>Nuevo proyecto</h2>
-      <p>¿Listo para dominar el mundo?</p>
-    </header>
-    <label for="name">Nombre:</label>
-    <input [(ngModel)]="newProject.title"
-           required
-           type="text"
-           id="name"
-           name="name"
-           size="20">
-    <label for="start">Inicio:</label>
-    <input [ngModel]="newProject.start | date:'yyyy-MM-dd'"
-           (ngModelChange)="newProject.start = $event"
-           type="date"
-           id="start"
-           name="start">
-    <label for="end">Fin:</label>
-    <input [(ngModel)]="newProject.end"
-           type="date"
-           id="end"
-           name="end">
-    <label for="budget">Presupuesto:</label>
-    <input [(ngModel)]="newProject.budget"
-           required
-           type="number"
-           id="budget"
-           name="budget">
-    <label for="description">Descripción:</label>
-    <textarea [(ngModel)]="newProject.description"
-              cols="27"
-              rows="3"
-              name="description"
-              id="description"></textarea>
-    <button type="submit"
-            [disabled]="!f.valid">Crear</button>
-  </form>
-</article>
+<ab-article>
+  <header>
+    <h2>Alta de proyectos</h2>
+  </header>
+  <main>
+    <form #f="ngForm"
+          (ngSubmit)="saveNewProject()">
+      <header>
+        <h2>Nuevo proyecto</h2>
+        <p>¿Listo para dominar el mundo?</p>
+      </header>
+      <label for="name">Nombre:</label>
+      <input [(ngModel)]="newProject.title"
+             required
+             type="text"
+             id="name"
+             name="name"
+             size="20">
+      <label for="start">Inicio:</label>
+      <input [ngModel]="newProject.start | date:'yyyy-MM-dd'"
+             (ngModelChange)="newProject.start = $event"
+             type="date"
+             id="start"
+             name="start">
+      <label for="end">Fin:</label>
+      <input [(ngModel)]="newProject.end"
+             type="date"
+             id="end"
+             name="end">
+      <label for="budget">Presupuesto:</label>
+      <input [(ngModel)]="newProject.budget"
+             required
+             type="number"
+             id="budget"
+             name="budget">
+      <label for="description">Descripción:</label>
+      <textarea [(ngModel)]="newProject.description"
+                cols="27"
+                rows="3"
+                name="description"
+                id="description"></textarea>
+      <button type="submit"
+              [disabled]="!f.valid">Crear</button>
+    </form>
+  </main>
+</ab-article>

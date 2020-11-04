@@ -14,7 +14,10 @@ import { LogicService } from '../core/services/logic.service';
 })
 export class HomeComponent implements OnInit {
   projectViews: ProjectView[] = [];
-  tasksView?: TasksView;
+  tasksView: TasksView = {
+    total: 0,
+    pending: 0,
+  };
   loaded = false;
   private projects: Project[];
   private transactions: Transaction[];

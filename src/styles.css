@@ -26,6 +26,9 @@ blue  #28aaff
   --color-text: #0c4047;
   --color-text-secondary: #999;
 
+  --color-ok: #3ad29f;
+  --color-ko: #f73454;
+
   --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue',
     sans-serif;
   --hover-brightness: 1.2;
@@ -461,4 +464,10 @@ blockquote footer {
   font-size: small;
   line-height: var(--line-height);
   padding: 1.5rem 0;
+}
+
+/* Data */
+dt,
+dd {
+  display: inline;
 }
