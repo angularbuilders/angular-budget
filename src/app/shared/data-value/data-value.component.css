@@ -1,0 +1,10 @@
+div {
+  display: flex;
+  justify-content: space-between;
+}
+.ok {
+  color: var(--color-ok);
+}
+.ko {
+  color: var(--color-ko);
+}
