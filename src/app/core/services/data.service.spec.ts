@@ -1,16 +1,53 @@
-import { TestBed } from '@angular/core/testing';
-
+import { of } from 'rxjs';
 import { DataService } from './data.service';
 
-describe('DataService', () => {
-  let service: DataService;
-
+fdescribe('GIVEN: A dataService', () => {
+  let httpClientSpy: any;
+  let getSpy: jasmine.Spy;
   beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(DataService);
+    // Arrange
+    httpClientSpy = jasmine.createSpyObj('HttpClient', ['get']);
+    getSpy = httpClientSpy.get;
+    const stubPojects = [];
+    getSpy.and.returnValue(of(stubPojects));
   });
-
-  it('should be created', () => {
-    expect(service).toBeTruthy();
+  it('WHEN call the getProjects THEN the url is the expected', () => {
+    // Act
+    const sut = new DataService(httpClientSpy);
+    sut.getProjects$().subscribe();
+    // Assert
+    const actual = getSpy.calls.mostRecent().args[0];
+    const expected = 'https://api-base.herokuapp.com/api/pub/projects';
+    expect(actual).toEqual(expected);
+  });
+  it('WHEN call the getProjects THEN returns an observable of empty projects list', () => {
+    // Act
+    const sut = new DataService(httpClientSpy);
+    let actual = null;
+    sut.getProjects$().subscribe({
+      next: data => (actual = data),
+    });
+    // Assert
+    const expected = [];
+    expect(actual).toEqual(expected);
   });
 });
+
+/**
+ * Original Angular CLI generated Code
+ */
+
+// import { TestBed } from '@angular/core/testing';
+
+// describe('DataService', () => {
+//   let service: DataService;
+
+//   beforeEach(() => {
+//     TestBed.configureTestingModule({});
+//     service = TestBed.inject(DataService);
+//   });
+
+//   it('should be created', () => {
+//     expect(service).toBeTruthy();
+//   });
+// });

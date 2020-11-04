@@ -5,7 +5,7 @@ fdescribe('The UtilsService', () => {
   it('SHOULD set the correct title', () => {
     // Arrange
     const titleServiceSpy = jasmine.createSpyObj('TitleService', ['setTitle']);
-    const setTitleSpy = titleServiceSpy.setTitle;
+    const setTitleSpy: jasmine.Spy = titleServiceSpy.setTitle;
     const stubTitle = 'Merendar';
     setTitleSpy.and.returnValue(stubTitle);
     const sut = new UtilService(titleServiceSpy);
