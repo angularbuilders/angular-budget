@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'ab-dates',
   templateUrl: './dates.component.html',
-  styleUrls: ['./dates.component.css']
+  styleUrls: ['./dates.component.css'],
 })
 export class DatesComponent implements OnInit {
+  @Input() public start: Date;
+  @Input() public end: Date;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

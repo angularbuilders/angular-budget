@@ -13,9 +13,10 @@
         <h3>
           <a [routerLink]="['projects', projectView.id]">{{ projectView.title }}</a>
         </h3>
-        <p><i>
-            {{ projectView.start | date:'dd/MM/yyyy' }} - {{ projectView.end | date:'dd/MM/yyyy' }}
-          </i></p>
+        <p>
+          <ab-dates [start]="projectView.start"
+                    [end]="projectView.end"></ab-dates>
+        </p>
         <p>Presupuesto: <b>{{ projectView.budget | number }} €</b></p>
         <p>Gastos: <b> {{ projectView.totalExpenses | number }} €</b></p>
         <p>Ingresos: <b> {{ projectView.totalIncomes | number }} €</b></p>
