@@ -6,14 +6,14 @@ fdescribe('The UtilsService', () => {
     // Arrange
     const titleServiceSpy = jasmine.createSpyObj('TitleService', ['setTitle']);
     const setTitleSpy: jasmine.Spy = titleServiceSpy.setTitle;
-    const stubTitle = 'Merendar';
+    const stubTitle = 'Pruebas unitarias';
     setTitleSpy.and.returnValue(stubTitle);
     const sut = new UtilService(titleServiceSpy);
     // Act
-    sut.setDocumentTitle('Merendar');
+    sut.setDocumentTitle('Pruebas unitarias');
     const actual = setTitleSpy.calls.mostRecent().returnValue;
     // Assert
-    const expected = 'Merendar';
+    const expected = 'Pruebas unitarias';
     expect(actual).toEqual(expected);
   });
 });
