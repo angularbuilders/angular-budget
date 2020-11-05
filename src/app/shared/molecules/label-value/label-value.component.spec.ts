@@ -1,20 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { DataValueComponent } from './data-value.component';
+import { LabelValueComponent } from './label-value.component';
 
 describe('DataValueComponent', () => {
-  let component: DataValueComponent;
-  let fixture: ComponentFixture<DataValueComponent>;
+  let component: LabelValueComponent;
+  let fixture: ComponentFixture<LabelValueComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DataValueComponent ]
-    })
-    .compileComponents();
+      declarations: [LabelValueComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DataValueComponent);
+    fixture = TestBed.createComponent(LabelValueComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

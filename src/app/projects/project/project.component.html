@@ -20,19 +20,19 @@
           <header>
             <h3>Tareas</h3>
           </header>
-          <ab-data-value *ngFor="let task of tasks"
-                         [label]=" task.title "
-                         value="{{ task.done ? 'Hecho' : 'Pendiente' }}"
-                         [isOk]="task.done"></ab-data-value>
+          <ab-label-value *ngFor="let task of tasks"
+                          [label]=" task.title "
+                          value="{{ task.done ? 'Hecho' : 'Pendiente' }}"
+                          [isOk]="task.done"></ab-label-value>
         </aside>
         <aside>
           <header>
             <h3>Transacciones</h3>
           </header>
-          <ab-data-value *ngFor="let transaction of transactions"
-                         [label]=" transaction.title "
-                         value="{{ transaction.amount | number }} €"
-                         [isOk]="transaction.type==='Ingreso'"></ab-data-value>
+          <ab-label-value *ngFor="let transaction of transactions"
+                          [label]=" transaction.title "
+                          value="{{ transaction.amount | number }} €"
+                          [isOk]="transaction.type==='Ingreso'"></ab-label-value>
         </aside>
       </section>
       <footer>

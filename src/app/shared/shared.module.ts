@@ -1,14 +1,22 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ArticleComponent } from './article/article.component';
-import { NoDataYetComponent } from './no-data-yet/no-data-yet.component';
-import { DatesComponent } from './dates/dates.component';
-import { DateTimeComponent } from './date-time/date-time.component';
-import { DataValueComponent } from './data-value/data-value.component';
+import { DateTimeComponent } from './atoms/date-time/date-time.component';
+import { NoDataYetComponent } from './atoms/no-data-yet/no-data-yet.component';
+import { ValueComponent } from './atoms/value/value.component';
+import { DatesComponent } from './molecules/dates/dates.component';
+import { LabelValueComponent } from './molecules/label-value/label-value.component';
+import { ArticleComponent } from './templates/article/article.component';
 
 @NgModule({
-  declarations: [ArticleComponent, NoDataYetComponent, DatesComponent, DateTimeComponent, DataValueComponent],
+  declarations: [
+    ArticleComponent,
+    NoDataYetComponent,
+    DatesComponent,
+    DateTimeComponent,
+    LabelValueComponent,
+    ValueComponent,
+  ],
   imports: [CommonModule],
-  exports: [ArticleComponent, NoDataYetComponent, DatesComponent, DateTimeComponent, DataValueComponent],
+  exports: [ArticleComponent, NoDataYetComponent, DatesComponent, DateTimeComponent, LabelValueComponent],
 })
 export class SharedModule {}

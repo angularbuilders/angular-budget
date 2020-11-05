@@ -9,6 +9,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
+    "rename": "angular-rename ",
     "prerelease": "standard-version",
     "release": "git push --follow-tags ",
     "deploy": "ng deploy --base-href=/angular-budget/"

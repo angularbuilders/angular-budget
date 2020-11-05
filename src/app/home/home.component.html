@@ -15,29 +15,29 @@
         </h3>
         <ab-dates [start]="projectView.start"
                   [end]="projectView.end"></ab-dates>
-        <ab-data-value label="Presupuesto"
-                       value="{{ projectView.budget | number }} €"></ab-data-value>
-        <ab-data-value label="Gastos"
-                       value="{{ projectView.totalExpenses | number }} €"></ab-data-value>
-        <ab-data-value label="Ingresos"
-                       value="{{ projectView.totalIncomes | number }} €"></ab-data-value>
-        <ab-data-value label="Ingresos"
-                       value="{{ projectView.totalExpenses | number }} €"></ab-data-value>
-        <ab-data-value label="Beneficio"
-                       value="{{ projectView.profit | number }} €"
-                       [isOk]="projectView.profit>0"></ab-data-value>
-        <ab-data-value label="Saldo"
-                       value="{{ projectView.balance | number }} €"
-                       [isOk]="projectView.balance>0"></ab-data-value>
+        <ab-label-value label="Presupuesto"
+                        value="{{ projectView.budget | number }} €"></ab-label-value>
+        <ab-label-value label="Gastos"
+                        value="{{ projectView.totalExpenses | number }} €"></ab-label-value>
+        <ab-label-value label="Ingresos"
+                        value="{{ projectView.totalIncomes | number }} €"></ab-label-value>
+        <ab-label-value label="Ingresos"
+                        value="{{ projectView.totalExpenses | number }} €"></ab-label-value>
+        <ab-label-value label="Beneficio"
+                        value="{{ projectView.profit | number }} €"
+                        [isOk]="projectView.profit>0"></ab-label-value>
+        <ab-label-value label="Saldo"
+                        value="{{ projectView.balance | number }} €"
+                        [isOk]="projectView.balance>0"></ab-label-value>
       </aside>
       <aside>
         <h3>Tareas</h3>
-        <ab-data-value label="Completadas"
-                       value="{{ tasksView.total - tasksView.pending | number }}"
-                       [isOk]="true"></ab-data-value>
-        <ab-data-value label="Pendientes"
-                       value="{{ tasksView.pending | number }}"
-                       [isOk]="false"></ab-data-value>
+        <ab-label-value label="Completadas"
+                        value="{{ tasksView.total - tasksView.pending | number }}"
+                        [isOk]="true"></ab-label-value>
+        <ab-label-value label="Pendientes"
+                        value="{{ tasksView.pending | number }}"
+                        [isOk]="false"></ab-label-value>
       </aside>
     </ng-container>
   </main>
