@@ -1,18 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { ProjectView } from '../core/model/project-view.interface';
-import { Project } from '../core/model/project.interface';
-import { Task } from '../core/model/task.interface';
-import { TasksView } from '../core/model/tasksView.interface';
-import { Transaction } from '../core/model/transaction.interface';
-import { DataService } from '../core/services/data.service';
-import { LogicService } from '../core/services/logic.service';
+import { ProjectView } from '../../core/model/project-view.interface';
+import { Project } from '../../core/model/project.interface';
+import { Task } from '../../core/model/task.interface';
+import { TasksView } from '../../core/model/tasksView.interface';
+import { Transaction } from '../../core/model/transaction.interface';
+import { DataService } from '../../core/services/data.service';
+import { LogicService } from '../../core/services/logic.service';
 
 @Component({
-  selector: 'ab-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css'],
+  templateUrl: './home.page.html',
+  styleUrls: ['./home.page.css'],
 })
-export class HomeComponent implements OnInit {
+export class HomePage implements OnInit {
   projectViews: ProjectView[] = [];
   tasksView: TasksView = {
     total: 0,

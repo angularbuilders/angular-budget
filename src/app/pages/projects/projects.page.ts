@@ -1,16 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { ProjectView } from '../core/model/project-view.interface';
-import { Project } from '../core/model/project.interface';
-import { Transaction } from '../core/model/transaction.interface';
-import { DataService } from '../core/services/data.service';
-import { LogicService } from '../core/services/logic.service';
+import { ProjectView } from '../../core/model/project-view.interface';
+import { Project } from '../../core/model/project.interface';
+import { Transaction } from '../../core/model/transaction.interface';
+import { DataService } from '../../core/services/data.service';
+import { LogicService } from '../../core/services/logic.service';
 
 @Component({
-  selector: 'ab-projects',
-  templateUrl: './projects.component.html',
-  styleUrls: ['./projects.component.css'],
+  templateUrl: './projects.page.html',
+  styleUrls: ['./projects.page.css'],
 })
-export class ProjectsComponent implements OnInit {
+export class ProjectsPage implements OnInit {
   projectViews: ProjectView[] = [];
   loaded = false;
   private projects: Project[];

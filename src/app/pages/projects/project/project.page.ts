@@ -8,11 +8,10 @@ import { LogicService } from 'src/app/core/services/logic.service';
 import { UtilService } from 'src/app/core/services/util.service';
 
 @Component({
-  selector: 'ab-project',
-  templateUrl: './project.component.html',
-  styleUrls: ['./project.component.css'],
+  templateUrl: './project.page.html',
+  styleUrls: ['./project.page.css'],
 })
-export class ProjectComponent implements OnInit {
+export class ProjectPage implements OnInit {
   project: Project;
   tasks: Task[];
   transactions: Transaction[];

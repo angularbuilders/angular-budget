@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ProjectComponent } from './project/project.component';
-import { ProjectsComponent } from './projects.component';
+import { ProjectPage } from './project/project.page';
+import { ProjectsPage } from './projects.page';
 
 const routes: Routes = [
-  { path: '', component: ProjectsComponent },
+  { path: '', component: ProjectsPage },
   {
     path: 'new',
     loadChildren: () => import('./new-project/new-project.module').then(m => m.NewProjectModule),
@@ -12,7 +12,7 @@ const routes: Routes = [
   },
   {
     path: ':id',
-    component: ProjectComponent,
+    component: ProjectPage,
   },
 ];
 
