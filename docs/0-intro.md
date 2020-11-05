@@ -100,6 +100,16 @@ describe('GIVEN: the slugify method', () => {
 
 ---
 
+### Ejercicio
+
+```yml
+GIVEN: the composeTaskView method
+WHEN: we have two tasks both undone
+THEN: returns { total: 2, pending : 2}
+```
+
+---
+
 ## 2 - Probando un componente como una clase
 
 ### **Issue:** [Testing minimalista de un componente ](https://github.com/angularbuilders/angular-budget/issues/38)
@@ -140,6 +150,16 @@ describe('GIVEN: the AboutComponent', () => {
     expect(actual).toEqual(expected);
   });
 });
+```
+
+---
+
+### Ejercicio
+
+```yml
+GIVEN: the DateTimeComponent component
+WHEN: we get userFormat
+THEN: returns `dd/MM/yyyy`
 ```
 
 ---
@@ -199,6 +219,15 @@ describe('The UtilsService', () => {
 
 ---
 
+### Ejercicio
+
+```yml
+GIVEN: the UtilService
+WHEN: we call setDocumentTitle without arguments
+THEN: returns the default `Angular.Budget`
+```
+
+---
 ## 4 - Probando código asíncrono
 
 ### **Issue:** [Prueba de un servicio asíncrono](https://github.com/angularbuilders/angular-budget/issues/44)
@@ -274,8 +303,18 @@ describe('GIVEN: A dataService', () => {
   });
 });
 ```
+---
+
+### Ejercicio
+
+```yml
+GIVEN: the DataService
+WHEN: we get hte project `learning-to-test`
+THEN: returns "{ id: 'learning-to-test' , title : 'Learning to Test'}"
+```
 
 ---
+
 
 > **Repositorio:** [angularbuilders/angular-budget/test_0_intro](https://github.com/angularbuilders/angular-budget/tree/test_0_into)
 
