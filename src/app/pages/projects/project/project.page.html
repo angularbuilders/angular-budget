@@ -1,0 +1,55 @@
+<ab-article>
+  <header *ngIf="loaded">
+    <h2>
+      {{ project.title }}
+    </h2>
+    <p>{{ project.description }}</p>
+    <p>
+      Presupuesto: <b>{{ project.budget | number }} €</b>
+      <ab-dates [start]="project.start"
+                [end]="project.end"></ab-dates>
+    </p>
+  </header>
+  <main>
+    <ng-template #noDataYet>
+      <ab-no-data-yet></ab-no-data-yet>
+    </ng-template>
+    <ng-container *ngIf="loaded else noDataYet">
+      <section>
+        <aside>
+          <header>
+            <h3>Tareas</h3>
+          </header>
+          <ab-label-value *ngFor="let task of tasks"
+                          [label]=" task.title "
+                          value="{{ task.done ? 'Hecho' : 'Pendiente' }}"
+                          [isOk]="task.done"></ab-label-value>
+        </aside>
+        <aside>
+          <header>
+            <h3>Transacciones</h3>
+          </header>
+          <ab-label-value *ngFor="let transaction of transactions"
+                          [label]=" transaction.title "
+                          value="{{ transaction.amount | number }} €"
+                          [isOk]="transaction.type==='Ingreso'"></ab-label-value>
+        </aside>
+      </section>
+      <footer>
+        <nav>
+          <ul>
+            <li>
+              <a><i>Cancelar Proyecto</i></a>
+            </li>
+            <li>
+              <a><i>Borrar Proyecto</i></a>
+            </li>
+            <li>
+              <a routerLink="../new"><i>Crear Proyecto</i></a>
+            </li>
+          </ul>
+        </nav>
+      </footer>
+    </ng-container>
+  </main>
+</ab-article>
