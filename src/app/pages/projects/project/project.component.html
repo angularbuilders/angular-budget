@@ -5,7 +5,6 @@
     </h2>
     <p>{{ project.description }}</p>
     <p>
-      Presupuesto: <b>{{ project.budget | number }} €</b>
       <ab-dates [start]="project.start"
                 [end]="project.end"></ab-dates>
     </p>
@@ -15,6 +14,29 @@
       <ab-no-data-yet></ab-no-data-yet>
     </ng-template>
     <ng-container *ngIf="loaded else noDataYet">
+      <aside>
+        <header>
+          <h3>Datos</h3>
+        </header>
+        <ab-label-value label="Inicio"
+                        value="{{ projectView.start | date }}"></ab-label-value>
+        <ab-label-value label="Fin"
+                        value="{{ projectView.end | date }}"></ab-label-value>
+        <ab-label-value label="Presupuesto"
+                        value="{{ projectView.budget | number }} €"></ab-label-value>
+        <ab-label-value label="Gastos"
+                        value="{{ projectView.totalExpenses | number }} €"
+                        [isOk]="false"></ab-label-value>
+        <ab-label-value label="Ingresos"
+                        value="{{ projectView.totalIncomes | number }} €"
+                        [isOk]="true"></ab-label-value>
+        <ab-label-value label="Beneficio"
+                        value="{{ projectView.profit | number }} €"
+                        [isOk]="projectView.profit>0"></ab-label-value>
+        <ab-label-value label="Saldo"
+                        value="{{ projectView.balance | number }} €"
+                        [isOk]="projectView.balance>0"></ab-label-value>
+      </aside>
       <section>
         <aside>
           <header>
@@ -43,9 +65,6 @@
             </li>
             <li>
               <a><i>Borrar Proyecto</i></a>
-            </li>
-            <li>
-              <a routerLink="../new"><i>Crear Proyecto</i></a>
             </li>
           </ul>
         </nav>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ProjectView } from 'src/app/core/model/project-view.interface';
 import { Project } from 'src/app/core/model/project.interface';
 import { Task } from 'src/app/core/model/task.interface';
 import { Transaction } from 'src/app/core/model/transaction.interface';
@@ -12,6 +13,7 @@ import { UtilService } from 'src/app/core/services/util.service';
   styleUrls: ['./project.component.css'],
 })
 export class ProjectComponent implements OnInit {
+  projectView: ProjectView;
   project: Project;
   tasks: Task[];
   transactions: Transaction[];
@@ -34,6 +36,7 @@ export class ProjectComponent implements OnInit {
   private onTasksLoaded = {
     next: (tasksData: Task[]) => {
       this.tasks = this.logicService.filterTasksByProjectId(tasksData, this.projectSlug);
+      this.projectView = this.logicService.composeProjectView(this.project, this.transactions);
       this.loaded = true;
     },
   };
