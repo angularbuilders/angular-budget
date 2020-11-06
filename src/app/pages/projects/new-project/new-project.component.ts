@@ -5,10 +5,10 @@ import { LogicService } from 'src/app/core/services/logic.service';
 
 @Component({
   selector: 'ab-new-project',
-  templateUrl: './new-project.page.html',
-  styleUrls: ['./new-project.page.css'],
+  templateUrl: './new-project.component.html',
+  styleUrls: ['./new-project.component.css'],
 })
-export class NewProjectPage implements OnInit {
+export class NewProjectComponent implements OnInit {
   newProject: Project;
   loaded = false;
 
