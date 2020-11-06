@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [10.8.0](https://github.com/angularbuilders/angular-budget/compare/v10.7.1...v10.8.0) (2020-11-06)
+
+
+### Features
+
+* retoques de maquetación - close[#47](https://github.com/angularbuilders/angular-budget/issues/47) ([ed3b28e](https://github.com/angularbuilders/angular-budget/commit/ed3b28e6dbf6aabb320e8a4c1952126491098dd9))
+
 ### [10.7.1](https://github.com/angularbuilders/angular-budget/compare/v10.7.0...v10.7.1) (2020-11-05)
 
 ## [10.7.0](https://github.com/angularbuilders/angular-budget/compare/v10.6.1...v10.7.0) (2020-11-04)
