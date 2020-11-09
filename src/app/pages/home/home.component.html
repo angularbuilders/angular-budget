@@ -1,0 +1,30 @@
+<ab-article>
+  <header>
+    <h2>
+      Estado general de mis proyectos y tareas
+    </h2>
+  </header>
+  <main>
+    <ng-template #noDataYet>
+      <ab-no-data-yet></ab-no-data-yet>
+    </ng-template>
+    <section *ngIf="loaded else noDataYet">
+      <aside>
+        <h3>Mis Proyectos</h3>
+        <ab-label-value *ngFor="let projectView of projectViews"
+                        [label]="projectView.title"
+                        value="{{ projectView.balance | number }}"
+                        [isOk]="projectView.balance>0"></ab-label-value>
+      </aside>
+      <aside>
+        <h3>Mis Tareas</h3>
+        <ab-label-value label="Completadas"
+                        value="{{ tasksView.total - tasksView.pending | number }}"
+                        [isOk]="true"></ab-label-value>
+        <ab-label-value label="Pendientes"
+                        value="{{ tasksView.pending | number }}"
+                        [isOk]="false"></ab-label-value>
+      </aside>
+    </section>
+  </main>
+</ab-article>
