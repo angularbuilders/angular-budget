@@ -1,7 +1,14 @@
-describe('TimeAgoPipe', () => {
+import { TestBed } from '@angular/core/testing';
+import { UtilService } from 'src/app/core/services/util.service';
+import { TimeAgoPipe } from './time-ago.pipe';
+
+fdescribe('TimeAgoPipe', () => {
+  beforeEach(() => {
+    TestBed.configureTestingModule({ providers: [UtilService] });
+  });
   it('create an instance', () => {
-    // Pruebas de integración con final trágico...
-    // const pipe = new TimeAgoPipe(new UtilService(new Title()));
-    // expect(pipe).toBeTruthy();
+    const service = TestBed.inject<UtilService>(UtilService);
+    const pipe = new TimeAgoPipe(service);
+    expect(pipe).toBeTruthy();
   });
 });
