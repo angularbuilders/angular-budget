@@ -19,9 +19,9 @@
           <h3>Datos</h3>
         </header>
         <ab-label-value label="Inicio"
-                        value="{{ projectView.start | date }}"></ab-label-value>
+                        value="{{ projectView.start | timeAgo }}"></ab-label-value>
         <ab-label-value label="Fin"
-                        value="{{ projectView.end | date }}"></ab-label-value>
+                        value="{{ projectView.end | timeAgo }}"></ab-label-value>
         <ab-label-value label="Presupuesto"
                         value="{{ projectView.budget | number }} €"></ab-label-value>
         <ab-label-value label="Gastos"
