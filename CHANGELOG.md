@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [10.9.0](https://github.com/angularbuilders/angular-budget/compare/v10.8.0...v10.9.0) (2020-11-09)
+
+
+### Features
+
+* pipe timeAgo para fecha coloquial close[#48](https://github.com/angularbuilders/angular-budget/issues/48) ([56d6ba2](https://github.com/angularbuilders/angular-budget/commit/56d6ba232a3d89f63b20b2793e20b7ff5f1b4fde))
+
 ## [10.8.0](https://github.com/angularbuilders/angular-budget/compare/v10.7.1...v10.8.0) (2020-11-06)
 
 
