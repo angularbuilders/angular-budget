@@ -11,4 +11,11 @@ fdescribe('TimeAgoPipe', () => {
     const pipe = new TimeAgoPipe(service);
     expect(pipe).toBeTruthy();
   });
+  it('genera un mensaje coloquial por defecto', () => {
+    const service = TestBed.inject<UtilService>(UtilService);
+    const pipe = new TimeAgoPipe(service);
+    const actual = pipe.transform(new Date(2000, 1, 1));
+    const expected = 'hace mucho tiempo';
+    expect(actual).toBe(expected);
+  });
 });
