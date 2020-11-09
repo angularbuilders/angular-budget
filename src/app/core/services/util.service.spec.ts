@@ -1,3 +1,7 @@
+/*
+ * Original Angular CLI generated Code
+ */
+import { TestBed } from '@angular/core/testing';
 import { UtilService } from './util.service';
 
 fdescribe('The UtilsService', () => {
@@ -18,21 +22,23 @@ fdescribe('The UtilsService', () => {
   });
 });
 
-/*
- * Original Angular CLI generated Code
- */
+fdescribe('UtilService', () => {
+  let sut: UtilService;
 
-// import { TestBed } from '@angular/core/testing';
+  beforeEach(() => {
+    // Arrange
+    TestBed.configureTestingModule({});
+    // Act
+    sut = TestBed.inject(UtilService);
+  });
 
-// describe('UtilService', () => {
-//   let service: UtilService;
+  it('should be created', () => {
+    // Assert
+    expect(sut).toBeTruthy();
+  });
 
-//   beforeEach(() => {
-//     TestBed.configureTestingModule({});
-//     service = TestBed.inject(UtilService);
-//   });
-
-//   it('should be created', () => {
-//     expect(service).toBeTruthy();
-//   });
-// });
+  it('SHOULD allow to call setDocumentTitle', () => {
+    const actual = sut.setDocumentTitle('Pruebas unitarias');
+    expect(actual).toBe(undefined);
+  });
+});
