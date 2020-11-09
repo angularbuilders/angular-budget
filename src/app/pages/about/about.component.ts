@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./about.component.css'],
 })
 export class AboutPageComponent implements OnInit {
+  title = 'Angular Budget';
   constructor() {}
 
   ngOnInit(): void {}

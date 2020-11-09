@@ -1,10 +1,10 @@
-import { AboutPage } from './about.page';
+import { AboutPageComponent } from './about.component';
 
 fdescribe('GIVEN: the AboutComponent', () => {
   beforeEach(() => {});
   it('WHEN Ask for title THEN equals Angular Budget', () => {
     // Arrange
-    const sut = new AboutPage();
+    const sut = new AboutPageComponent();
     // Act
     const actual = sut.title;
     // Assert
