@@ -29,9 +29,7 @@ export class ProjectsComponent implements OnInit {
     },
   };
 
-  constructor(private dataService: DataService, private logicService: LogicService) {
-    this.loadData();
-  }
+  constructor(private dataService: DataService, private logicService: LogicService) {}
 
   ngOnInit(): void {
     this.loadData();
