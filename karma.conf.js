@@ -41,7 +41,7 @@ module.exports = function (config) {
       },
       symbols: {
         success: '✓',
-        info: '🛈',
+        info: 'i',
         warning: '⚠',
         error: 'X',
       },

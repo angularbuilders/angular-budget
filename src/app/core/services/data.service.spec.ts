@@ -2,54 +2,44 @@ import { HttpClient } from '@angular/common/http';
 import { of } from 'rxjs';
 import { DataService } from './data.service';
 
-fdescribe('GIVEN: A dataService', () => {
+/**
+ * 3 - Colaboradores - asíncronos
+ * Usamos dobles y retornamos obserables
+ * Suscripción a la respuesta y comprobación
+ */
+
+fdescribe('GIVEN: the DataService', () => {
+  let sut: DataService;
   let httpClientSpy: jasmine.SpyObj<HttpClient>;
-  let getSpy: jasmine.Spy;
+
   beforeEach(() => {
     // Arrange
-    httpClientSpy = jasmine.createSpyObj('HttpClient', ['get']);
-    getSpy = httpClientSpy.get;
-    const inputProjects = [{ id: 'ok', title: 'ok' }];
-    getSpy.and.returnValue(of(inputProjects));
+    httpClientSpy = jasmine.createSpyObj('HttpClient', {
+      // Respuesta predefinida asíncrona
+      get: of([{ id: 'ok', title: 'ok' }]),
+    });
+    sut = new DataService(httpClientSpy);
   });
   it('WHEN call the getProjects THEN the url is the expected', () => {
     // Act
-    const sut = new DataService(httpClientSpy);
     sut.getProjects$().subscribe();
     // Assert
-    const actual = getSpy.calls.mostRecent().args[0];
     // Prueba de comportamiento testeando una llamada al colaborador
+    // Comprobación de argumentos
+    const actual = httpClientSpy.get.calls.mostRecent().args[0];
     const expected = 'https://api-base.herokuapp.com/api/pub/projects';
     expect(actual).toEqual(expected);
   });
   it('WHEN call the getProjects THEN returns an observable of a projects list', () => {
     // Act
-    const sut = new DataService(httpClientSpy);
-    let actual = null;
+    let actual: Object[];
+    // La suscripción a observables funciona
     sut.getProjects$().subscribe({
       next: data => (actual = data),
     });
     // Assert
+    // Prueba de estado directo testeando la respuesta obtenida
     const expected = [{ id: 'ok', title: 'ok' }];
     expect(actual).toEqual(expected);
   });
 });
-
-/**
- * Original Angular CLI generated Code
- */
-
-// import { TestBed } from '@angular/core/testing';
-
-// describe('DataService', () => {
-//   let service: DataService;
-
-//   beforeEach(() => {
-//     TestBed.configureTestingModule({});
-//     service = TestBed.inject(DataService);
-//   });
-
-//   it('should be created', () => {
-//     expect(service).toBeTruthy();
-//   });
-// });

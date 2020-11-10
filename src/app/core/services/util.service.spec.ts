@@ -1,45 +1,34 @@
-/*
- * Original Angular CLI generated Code
- */
-import { TestBed } from '@angular/core/testing';
+import { Title } from '@angular/platform-browser';
 import { UtilService } from './util.service';
 
-fdescribe('The UtilsService', () => {
-  beforeEach(() => {});
-  it('SHOULD set the correct title', () => {
-    // Arrange
-    const titleServiceSpy = jasmine.createSpyObj('TitleService', ['setTitle']);
-    const setTitleSpy: jasmine.Spy = titleServiceSpy.setTitle;
-    const inputTitle = 'Pruebas unitarias';
-    setTitleSpy.and.returnValue(inputTitle);
-    const sut = new UtilService(titleServiceSpy);
-    // Act
-    sut.setDocumentTitle('Pruebas unitarias');
-    // Prueba de estado directa testeando el retorno colaborador
-    const actual = setTitleSpy.calls.mostRecent().returnValue;
-    // Assert
-    const expected = 'Pruebas unitarias';
-    expect(actual).toEqual(expected);
-  });
-});
+/**
+ * 2 - Colaboradores - unitarias
+ * Usamos dobles para los colaboradores
+ * Concretamente Spies para probar su comportamiento
+ */
 
-fdescribe('UtilService', () => {
-  let sut: UtilService;
-
+fdescribe('GIVEN the UtilsService', () => {
+  // UtilService es el Subject Under Test
+  let utilServiceSUT: UtilService;
+  // TitleService es un colaborador (una dependencia)
+  let titleServiceSpy: jasmine.SpyObj<Title>;
   beforeEach(() => {
     // Arrange
-    TestBed.configureTestingModule({});
+    // El colaborador es un doble
+    titleServiceSpy = jasmine.createSpyObj('TitleService', {
+      // Metodo y respuesta predefinida para void
+      setTitle: undefined,
+    });
+    utilServiceSUT = new UtilService(titleServiceSpy);
+  });
+  it('WHEN setting a title SHOULD send that title to Angular Service', () => {
     // Act
-    sut = TestBed.inject(UtilService);
-  });
-
-  it('SHOULD be created', () => {
+    utilServiceSUT.setDocumentTitle('Pruebas unitarias');
     // Assert
-    expect(sut).toBeTruthy();
-  });
-
-  it('SHOULD allow to call setDocumentTitle', () => {
-    const actual = sut.setDocumentTitle('Pruebas unitarias');
-    expect(actual).toBe(undefined);
+    // Prueba de comportamiento testeando el envío a un colaborador
+    // Espíamos para saber el uso que se hace del colaborador
+    const actual = titleServiceSpy.setTitle.calls.mostRecent().args[0];
+    const expected = 'Pruebas unitarias | Angular.Budget';
+    expect(actual).toEqual(expected);
   });
 });
