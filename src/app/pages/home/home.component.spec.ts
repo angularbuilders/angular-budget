@@ -22,7 +22,7 @@ fdescribe('HomeComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('SHOULD be created', () => {
     expect(component).toBeTruthy();
   });
 });

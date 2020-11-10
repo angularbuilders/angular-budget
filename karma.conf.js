@@ -24,16 +24,16 @@ module.exports = function (config) {
     reporters: ['mocha'],
     mochaReporter: {
       colors: {
-        success: 'blue',
-        info: 'bgGreen',
-        warning: 'cyan',
-        error: 'bgRed',
+        success: 'green',
+        info: 'blue',
+        warning: 'orange',
+        error: 'red',
       },
       symbols: {
-        success: '+',
-        info: '#',
-        warning: '!',
-        error: 'x',
+        success: '✓',
+        info: '🛈',
+        warning: '⚠',
+        error: 'X',
       },
     },
 

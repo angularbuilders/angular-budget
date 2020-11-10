@@ -27,11 +27,11 @@ fdescribe('ProjectsComponent', () => {
     dataMock = TestBed.inject(DataService);
   });
 
-  it('should create', () => {
+  it('SHOULD be created', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should load data', () => {
+  it('SHOULD load data', () => {
     const rootUrl = `https://api-base.herokuapp.com/api/pub`;
     const projectsRequest = httpMock.expectOne(`${rootUrl}/projects`);
     projectsRequest.flush([]);
@@ -41,7 +41,7 @@ fdescribe('ProjectsComponent', () => {
     expect(actual).toBeTruthy();
   });
 
-  it('should load data again', () => {
+  it('SHOULD load data again', () => {
     spyOn(dataMock, 'getProjects$').and.returnValue(of([]));
     spyOn(dataMock, 'getTransactions$').and.returnValue(of([]));
     component.ngOnInit();

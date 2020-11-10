@@ -8,8 +8,8 @@ fdescribe('GIVEN: A dataService', () => {
     // Arrange
     httpClientSpy = jasmine.createSpyObj('HttpClient', ['get']);
     getSpy = httpClientSpy.get;
-    const stubPojects = [];
-    getSpy.and.returnValue(of(stubPojects));
+    const inputProjects = [{ id: 'ok', title: 'ok' }];
+    getSpy.and.returnValue(of(inputProjects));
   });
   it('WHEN call the getProjects THEN the url is the expected', () => {
     // Act
@@ -20,7 +20,7 @@ fdescribe('GIVEN: A dataService', () => {
     const expected = 'https://api-base.herokuapp.com/api/pub/projects';
     expect(actual).toEqual(expected);
   });
-  it('WHEN call the getProjects THEN returns an observable of empty projects list', () => {
+  it('WHEN call the getProjects THEN returns an observable of a projects list', () => {
     // Act
     const sut = new DataService(httpClientSpy);
     let actual = null;
@@ -28,7 +28,7 @@ fdescribe('GIVEN: A dataService', () => {
       next: data => (actual = data),
     });
     // Assert
-    const expected = [];
+    const expected = [{ id: 'ok', title: 'ok' }];
     expect(actual).toEqual(expected);
   });
 });

@@ -10,8 +10,8 @@ fdescribe('The UtilsService', () => {
     // Arrange
     const titleServiceSpy = jasmine.createSpyObj('TitleService', ['setTitle']);
     const setTitleSpy: jasmine.Spy = titleServiceSpy.setTitle;
-    const stubTitle = 'Pruebas unitarias';
-    setTitleSpy.and.returnValue(stubTitle);
+    const inputTitle = 'Pruebas unitarias';
+    setTitleSpy.and.returnValue(inputTitle);
     const sut = new UtilService(titleServiceSpy);
     // Act
     sut.setDocumentTitle('Pruebas unitarias');
@@ -32,7 +32,7 @@ fdescribe('UtilService', () => {
     sut = TestBed.inject(UtilService);
   });
 
-  it('should be created', () => {
+  it('SHOULD be created', () => {
     // Assert
     expect(sut).toBeTruthy();
   });
