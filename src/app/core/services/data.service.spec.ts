@@ -1,8 +1,9 @@
+import { HttpClient } from '@angular/common/http';
 import { of } from 'rxjs';
 import { DataService } from './data.service';
 
 fdescribe('GIVEN: A dataService', () => {
-  let httpClientSpy: any;
+  let httpClientSpy: jasmine.SpyObj<HttpClient>;
   let getSpy: jasmine.Spy;
   beforeEach(() => {
     // Arrange
@@ -17,6 +18,7 @@ fdescribe('GIVEN: A dataService', () => {
     sut.getProjects$().subscribe();
     // Assert
     const actual = getSpy.calls.mostRecent().args[0];
+    // Prueba de comportamiento testeando una llamada al colaborador
     const expected = 'https://api-base.herokuapp.com/api/pub/projects';
     expect(actual).toEqual(expected);
   });

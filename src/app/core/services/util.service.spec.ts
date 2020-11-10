@@ -15,6 +15,7 @@ fdescribe('The UtilsService', () => {
     const sut = new UtilService(titleServiceSpy);
     // Act
     sut.setDocumentTitle('Pruebas unitarias');
+    // Prueba de estado directa testeando el retorno colaborador
     const actual = setTitleSpy.calls.mostRecent().returnValue;
     // Assert
     const expected = 'Pruebas unitarias';

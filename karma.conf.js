@@ -31,7 +31,7 @@ module.exports = function (config) {
     reporters: ['jasmine-diff', 'mocha'],
     mochaReporter: {
       showDiff: true,
-      output: 'autowatch',
+      output: true,
       ignoreSkipped: true,
       colors: {
         success: 'green',
