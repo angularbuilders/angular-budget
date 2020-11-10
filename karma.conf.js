@@ -3,26 +3,36 @@
 
 module.exports = function (config) {
   config.set({
-    basePath: '',
-    frameworks: ['jasmine', '@angular-devkit/build-angular'],
     plugins: [
       require('karma-jasmine'),
       require('karma-chrome-launcher'),
       require('karma-mocha-reporter'),
-      //require('karma-jasmine-html-reporter'),
+      require('karma-jasmine-diff-reporter'),
       require('karma-coverage-istanbul-reporter'),
       require('@angular-devkit/build-angular/plugins/karma'),
     ],
-    client: {
-      clearContext: false, // leave Jasmine Spec Runner output visible in browser
-    },
-    coverageIstanbulReporter: {
-      dir: require('path').join(__dirname, './coverage/angular-budget'),
-      reports: ['html', 'lcovonly', 'text-summary'],
-      fixWebpackSourcePaths: true,
-    },
-    reporters: ['mocha'],
+
+    // Triger
+    autoWatch: true,
+    restartOnFileChange: true,
+    singleRun: false,
+
+    // Build
+    basePath: '',
+    frameworks: ['jasmine', '@angular-devkit/build-angular'],
+
+    // Run
+    port: 9876,
+    browsers: ['ChromeHeadless'],
+
+    // Report
+    colors: true,
+    logLevel: config.LOG_INFO,
+    reporters: ['jasmine-diff', 'mocha'],
     mochaReporter: {
+      showDiff: true,
+      output: 'autowatch',
+      ignoreSkipped: true,
       colors: {
         success: 'green',
         info: 'blue',
@@ -36,13 +46,24 @@ module.exports = function (config) {
         error: 'X',
       },
     },
+    jasmineDiffReporter: {
+      color: {
+        expectedBg: 'bgGreen',
+        expectedWhitespaceBg: 'bgGreen',
+        actualBg: 'bgRed',
+        actualWhitespaceBg: 'bgRed',
+      },
+    },
 
-    port: 9876,
-    colors: true,
-    logLevel: config.LOG_INFO,
-    autoWatch: true,
-    browsers: ['ChromeHeadless'],
-    singleRun: false,
-    restartOnFileChange: true,
+    client: {
+      clearContext: false, // leave Jasmine Spec Runner output visible in browser
+    },
+
+    // Coverage
+    coverageIstanbulReporter: {
+      dir: require('path').join(__dirname, './coverage/angular-budget'),
+      reports: ['html', 'lcovonly', 'text-summary'],
+      fixWebpackSourcePaths: true,
+    },
   });
 };
