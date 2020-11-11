@@ -240,35 +240,7 @@ WHEN: instantiated
 THEN: should knows it is loaded
 ```
 
-  ---
-  ```typescript
-  it('WHEN call the getProjects$ THEN returns an observable of a project list', () => {
-    // Act
-    let actual: Object[];
-    // La suscripción a observables funciona
-    sut.getProjects$().subscribe({
-      next: data => (actual = data),
-    });
-    // Assert
-    // Prueba de estado directo testeando la respuesta obtenida
-    const expected = [{ id: 'ok', title: 'ok' }];
-    expect(actual).toEqual(expected);
-  });
-});
-```
-
 ---
-
-### Ejercicio
-
-```yml
-GIVEN: the DataService
-WHEN: we ask the project `learning-to-test`
-THEN: returns "{ id: 'learning-to-test' , title : 'Learning to Test'}"
-```
-
----
-
 
 > **Repositorio:** [angularbuilders/angular-budget/test_1_test-bed](https://github.com/angularbuilders/angular-budget/tree/test_1_test-bed)
 
