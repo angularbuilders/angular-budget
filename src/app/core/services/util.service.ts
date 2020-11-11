@@ -20,7 +20,7 @@ export class UtilService {
     const absDiferencia = Math.abs(diferencia);
     const coloquial = this.coloquiales.find(c => c.hasta > absDiferencia);
     const expresionDefault = 'mucho tiempo';
-    const expresion = coloquial != undefined ? coloquial.expresion : expresionDefault;
+    const expresion = coloquial !== undefined ? coloquial.expresion : expresionDefault;
     return antesDespues + expresion;
   }
 

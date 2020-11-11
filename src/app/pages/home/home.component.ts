@@ -4,8 +4,7 @@ import { Project } from '../../core/model/project.interface';
 import { Task } from '../../core/model/task.interface';
 import { TasksView } from '../../core/model/tasksView.interface';
 import { Transaction } from '../../core/model/transaction.interface';
-import { DataService } from '../../core/services/data.service';
-import { LogicService } from '../../core/services/logic.service';
+import { ProjectsService } from '../../core/services/projects.service';
 
 @Component({
   templateUrl: './home.component.html',
@@ -25,14 +24,14 @@ export class HomeComponent implements OnInit {
   private onProjectsLoaded = {
     next: (projectsData: Project[]) => {
       this.projects = projectsData;
-      this.dataService.getTransactions$().subscribe(this.onTransactionsLoaded);
+      this.service.getTransactions$().subscribe(this.onTransactionsLoaded);
     },
   };
 
   private onTransactionsLoaded = {
     next: (transactionsData: Transaction[]) => {
       this.transactions = transactionsData;
-      this.dataService.getTasks$().subscribe(this.onTasksLoaded);
+      this.service.getTasks$().subscribe(this.onTasksLoaded);
     },
   };
 
@@ -43,27 +42,19 @@ export class HomeComponent implements OnInit {
     },
   };
 
-  constructor(private dataService: DataService, private logicService: LogicService) {}
+  constructor(private service: ProjectsService) {}
 
   ngOnInit(): void {
     this.loadData();
   }
 
   private loadData(): void {
-    this.dataService.getProjects$().subscribe(this.onProjectsLoaded);
+    this.service.getProjects$().subscribe(this.onProjectsLoaded);
   }
 
   private setDataViews(): void {
-    this.setProjectViews();
-    this.setTasksView();
+    this.projectViews = this.service.getProjectViews(this.projects, this.transactions);
+    this.tasksView = this.service.getTasksView(this.tasks);
     this.loaded = true;
-  }
-
-  private setProjectViews(): void {
-    this.projectViews = this.logicService.composeProjectViews(this.projects, this.transactions);
-  }
-
-  private setTasksView(): void {
-    this.tasksView = this.logicService.composeTasksView(this.tasks);
   }
 }

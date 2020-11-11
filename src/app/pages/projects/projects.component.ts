@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ProjectsService } from 'src/app/core/services/projects.service';
 import { ProjectView } from '../../core/model/project-view.interface';
 import { Project } from '../../core/model/project.interface';
 import { Transaction } from '../../core/model/transaction.interface';
-import { DataService } from '../../core/services/data.service';
-import { LogicService } from '../../core/services/logic.service';
 
 @Component({
   templateUrl: './projects.component.html',
@@ -18,7 +17,7 @@ export class ProjectsComponent implements OnInit {
   private onProjectsLoaded = {
     next: (projectsData: Project[]) => {
       this.projects = projectsData;
-      this.dataService.getTransactions$().subscribe(this.onTransactionsLoaded);
+      this.service.getTransactions$().subscribe(this.onTransactionsLoaded);
     },
   };
 
@@ -29,18 +28,18 @@ export class ProjectsComponent implements OnInit {
     },
   };
 
-  constructor(private dataService: DataService, private logicService: LogicService) {}
+  constructor(private service: ProjectsService) {}
 
   ngOnInit(): void {
     this.loadData();
   }
 
   private loadData(): void {
-    this.dataService.getProjects$().subscribe(this.onProjectsLoaded);
+    this.service.getProjects$().subscribe(this.onProjectsLoaded);
   }
 
   private setDataViews(): void {
-    this.projectViews = this.logicService.composeProjectViews(this.projects, this.transactions);
+    this.projectViews = this.service.getProjectViews(this.projects, this.transactions);
     this.loaded = true;
   }
 }

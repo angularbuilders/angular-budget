@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Project } from 'src/app/core/model/project.interface';
-import { DataService } from 'src/app/core/services/data.service';
-import { LogicService } from 'src/app/core/services/logic.service';
-import { UtilService } from 'src/app/core/services/util.service';
+import { ProjectsService } from 'src/app/core/services/projects.service';
 
 @Component({
   selector: 'ab-new-project',
@@ -18,18 +16,18 @@ export class NewProjectComponent implements OnInit {
       this.resetToNewProjet();
     },
   };
-  constructor(private dataService: DataService, private logicService: LogicService, private utilService: UtilService) {}
+  constructor(private service: ProjectsService) {}
 
   ngOnInit(): void {
     this.resetToNewProjet();
   }
 
   saveNewProject(): void {
-    this.newProject.id = this.utilService.slugify(this.newProject.title);
-    this.dataService.postProject$(this.newProject).subscribe(this.onProjectSaved);
+    this.newProject.id = this.service.slugify(this.newProject.title);
+    this.service.postProject$(this.newProject).subscribe(this.onProjectSaved);
   }
 
   private resetToNewProjet(): void {
-    this.newProject = this.logicService.createNewProject();
+    this.newProject = this.service.createNewProject();
   }
 }
