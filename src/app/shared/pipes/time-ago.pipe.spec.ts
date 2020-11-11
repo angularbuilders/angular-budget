@@ -33,3 +33,12 @@ fdescribe('GIVEN the TimeAgoPipe', () => {
     expect(actual).toBe(expected);
   });
 });
+
+//
+//
+// {
+//   provide: UtilService,
+//   useValue: {
+//     getFechaColoquial: (fecha: Date) => 'hace mucho tiempo',
+//   },
+// },

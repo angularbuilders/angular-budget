@@ -10,6 +10,7 @@ import { HomeComponent } from './home.component';
  * TestBed para configurar y compilar
  * Cero dependencias mediante inversión del control
  * Usa capacidades propias de angular
+ * Observables para tratamiento asíncrono
  */
 fdescribe('GIVEN the HomeComponent', () => {
   let homeComponentSUT: HomeComponent;
@@ -41,11 +42,13 @@ fdescribe('GIVEN the HomeComponent', () => {
       ],
     }).compileComponents();
   });
-
-  beforeEach(() => {});
-  it('WHEN instantiated SHOULD knows it is not loaded', () => {
-    // Act
+  beforeEach(() => {
+    // Arrange
     fixture = TestBed.createComponent(HomeComponent);
+  });
+  it('WHEN instantiated THEN should knows it is not loaded', () => {
+    // Act
+    // Implícito
     // objeto construido pero no inicializado
     // Assert
     // prueba de estado indirecta
@@ -53,9 +56,8 @@ fdescribe('GIVEN the HomeComponent', () => {
     const actual = homeComponentSUT.loaded;
     expect(actual).toBeFalsy();
   });
-  it('WHEN initialized SHOULD knows it is loaded', () => {
+  it('WHEN initialized THEN should knows it is loaded', () => {
     // Act
-    fixture = TestBed.createComponent(HomeComponent);
     fixture.detectChanges(); // Llama a ngOnInit()
     // Assert
     // prueba de estado indirecta
