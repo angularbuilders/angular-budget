@@ -3,8 +3,8 @@ import { of } from 'rxjs';
 import { DataService } from './data.service';
 
 /**
- * 3 - Colaboradores - asíncronos
- * Usamos dobles y retornamos obserables
+ * 4 - Colaboradores - asíncronos
+ * Usamos dobles y retornamos observables
  * Suscripción a la respuesta y comprobación
  */
 

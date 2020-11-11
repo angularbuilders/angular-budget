@@ -27,10 +27,15 @@ fdescribe('The slugify method', () => {
  * THEN: returns angular-10-1
  */
 fdescribe('GIVEN: the LogicService', () => {
-  beforeEach(() => {});
+  let sut: LogicService;
+  beforeEach(() => {
+    // Arrange
+    sut = new LogicService();
+  });
   it('WHEN slugifies Angular 10.1 THEN returns angular-10-1', () => {
-    const sut = new LogicService();
+    // Act
     const actual = sut.slugify('Angular 10.1');
+    // Assert
     const expected = 'angular-10-1';
     expect(actual).toEqual(expected);
   });

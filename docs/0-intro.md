@@ -2,7 +2,7 @@
 marp: true
 ---
 
-# 0 - Introducción al testing con angular
+# 0 - Introducción al testing de aplicaciones Angular
 
 ## Pruebas de Angular sin Angular
 
@@ -13,38 +13,40 @@ marp: true
 - preconfigurado
 - autogenerado
 - scriptable
-- describe it
-- it should
-- given when then
+
+---
+
+```javascript
+plugins: [
+      require('karma-jasmine'),
+      require('karma-chrome-launcher'),
+      require('karma-mocha-reporter'),
+      require('karma-jasmine-diff-reporter'),
+      require('karma-coverage-istanbul-reporter'),
+      require('@angular-devkit/build-angular/plugins/karma'),
+    ],
+browsers: ['ChromeHeadless'],
+reporters: ['jasmine-diff', 'mocha'],
+```
 
 ---
 ### snippets
 
 ```json
 {
-  "Jasmine Should": {
-    "prefix": "ab-jsm-is",
-    "body": [
-      "describe('$1', () => {",
-      "  beforeEach(() => {});",
-      "  it('SHOULD $2', () => {",
-      "    const sut = null;",
-      "    const actual = null;",
-      "    const expected = null;",
-      "    expect(actual).toEqual(expected);",
-      "  });",
-      "});",
-    ],
-    "description": "Esqueleto It Should con Jasmine"
-  },
   "Jasmine Given When Then": {
     "prefix": "ab-jsm-gwt",
     "body": [
       "describe('GIVEN: $1', () => {",
-      "  beforeEach(() => {});",
+      "  let sut;",
+      "  beforeEach(() => {",
+      "    // Arrange",
+      "    sut = null;",
+      "  });",
       "  it('WHEN $2 THEN $3', () => {",
-      "    const sut = null;",
+      "    // Act",
       "    const actual = null;",
+      "    // Assert",
       "    const expected = null;",
       "    expect(actual).toEqual(expected);",
       "  });",
@@ -68,9 +70,13 @@ Sin dependencias.
 
 Métodos _puros_.
 
+* GWT Given When Then
+* AAA Arrange Act Assert
+* describe before it
+
 ---
 
-###  **S.U.T:** [LogicService ](https://github.com/angularbuilders/angular-budget/blob/test_0_into/src/app/core/services/logic.service.ts)
+###  **S.U.T:** [LogicService ](https://github.com/angularbuilders/angular-budget/blob/test_0_no-angular/src/app/core/services/logic.service.ts)
 
 ```typescript
 export class LogicService {
@@ -85,13 +91,19 @@ export class LogicService {
 
 ---
 
-### **Test:** [LogicService - Test ](https://github.com/angularbuilders/angular-budget/blob/test_0_into/src/app/core/services/logic.service.spec.ts)
+### **Test:** [LogicService - Test ](https://github.com/angularbuilders/angular-budget/blob/test_0_no-angular/src/app/core/services/logic.service.spec.ts)
 
 ```typescript
-describe('GIVEN: the slugify method', () => {
-  it('WHEN receives Angular 10.1 THEN returns angular-10-1', () => {
-    const sut = new LogicService();
+describe('GIVEN: the LogicService', () => {
+  let sut: LogicService;
+  beforeEach(() => {
+    // Arrange
+    sut = new LogicService();
+  });
+  it('WHEN slugifies Angular 10.1 THEN returns angular-10-1', () => {
+    // Act
     const actual = sut.slugify('Angular 10.1');
+    // Assert
     const expected = 'angular-10-1';
     expect(actual).toEqual(expected);
   });
@@ -122,10 +134,10 @@ Sin importar _la presentación_.
 
 ---
 
-###  **S.U.T:** [AboutPage ](https://github.com/angularbuilders/angular-budget/blob/test_0_into/src/app/pages/about/about.page.ts)
+###  **S.U.T:** [AboutComponent ](https://github.com/angularbuilders/angular-budget/blob/test_0_no-angular/src/app/pages/about/about.component.ts)
 
 ```typescript
-export class AboutPage implements OnInit {
+export class AboutComponent implements OnInit {
   title = 'Angular Budget';
   constructor() {}
 
@@ -135,14 +147,16 @@ export class AboutPage implements OnInit {
 
 ---
 
-### **Test:** [AboutPage - Test ](https://github.com/angularbuilders/angular-budget/blob/test_0_into/src/app/pages/about/about.page.spec.ts)
+### **Test:** [AboutComponent - Test ](https://github.com/angularbuilders/angular-budget/blob/test_0_no-angular/src/app/pages/about/about.component.spec.ts)
 
 ```typescript
 describe('GIVEN: the AboutComponent', () => {
-  beforeEach(() => {});
-  it('WHEN Ask for title THEN equals Angular Budget', () => {
+  let sut: AboutComponent;
+  beforeEach(() => {
     // Arrange
-    const sut = new AboutPage();
+    sut = new AboutComponent();
+  });
+  it('WHEN ask for title THEN equals Angular Budget', () => {
     // Act
     const actual = sut.title;
     // Assert
@@ -158,8 +172,8 @@ describe('GIVEN: the AboutComponent', () => {
 
 ```yml
 GIVEN: the DateTimeComponent component
-WHEN: we get userFormat
-THEN: returns `dd/MM/yyyy`
+WHEN: we ask the userFormat
+THEN: returns default `dd/MM/yyyy`
 ```
 
 ---
@@ -176,9 +190,11 @@ Usamos un doble en lugar de la dependencia original.
 
 Con _Jasmine_ lo aconsejable es usar un **spy**
 
+Probamos el buen comportamiento con los colaboradores
+
 ---
 
-###  **S.U.T:** [UtilService](https://github.com/angularbuilders/angular-budget/blob/test_0_into/src/app/core/services/util.service.ts)
+###  **S.U.T:** [UtilService](https://github.com/angularbuilders/angular-budget/blob/test_0_no-angular/src/app/core/services/util.service.ts)
 
 ```typescript
 export class UtilService {
@@ -195,23 +211,31 @@ export class UtilService {
 
 ---
 
-### **Test:** [UtilService - Test ](https://github.com/angularbuilders/angular-budget/blob/test_0_into/src/app/core/services/logic.service.spec.ts)
+### **Test:** [UtilService - Test ](https://github.com/angularbuilders/angular-budget/blob/test_0_no-angular/src/app/core/services/logic.service.spec.ts)
 
 ```typescript
-describe('The UtilsService', () => {
-  beforeEach(() => {});
-  it('SHOULD set the correct title', () => {
+describe('GIVEN the UtilsService', () => {
+  // UtilService es el Subject Under Test
+  let utilServiceSUT: UtilService;
+  // TitleService es un colaborador (una dependencia)
+  let titleServiceSpy: jasmine.SpyObj<Title>;
+  beforeEach(() => {
     // Arrange
-    const titleServiceSpy = jasmine.createSpyObj('TitleService', ['setTitle']);
-    const setTitleSpy: jasmine.Spy = titleServiceSpy.setTitle;
-    const stubTitle = 'Pruebas unitarias';
-    setTitleSpy.and.returnValue(stubTitle);
-    const sut = new UtilService(titleServiceSpy);
+    // El colaborador es un doble
+    titleServiceSpy = jasmine.createSpyObj('TitleService', {
+      // Metodo y respuesta predefinida para void
+      setTitle: undefined,
+    });
+    utilServiceSUT = new UtilService(titleServiceSpy);
+  });
+  it('WHEN setting a title SHOULD send that title to Angular Service', () => {
     // Act
-    sut.setDocumentTitle('Pruebas unitarias');
-    const actual = setTitleSpy.calls.mostRecent().returnValue;
+    utilServiceSUT.setDocumentTitle('Pruebas unitarias');
     // Assert
-    const expected = 'Pruebas unitarias';
+    // Prueba de comportamiento testeando el envío a un colaborador
+    // Espíamos para saber el uso que se hace del colaborador
+    const actual = titleServiceSpy.setTitle.calls.mostRecent().args[0];
+    const expected = 'Pruebas unitarias | Angular.Budget';
     expect(actual).toEqual(expected);
   });
 });
@@ -224,7 +248,7 @@ describe('The UtilsService', () => {
 ```yml
 GIVEN: the UtilService
 WHEN: we call setDocumentTitle without arguments
-THEN: returns the default `Angular.Budget`
+THEN: sets the default `Angular.Budget`
 ```
 
 ---
@@ -246,7 +270,7 @@ Podemos probar:
 
 ---
 
-###  **S.U.T:** [DataService](https://github.com/angularbuilders/angular-budget/blob/test_0_into/src/app/core/services/data.service.ts)
+###  **S.U.T:** [DataService](https://github.com/angularbuilders/angular-budget/blob/test_0_no-angular/src/app/core/services/data.service.ts)
 
 ```typescript
 export class DataService {
@@ -262,43 +286,47 @@ export class DataService {
 
 ---
 
-### **Test:** [DataService - Test ](https://github.com/angularbuilders/angular-budget/blob/test_0_into/src/app/core/services/data.service.spec.ts)
+### **Test:** [DataService - Test ](https://github.com/angularbuilders/angular-budget/blob/test_0_no-angular/src/app/core/services/data.service.spec.ts)
 
 ```typescript
 describe('GIVEN: A dataService', () => {
-  let httpClientSpy: any;
-  let getSpy: jasmine.Spy;
+  let sut: DataService;
+  let httpClientSpy: jasmine.SpyObj<HttpClient>;
+
   beforeEach(() => {
     // Arrange
-    httpClientSpy = jasmine.createSpyObj('HttpClient', ['get']);
-    getSpy = httpClientSpy.get;
-    const stubPojects = [];
-    getSpy.and.returnValue(of(stubPojects));
+    httpClientSpy = jasmine.createSpyObj('HttpClient', {
+      // Respuesta predefinida asíncrona
+      get: of([{ id: 'ok', title: 'ok' }]),
+    });
+    sut = new DataService(httpClientSpy);
   });
   ```
   ---
   ```typescript
   it('WHEN call the getProjects THEN the url is the expected', () => {
     // Act
-    const sut = new DataService(httpClientSpy);
     sut.getProjects$().subscribe();
     // Assert
-    const actual = getSpy.calls.mostRecent().args[0];
+    // Prueba de comportamiento testeando una llamada al colaborador
+    // Comprobación de argumentos
+    const actual = httpClientSpy.get.calls.mostRecent().args[0];
     const expected = 'https://api-base.herokuapp.com/api/pub/projects';
     expect(actual).toEqual(expected);
   });
   ```
   ---
   ```typescript
-  it('WHEN call the getProjects THEN returns an observable of empty projects list', () => {
+  it('WHEN call the getProjects$ THEN returns an observable of a project list', () => {
     // Act
-    const sut = new DataService(httpClientSpy);
-    let actual = null;
+    let actual: Object[];
+    // La suscripción a observables funciona
     sut.getProjects$().subscribe({
       next: data => (actual = data),
     });
     // Assert
-    const expected = [];
+    // Prueba de estado directo testeando la respuesta obtenida
+    const expected = [{ id: 'ok', title: 'ok' }];
     expect(actual).toEqual(expected);
   });
 });
@@ -309,13 +337,13 @@ describe('GIVEN: A dataService', () => {
 
 ```yml
 GIVEN: the DataService
-WHEN: we get hte project `learning-to-test`
+WHEN: we ask the project `learning-to-test`
 THEN: returns "{ id: 'learning-to-test' , title : 'Learning to Test'}"
 ```
 
 ---
 
 
-> **Repositorio:** [angularbuilders/angular-budget/test_0_intro](https://github.com/angularbuilders/angular-budget/tree/test_0_into)
+> **Repositorio:** [angularbuilders/angular-budget/test_0_no-angular](https://github.com/angularbuilders/angular-budget/tree/test_0_no-angular)
 
 > > By [Alberto Basalo](https://twitter.com/albertobasalo)

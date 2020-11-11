@@ -1,15 +1,17 @@
-import { AboutPageComponent } from './about.component';
+import { AboutComponent } from './about.component';
 
 /**
- * 4 - Componentes simples
+ * 2 - Componentes simples
  * Empezamos probando como clases normales
  */
 
 fdescribe('GIVEN: the AboutComponent', () => {
-  beforeEach(() => {});
-  it('WHEN Ask for title THEN equals Angular Budget', () => {
+  let sut: AboutComponent;
+  beforeEach(() => {
     // Arrange
-    const sut = new AboutPageComponent();
+    sut = new AboutComponent();
+  });
+  it('WHEN ask for title THEN equals Angular Budget', () => {
     // Act
     const actual = sut.title;
     // Assert
