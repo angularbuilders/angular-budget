@@ -54,13 +54,6 @@ export class LogicService {
     };
   }
 
-  public slugify(text: string): string {
-    return text
-      .toLowerCase()
-      .trim()
-      .replace(/[\s\W-]+/g, '-');
-  }
-
   private processExpenses(transactions: Transaction[], projectView: ProjectView): void {
     const expenses = transactions.filter(transaction => transaction.type === TransactionType.Expense);
     if (expenses.length > 0) {

@@ -1,34 +1,30 @@
-import { Title } from '@angular/platform-browser';
 import { UtilService } from './util.service';
 
-/**
- * 3 - Colaboradores - unitarias
- * Usamos dobles para los colaboradores
- * Concretamente Spies para probar su comportamiento
- */
-
 fdescribe('GIVEN the UtilsService', () => {
-  // UtilService es el Subject Under Test
   let utilServiceSUT: UtilService;
-  // TitleService es un colaborador (una dependencia)
-  let titleServiceSpy: jasmine.SpyObj<Title>;
   beforeEach(() => {
     // Arrange
-    // El colaborador es un doble
-    titleServiceSpy = jasmine.createSpyObj('TitleService', {
-      // Método y respuesta predefinida para void
-      setTitle: undefined,
-    });
-    utilServiceSUT = new UtilService(titleServiceSpy);
+    utilServiceSUT = new UtilService();
   });
-  it('WHEN setting a title SHOULD send that title to Angular Service', () => {
+  it('WHEN called with an ancient date THEN should generate a long time ago message', () => {
     // Act
-    utilServiceSUT.setDocumentTitle('Pruebas unitarias');
+    const actual = utilServiceSUT.getFechaColoquial(new Date(2001, 1, 1));
     // Assert
-    // Prueba de comportamiento testeando el envío a un colaborador
-    // Espiamos para saber el uso que se hace del colaborador
-    const actual = titleServiceSpy.setTitle.calls.mostRecent().args[0];
-    const expected = 'Pruebas unitarias | Angular.Budget';
+    const expected = 'hace mucho tiempo';
+    expect(actual).toEqual(expected);
+  });
+  it('WHEN slugifies spaces and dots THEN converts them to hyphens', () => {
+    // Act
+    const actual = utilServiceSUT.slugify('Web testing Angular 10.1');
+    // Assert
+    const expected = 'web-testing-angular-10-1';
+    expect(actual).toEqual(expected);
+  });
+  it('WHEN slugifies Spanish chars THEN converts them to hyphens', () => {
+    // Act
+    const actual = utilServiceSUT.slugify('Más Angular en español');
+    // Assert
+    const expected = 'm-s-angular-en-espa-ol';
     expect(actual).toEqual(expected);
   });
 });

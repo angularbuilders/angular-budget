@@ -6,7 +6,7 @@ import { Task } from 'src/app/core/model/task.interface';
 import { Transaction } from 'src/app/core/model/transaction.interface';
 import { DataService } from 'src/app/core/services/data.service';
 import { LogicService } from 'src/app/core/services/logic.service';
-import { UtilService } from 'src/app/core/services/util.service';
+import { TitleService } from 'src/app/core/services/title.service';
 
 @Component({
   templateUrl: './project.component.html',
@@ -23,7 +23,7 @@ export class ProjectComponent implements OnInit {
   private onProjectLoaded = {
     next: (projectData: Project) => {
       this.project = projectData;
-      this.utilService.setDocumentTitle(this.project.title);
+      this.titleService.setDocumentTitle(this.project.title);
       this.dataService.getTransactions$().subscribe(this.onTransactionsLoaded);
     },
   };
@@ -45,7 +45,7 @@ export class ProjectComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private dataService: DataService,
     private logicService: LogicService,
-    private utilService: UtilService
+    private titleService: TitleService
   ) {}
 
   ngOnInit(): void {

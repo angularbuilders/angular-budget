@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Event, Router } from '@angular/router';
-import { UtilService } from './core/services/util.service';
+import { TitleService } from './core/services/title.service';
 
 @Component({
   selector: 'ab-root',
@@ -8,14 +8,14 @@ import { UtilService } from './core/services/util.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, private utilService: UtilService) {
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private titleService: TitleService) {
     this.setTitleOnRouteChange();
   }
 
   private setTitleOnRouteChange(): void {
     this.router.events.subscribe({
       next: (event: Event) => {
-        this.utilService.setTitleFromRouterEvent(event, this.activatedRoute);
+        this.titleService.setTitleFromRouterEvent(event, this.activatedRoute);
       },
     });
   }
