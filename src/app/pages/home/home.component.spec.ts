@@ -6,9 +6,9 @@ import { LogicService } from 'src/app/core/services/logic.service';
 import { HomeComponent } from './home.component';
 
 /**
- * 6 - Componentes complejos aislados
+ * 7 - Componentes complejos aislados
  * TestBed para configurar y compilar
- * Cero dependencias
+ * Cero dependencias mediante inversión del control
  * Usa capacidades propias de angular
  */
 fdescribe('GIVEN the HomeComponent', () => {
@@ -43,10 +43,10 @@ fdescribe('GIVEN the HomeComponent', () => {
   });
 
   beforeEach(() => {});
-  it('WHEN instantited SHOULD knows it is not loaded', () => {
+  it('WHEN instantiated SHOULD knows it is not loaded', () => {
     // Act
     fixture = TestBed.createComponent(HomeComponent);
-    // objeto constuido pero no inicializado
+    // objeto construido pero no inicializado
     // Assert
     // prueba de estado indirecta
     homeComponentSUT = fixture.componentInstance;

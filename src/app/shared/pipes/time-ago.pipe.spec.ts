@@ -3,7 +3,8 @@ import { UtilService } from 'src/app/core/services/util.service';
 import { TimeAgoPipe } from './time-ago.pipe';
 
 /**
- * 5 - Componentes (o Pipes) con dependencias integradas
+ * 6 - Pipes con dependencias integradas
+ * A veces es lo único que podemos probar...
  */
 
 fdescribe('GIVEN the TimeAgoPipe', () => {
