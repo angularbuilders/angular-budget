@@ -24,6 +24,7 @@
     "markdown",
     "latex",
     "plaintext",
-    "html"
+    "html",
+    "typescript"
   ],
 }

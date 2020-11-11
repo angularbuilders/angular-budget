@@ -32,7 +32,7 @@ fdescribe('GIVEN: the DataService', () => {
   });
   it('WHEN call the getProjects THEN returns an observable of a projects list', () => {
     // Act
-    let actual: Object[];
+    let actual: any[];
     // La suscripción a observables funciona
     sut.getProjects$().subscribe({
       next: data => (actual = data),
