@@ -1,4 +1,4 @@
-import { TitleAdapterService } from './title-adapter.service';
+import { TitleAdapterService } from './adapters/title-adapter.service';
 import { TitleService } from './title.service';
 
 fdescribe('GIVEN the UtilsService', () => {

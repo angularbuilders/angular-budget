@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { Project } from '../model/project.interface';
 import { Task } from '../model/task.interface';
 import { Transaction } from '../model/transaction.interface';
-import { HttpAdapterService } from './http-adapter.service';
+import { HttpAdapterService } from './adapters/http-adapter.service';
 
 @Injectable({
   providedIn: 'root',

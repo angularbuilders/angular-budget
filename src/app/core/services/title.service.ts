@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRoute, Event, NavigationEnd } from '@angular/router';
-import { TitleAdapterService } from './title-adapter.service';
+import { TitleAdapterService } from './adapters/title-adapter.service';
 
 @Injectable({
   providedIn: 'root',

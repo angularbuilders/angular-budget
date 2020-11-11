@@ -1,6 +1,6 @@
 import { of } from 'rxjs';
+import { HttpAdapterService } from './adapters/http-adapter.service';
 import { DataService } from './data.service';
-import { HttpAdapterService } from './http-adapter.service';
 
 fdescribe('GIVEN: the DataService', () => {
   let sut: DataService;
