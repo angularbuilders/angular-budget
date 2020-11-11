@@ -57,7 +57,7 @@ fdescribe('GIVEN: the LogicService', () => {
     const expected = 'web-testing-angular-10-1';
     expect(actual).toEqual(expected);
   });
-  it('WHEN slugifies spanish chars THEN converts them to hyphens', () => {
+  it('WHEN slugifies Spanish chars THEN converts them to hyphens', () => {
     // Act
     const actual = sut.slugify('Más Angular en español');
     // Assert

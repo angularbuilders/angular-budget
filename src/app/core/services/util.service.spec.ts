@@ -16,7 +16,7 @@ fdescribe('GIVEN the UtilsService', () => {
     // Arrange
     // El colaborador es un doble
     titleServiceSpy = jasmine.createSpyObj('TitleService', {
-      // Metodo y respuesta predefinida para void
+      // Método y respuesta predefinida para void
       setTitle: undefined,
     });
     utilServiceSUT = new UtilService(titleServiceSpy);
@@ -26,7 +26,7 @@ fdescribe('GIVEN the UtilsService', () => {
     utilServiceSUT.setDocumentTitle('Pruebas unitarias');
     // Assert
     // Prueba de comportamiento testeando el envío a un colaborador
-    // Espíamos para saber el uso que se hace del colaborador
+    // Espiamos para saber el uso que se hace del colaborador
     const actual = titleServiceSpy.setTitle.calls.mostRecent().args[0];
     const expected = 'Pruebas unitarias | Angular.Budget';
     expect(actual).toEqual(expected);
