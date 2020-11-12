@@ -3,12 +3,12 @@ import { ProjectView } from 'src/app/core/model/project-view.interface';
 import { Project } from 'src/app/core/model/project.interface';
 import { Task } from 'src/app/core/model/task.interface';
 import { Transaction } from 'src/app/core/model/transaction.interface';
-import { ProjectService } from 'src/app/core/services/project.service';
+import { ProjectFacadeService } from 'src/app/core/services/facades/project-facade.service';
 
 @Component({
   templateUrl: './project.component.html',
   styleUrls: ['./project.component.css'],
-  providers: [ProjectService],
+  providers: [ProjectFacadeService],
 })
 export class ProjectComponent implements OnInit {
   projectView: ProjectView;
@@ -39,7 +39,7 @@ export class ProjectComponent implements OnInit {
     },
   };
 
-  constructor(private service: ProjectService) {}
+  constructor(private service: ProjectFacadeService) {}
 
   ngOnInit(): void {
     this.projectSlug = this.service.getSlugFromRoute();

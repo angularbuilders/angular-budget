@@ -4,7 +4,7 @@ import { Project } from '../../core/model/project.interface';
 import { Task } from '../../core/model/task.interface';
 import { TasksView } from '../../core/model/tasksView.interface';
 import { Transaction } from '../../core/model/transaction.interface';
-import { ProjectsService } from '../../core/services/projects.service';
+import { ProjectsFacadeService } from '../../core/services/facades/projects-facade.service';
 
 @Component({
   templateUrl: './home.component.html',
@@ -42,7 +42,7 @@ export class HomeComponent implements OnInit {
     },
   };
 
-  constructor(private service: ProjectsService) {}
+  constructor(private service: ProjectsFacadeService) {}
 
   ngOnInit(): void {
     this.loadData();

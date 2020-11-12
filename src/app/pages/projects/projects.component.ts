@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProjectsService } from 'src/app/core/services/projects.service';
+import { ProjectsFacadeService } from 'src/app/core/services/facades/projects-facade.service';
 import { ProjectView } from '../../core/model/project-view.interface';
 import { Project } from '../../core/model/project.interface';
 import { Transaction } from '../../core/model/transaction.interface';
@@ -28,7 +28,7 @@ export class ProjectsComponent implements OnInit {
     },
   };
 
-  constructor(private service: ProjectsService) {}
+  constructor(private service: ProjectsFacadeService) {}
 
   ngOnInit(): void {
     this.loadData();

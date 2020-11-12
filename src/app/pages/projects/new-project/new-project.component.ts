@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Project } from 'src/app/core/model/project.interface';
-import { ProjectsService } from 'src/app/core/services/projects.service';
+import { ProjectFacadeService } from 'src/app/core/services/facades/project-facade.service';
 
 @Component({
   selector: 'ab-new-project',
@@ -16,7 +16,7 @@ export class NewProjectComponent implements OnInit {
       this.resetToNewProjet();
     },
   };
-  constructor(private service: ProjectsService) {}
+  constructor(private service: ProjectFacadeService) {}
 
   ngOnInit(): void {
     this.resetToNewProjet();

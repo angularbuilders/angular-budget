@@ -3,7 +3,7 @@ import { ActivatedRoute, Event, Router } from '@angular/router';
 import { TitleService } from './core/services/title.service';
 
 @Injectable()
-export class AppService {
+export class AppFacadeService {
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private titleService: TitleService) {}
 
   setTitleOnRouteChange(): void {
