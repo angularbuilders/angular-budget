@@ -6,6 +6,7 @@ import { ProjectFacadeService } from 'src/app/core/services/facades/project-faca
   selector: 'ab-new-project',
   templateUrl: './new-project.component.html',
   styleUrls: ['./new-project.component.css'],
+  providers: [ProjectFacadeService],
 })
 export class NewProjectComponent implements OnInit {
   newProject: Project;

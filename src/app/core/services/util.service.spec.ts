@@ -1,5 +1,12 @@
 import { UtilService } from './util.service';
 
+/**
+ * 1 - Pruebas SIN Angular
+ * GWT Given When Then
+ * AAA Arrange Act Assert
+ * describe before it
+ */
+
 fdescribe('GIVEN the UtilsService', () => {
   let utilServiceSUT: UtilService;
   beforeEach(() => {

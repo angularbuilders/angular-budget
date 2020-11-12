@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { AppFacadeService } from './app-facade.service';
 
-describe('AppService', () => {
+describe('AppFacadeService', () => {
   let service: AppFacadeService;
 
   beforeEach(() => {
