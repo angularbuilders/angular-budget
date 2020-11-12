@@ -45,13 +45,12 @@ export class ProjectFacadeService {
   setDocumentTitle(projectTitle: string) {
     this.titleService.setDocumentTitle(projectTitle);
   }
-  slugify(text: string) {
-    return this.utilService.slugify(text);
-  }
 
-  postProject$(newProject: Project) {
+  saveNewProject$(newProject: Project) {
+    newProject.id = this.utilService.slugify(newProject.title);
     return this.dataService.postProject$(newProject);
   }
+
   createNewProject() {
     return this.logicService.createNewProject();
   }

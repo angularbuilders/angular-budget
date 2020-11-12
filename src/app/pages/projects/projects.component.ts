@@ -24,7 +24,7 @@ export class ProjectsComponent implements OnInit {
   private onTransactionsLoaded = {
     next: (transactionsData: Transaction[]) => {
       this.transactions = transactionsData;
-      this.setDataViews();
+      this.setViedData();
     },
   };
 
@@ -38,7 +38,7 @@ export class ProjectsComponent implements OnInit {
     this.service.getProjects$().subscribe(this.onProjectsLoaded);
   }
 
-  private setDataViews(): void {
+  private setViedData(): void {
     this.projectViews = this.service.getProjectViews(this.projects, this.transactions);
     this.loaded = true;
   }

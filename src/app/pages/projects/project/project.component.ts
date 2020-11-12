@@ -21,7 +21,6 @@ export class ProjectComponent implements OnInit {
   private onProjectLoaded = {
     next: (projectData: Project) => {
       this.project = projectData;
-      this.service.setDocumentTitle(this.project.title);
       this.service.getTransactions$().subscribe(this.onTransactionsLoaded);
     },
   };
@@ -34,8 +33,7 @@ export class ProjectComponent implements OnInit {
   private onTasksLoaded = {
     next: (tasksData: Task[]) => {
       this.tasks = this.service.filterTasksByProjectId(tasksData, this.projectSlug);
-      this.projectView = this.service.getprojectView(this.project, this.transactions);
-      this.loaded = true;
+      this.setViedData();
     },
   };
 
@@ -48,5 +46,11 @@ export class ProjectComponent implements OnInit {
 
   private loadData(): void {
     this.service.getProject$(this.projectSlug).subscribe(this.onProjectLoaded);
+  }
+
+  private setViedData(): void {
+    this.service.setDocumentTitle(this.project.title);
+    this.projectView = this.service.getprojectView(this.project, this.transactions);
+    this.loaded = true;
   }
 }

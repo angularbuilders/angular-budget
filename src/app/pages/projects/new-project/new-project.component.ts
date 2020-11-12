@@ -23,8 +23,7 @@ export class NewProjectComponent implements OnInit {
   }
 
   saveNewProject(): void {
-    this.newProject.id = this.service.slugify(this.newProject.title);
-    this.service.postProject$(this.newProject).subscribe(this.onProjectSaved);
+    this.service.saveNewProject$(this.newProject).subscribe(this.onProjectSaved);
   }
 
   private resetToNewProjet(): void {
