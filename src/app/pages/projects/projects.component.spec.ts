@@ -8,7 +8,11 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { ProjectsComponent } from './projects.component';
 
 /**
- * WIP 8 - Vistas
+ * 8 - Vistas
+ * componente
+ * fixture
+ * debug y native elements
+ * detección de cambios
  */
 
 fdescribe('GIVEN the ProjectsComponent', () => {
@@ -49,14 +53,14 @@ fdescribe('GIVEN the ProjectsComponent', () => {
   });
   it('WHEN starts THEN has a header', () => {
     // Act
-    const headerNative: HTMLElement = nativeEl.querySelector('header');
-    const actual = headerNative;
+    // Consultando el elemento nativo
+    const actual: HTMLElement = nativeEl.querySelector('header');
     // Assert
     expect(actual).toBeTruthy();
   });
   it('WHEN starts THEN the title is Lista de proyectos', () => {
     // Act
-    fixture.detectChanges();
+    // Consultando desde el wrapper
     const titleDebug: DebugElement = debugEl.query(By.css('h2'));
     const titleNative: HTMLElement = titleDebug.nativeElement;
     const actual = titleNative.textContent;
@@ -64,8 +68,9 @@ fdescribe('GIVEN the ProjectsComponent', () => {
     const expected = ' Lista de proyectos ';
     expect(actual).toEqual(expected);
   });
-  it('WHEN starts THEN there is Esperando datos...', () => {
+  it('WHEN initializing THEN there is Esperando datos...', () => {
     // Act
+    // forzar al evaluación de datos para contenido dinámico
     fixture.detectChanges();
     const quoteDebug: DebugElement = debugEl.query(By.css('blockquote'));
     const quoteNative: HTMLElement = quoteDebug.nativeElement;
@@ -77,10 +82,9 @@ fdescribe('GIVEN the ProjectsComponent', () => {
   it('WHEN stable THEN there is no Esperando datos...', fakeAsync(() => {
     // Act
     fixture.detectChanges();
-    tick(200);
-    fixture.detectChanges();
-    const quoteDebug: DebugElement = debugEl.query(By.css('blockquote'));
-    const actual = quoteDebug;
+    tick(100); // espera para que se resuelva el observable
+    fixture.detectChanges(); // fuerza el recálculo de la vista
+    const actual: DebugElement = debugEl.query(By.css('blockquote'));
     // Assert
     expect(actual).toBeFalsy();
   }));
