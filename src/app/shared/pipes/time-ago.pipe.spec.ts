@@ -1,4 +1,5 @@
-import { TestBed } from '@angular/core/testing';
+import { Component, DebugElement } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { UtilService } from 'src/app/core/services/util.service';
 import { TimeAgoPipe } from './time-ago.pipe';
 
@@ -34,11 +35,45 @@ fdescribe('GIVEN the TimeAgoPipe', () => {
   });
 });
 
-//
-//
-// {
-//   provide: UtilService,
-//   useValue: {
-//     getFechaColoquial: (fecha: Date) => 'hace mucho tiempo',
-//   },
-// },
+/*
+ * 10 - pruebas con un componente dummy
+ */
+
+@Component({
+  template: `<p>{{ theDate | timeAgo }}</p>`,
+})
+class DummyComponent {
+  theDate = new Date(2020, 0, 1);
+}
+
+fdescribe('GIVEN a DummyComponent using the TimeAgo pipe', () => {
+  let component: DummyComponent;
+  let fixture: ComponentFixture<DummyComponent>;
+  let debugEl: DebugElement;
+  let nativeEl: HTMLElement;
+
+  beforeEach(async () => {
+    // Arrange
+    await TestBed.configureTestingModule({
+      declarations: [DummyComponent, TimeAgoPipe],
+    }).compileComponents();
+  });
+
+  beforeEach(() => {
+    // Arrange
+    fixture = TestBed.createComponent(DummyComponent);
+    component = fixture.componentInstance;
+    debugEl = fixture.debugElement;
+    nativeEl = fixture.nativeElement;
+    fixture.detectChanges();
+  });
+
+  it('WHEN the date is 01/01/2020 THEN renders hace mucho tiempo ', () => {
+    // Act
+    const actualNative: HTMLElement = nativeEl.querySelector('p');
+    const actual = actualNative.textContent;
+    // Assert
+    const expected = 'hace mucho tiempo';
+    expect(actual).toEqual(expected);
+  });
+});
