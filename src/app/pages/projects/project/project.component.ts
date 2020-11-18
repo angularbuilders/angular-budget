@@ -8,7 +8,7 @@ import { ProjectFacadeService } from 'src/app/core/services/facades/project-faca
 @Component({
   templateUrl: './project.component.html',
   styleUrls: ['./project.component.css'],
-  providers: [ProjectFacadeService],
+  providers: [],
 })
 export class ProjectComponent implements OnInit {
   projectView: ProjectView;
@@ -16,7 +16,7 @@ export class ProjectComponent implements OnInit {
   tasks: Task[];
   transactions: Transaction[];
   loaded = false;
-  private projectSlug: string;
+  projectSlug: string;
 
   private onProjectLoaded = {
     next: (projectData: Project) => {
@@ -26,7 +26,10 @@ export class ProjectComponent implements OnInit {
   };
   private onTransactionsLoaded = {
     next: (transactionsData: Transaction[]) => {
-      this.transactions = this.service.filterTransactionsByProjectId(transactionsData, this.projectSlug);
+      this.transactions = this.service.filterTransactionsByProjectId(
+        transactionsData,
+        this.projectSlug
+      );
       this.service.getTasks$().subscribe(this.onTasksLoaded);
     },
   };

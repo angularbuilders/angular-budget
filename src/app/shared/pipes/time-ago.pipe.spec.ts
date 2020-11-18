@@ -37,6 +37,7 @@ fdescribe('GIVEN the TimeAgoPipe', () => {
 
 /*
  * 10 - pruebas con un componente dummy
+ * Útil para probar directivas y pipes
  */
 
 @Component({

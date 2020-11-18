@@ -52,4 +52,4 @@ To be done at the classroom or used like an exercise.
 
 ## Credits
 
-Created by [Alberto Basalo](https://twitter.com/albertobasalo) to be used a sample in his Angular Courses.
+Created by [Alberto Basalo](https://twitter.com/albertobasalo) to be used as a sample in his Angular Courses.

@@ -1,4 +1,4 @@
-import { DebugElement } from '@angular/core';
+import { DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
@@ -24,7 +24,7 @@ fdescribe('GIVEN the ProjectsComponent', () => {
     // Arrange
     await TestBed.configureTestingModule({
       imports: [SharedModule],
-      schemas: [],
+      schemas: [NO_ERRORS_SCHEMA],
       declarations: [ProjectsComponent],
       providers: [
         {
