@@ -3,6 +3,7 @@ import { NewProjectComponent } from './new-project.component';
 
 /*
  * 12 - Prueba de un formulario template driven
+ * TO DO:
  * Mucha interacción con la template
  * Dificultad de pruebas detalladas
  * Los model driven, son más sencillos +ts -html

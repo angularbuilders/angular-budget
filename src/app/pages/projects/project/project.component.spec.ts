@@ -1,11 +1,16 @@
 import { DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
-import { Router, Routes } from '@angular/router';
+import { ActivatedRoute, Router, Routes } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 import { ProjectFacadeService } from 'src/app/core/services/facades/project-facade.service';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ProjectComponent } from './project.component';
+
+/*
+ * 11 - Pruebas de enrutado
+ * usar routerTestingModule (no realiza la navegación real)
+ */
 
 fdescribe('GIVEN the ProjectComponent', () => {
   let component: ProjectComponent;
@@ -13,7 +18,18 @@ fdescribe('GIVEN the ProjectComponent', () => {
   let debugEl: DebugElement;
   let nativeEl: HTMLElement;
   let router: Router;
+  let activatedRoute: ActivatedRoute;
 
+  const projectFacadeServiceMock = {
+    getSlugFromRoute: 1,
+    getProject$: of({}),
+    getTransactions$: of([]),
+    getTasks$: of([]),
+    filterTransactionsByProjectId: [],
+    filterTasksByProjectId: [],
+    setDocumentTitle: undefined,
+    getprojectView: {},
+  };
   beforeEach(async () => {
     // Arrange
     const routes: Routes = [
@@ -29,16 +45,7 @@ fdescribe('GIVEN the ProjectComponent', () => {
       providers: [
         {
           provide: ProjectFacadeService,
-          useValue: jasmine.createSpyObj('ProjectFacadeService', {
-            getSlugFromRoute: '1',
-            getProject$: of({}),
-            getTransactions$: of([]),
-            getTasks$: of([]),
-            filterTransactionsByProjectId: [],
-            filterTasksByProjectId: [],
-            setDocumentTitle: undefined,
-            getprojectView: {},
-          }),
+          useValue: jasmine.createSpyObj('ProjectFacadeService', projectFacadeServiceMock),
         },
       ],
     }).compileComponents();
@@ -47,6 +54,7 @@ fdescribe('GIVEN the ProjectComponent', () => {
   beforeEach(() => {
     // Arrange
     router = TestBed.inject(Router);
+    activatedRoute = TestBed.inject(ActivatedRoute);
     fixture = TestBed.createComponent(ProjectComponent);
     component = fixture.componentInstance;
     debugEl = fixture.debugElement;
@@ -55,11 +63,12 @@ fdescribe('GIVEN the ProjectComponent', () => {
     fixture.detectChanges();
   });
 
-  it('WHEN The location is projects/1 THEN the component is initialized', fakeAsync(() => {
+  it('WHEN The location is projects/1 THEN the url is well formed', fakeAsync(() => {
+    // Act
     router.navigate(['/projects/1']).then(() => {
-      const actual = fixture.componentInstance.projectSlug;
+      const actual = router.url;
       // Assert
-      const expected = '1';
+      const expected = '/projects/1';
       expect(actual).toEqual(expected);
     });
     tick();
