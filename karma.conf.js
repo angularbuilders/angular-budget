@@ -12,20 +12,20 @@ module.exports = function (config) {
       require('@angular-devkit/build-angular/plugins/karma'),
     ],
 
-    // Triger
+    // 1 - Trigger
     autoWatch: true,
     restartOnFileChange: true,
     singleRun: false,
 
-    // Build
+    // 2 - Build
     basePath: '',
     frameworks: ['jasmine', '@angular-devkit/build-angular'],
 
-    // Run
+    // 3 - Run
     port: 9876,
     browsers: ['ChromeHeadless'],
 
-    // Report
+    // 4 - Report
     colors: true,
     logLevel: config.LOG_INFO,
     reporters: ['jasmine-diff', 'mocha'],
@@ -59,7 +59,7 @@ module.exports = function (config) {
       clearContext: false, // leave Jasmine Spec Runner output visible in browser
     },
 
-    // Coverage
+    // 5 - Coverage
     coverageIstanbulReporter: {
       dir: require('path').join(__dirname, './coverage/angular-budget'),
       reports: ['html', 'lcovonly', 'text-summary'],
