@@ -4,7 +4,7 @@ marp: true
 
 # 0 - Introducción al testing de aplicaciones Angular
 
-updateupdate ## Pruebas de Angular _sin Angular_
+## Pruebas de Angular _sin Angular_
 
 ---
 

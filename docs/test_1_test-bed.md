@@ -4,7 +4,7 @@ marp: true
 
 # 1 - Pruebas usando TestBed
 
-## Pruebas de Angular con Angular
+## Pruebas de Angular _con Angular_
 
 ---
 
@@ -12,11 +12,15 @@ marp: true
 
 ### **Issue:** [Componentes aparentemente simples ](https://github.com/angularbuilders/angular-budget/issues/57)
 
-**Testbed** en componente simple, suele requerir integración.
+### 🛏 **Testbed**
 
-Al pedirle a Angular que compile un componente
+Cualquier componente simple, suele requerir integración.
 
-Necesita sus dependencias de código y vista
+Al pedirle a Angular que compile un componente...
+
+... necesita sus dependencias de código y vista.
+
+Es decir su **módulo**
 
 ---
 
@@ -40,6 +44,7 @@ describe('GIVEN: the AboutComponent in a TesBed', () => {
   let component: AboutComponent;
   let fixture: ComponentFixture<AboutComponent>;
   beforeEach(async () => {
+    // Arrange
     await TestBed.configureTestingModule({
       imports: [SharedModule],// lo necesitamos para la vista
       declarations: [AboutComponent],
@@ -48,7 +53,7 @@ describe('GIVEN: the AboutComponent in a TesBed', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(AboutComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    fixture.detectChanges(); // simulación del comportamiento
   });
   it('WHEN ask for title THEN equals Angular Budget', () => {
     // Act
@@ -78,7 +83,8 @@ THEN: should be created
 
 ### **Issue:** [Prueba de integración de un pipe con TestBed ](https://github.com/angularbuilders/angular-budget/issues/51)
 
-A veces es lo único que podemos probar...
+### 🩺 Pruebas no invasivas
+En ciertos casos las pruebas de integración son las más prácticas
 
 ---
 
@@ -107,11 +113,6 @@ describe('GIVEN the TimeAgoPipe', () => {
     const utilService = TestBed.inject<UtilService>(UtilService);
     // es una prueba de integración, porque usa el servicio real como colaborador
     timeAgoPipeSUT = new TimeAgoPipe(utilService);
-  });
-  it('WHEN instantiated SHOULD get an instance', () => {
-    // Act : implícito
-    // Assert : el pipe se ha compilado bien
-    expect(timeAgoPipeSUT).toBeTruthy();
   });
   it('WHEN called with an ancient date SHOULD generate a long time ago message', () => {
     // Act
@@ -144,13 +145,13 @@ THEN: generate a long time ago message
 
 ### **Issue:** [Componentes complejo aislado](https://github.com/angularbuilders/angular-budget/issues/56)
 
-TestBed para configurar y compilar
+### 🛏 TestBed para configurar y compilar
 
-Cero dependencias mediante inversión del control
+### 🕳 Cero dependencias mediante inversión del control 🙃
 
-Usa capacidades propias de angular
+### 🔥 CUSTOM_ELEMENTS_SCHEMA 🔥🔥NO_ERRORS_SCHEMA
 
-Observables para tratamiento asíncrono
+Usando capacidades y trucos propios de Angular 🅰
 
 ---
 
@@ -177,11 +178,9 @@ fdescribe('GIVEN the HomeComponent', () => {
   beforeEach(async () => {
     // Arrange
     await TestBed.configureTestingModule({
-      imports: [],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       declarations: [HomeComponent],
-      // Inversión del control
-      providers: [
+      providers: [ // Inversión del control
         {
           provide: DataService,
           useValue: jasmine.createSpyObj('DataService', {
@@ -206,7 +205,7 @@ fdescribe('GIVEN the HomeComponent', () => {
 
 ```typescript
 ...
-beforeEach(() => {
+  beforeEach(() => {
     // Arrange
     fixture = TestBed.createComponent(HomeComponent);
   });
@@ -239,6 +238,22 @@ THEN: should knows it is not loaded
 WHEN: instantiated
 THEN: should knows it is loaded
 ```
+
+---
+
+### Recomendaciones
+
+#### Usar patrón Container Presenter
+
+- 🚢 Container: probar **lógica**
+- 🖼 Presenter: probar **vista**
+
+#### 👀 Valorar librerías de terceros
+
+- [Spectator](https://ngneat.github.io/spectator/)
+- [Auto-Spies](https://github.com/hirezio/auto-spies)
+- [Observer-Spy](https://github.com/hirezio/observer-spy)
+
 
 ---
 
