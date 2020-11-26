@@ -245,8 +245,15 @@ THEN: should knows it is loaded
 
 #### Usar patrón Container Presenter
 
-- 🚢 Container: probar **lógica**
-- 🖼 Presenter: probar **vista**
+- 🚢 `Container`: probar **lógica**
+- 🖼 `Presenter`: probar **vista**
+
+#### Arquitectura de Servicios
+
+- 🔌 `Adapters`: dependencias **controladas**
+- 🏗 `Facades`: dependencias **unificadas**
+
+---
 
 #### 👀 Valorar librerías de terceros
 
