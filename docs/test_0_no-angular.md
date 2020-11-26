@@ -4,17 +4,21 @@ marp: true
 
 # 0 - Introducción al testing de aplicaciones Angular
 
-## Pruebas de Angular sin Angular
+## Pruebas de Angular _sin Angular_
 
 ---
 
 ## 0 - Karma y Jasmine
 
-- preconfigurado
-- autogenerado
-- scriptable
+### ✔ preconfigurado
+### ✔ autogenerado
+### ✔ scriptable
 
 ---
+
+## Mejoras 🏗
+
+`karma.conf.js`
 
 ```javascript
 plugins: [
@@ -29,7 +33,74 @@ browsers: ['ChromeHeadless'],
 reporters: ['jasmine-diff', 'mocha'],
 ```
 
+1 - Trigger
+2 - Build
+3 - Run
+4 - Report
+5 - Coverage
+
+
 ---
+
+
+## 1 - Probando un servicio como una clase
+
+### **Issue:** [Testing minimalista del LogicService ](https://github.com/angularbuilders/angular-budget/issues/35)
+
+Probar un servicio con métodos de lógica de negocio.
+
+Sin dependencias.
+
+Métodos _puros_.
+
+
+---
+
+###  **S.U.T:** [LogicService ](https://github.com/angularbuilders/angular-budget/blob/test_0_no-angular/src/app/core/services/logic.service.ts)
+
+```typescript
+export class LogicService {
+  public slugify(text: string): string {
+    return text
+      .toLowerCase()
+      .trim()
+      .replace(/[\s\W-]+/g, '-');
+  }
+}
+```
+
+---
+
+## Guías:
+
+- **GWT:** Given When Then
+- **AAA:** Arrange Act Assert
+- **DBI:** describe before it
+
+
+---
+
+### **Test:** [LogicService - Test ](https://github.com/angularbuilders/angular-budget/blob/test_0_no-angular/src/app/core/services/logic.service.spec.ts)
+
+```typescript
+describe('GIVEN: the LogicService', () => {
+  let sut: LogicService;
+  beforeEach(() => {
+    // Arrange
+    sut = new LogicService();
+  });
+  it('WHEN slugifies Angular 10.1 THEN returns angular-10-1', () => {
+    // Act
+    const actual = sut.slugify('Angular 10.1');
+    // Assert
+    const expected = 'angular-10-1';
+    expect(actual).toEqual(expected);
+  });
+});
+```
+
+---
+
 ### snippets
 
 ```json
@@ -59,58 +130,6 @@ reporters: ['jasmine-diff', 'mocha'],
 
 ---
 
-
-## 1 - Probando un servicio como una clase
-
-### **Issue:** [Testing minimalista del LogicService ](https://github.com/angularbuilders/angular-budget/issues/35)
-
-Probar un servicio con métodos de lógica de negocio.
-
-Sin dependencias.
-
-Métodos _puros_.
-
-* GWT Given When Then
-* AAA Arrange Act Assert
-* describe before it
-
----
-
-###  **S.U.T:** [LogicService ](https://github.com/angularbuilders/angular-budget/blob/test_0_no-angular/src/app/core/services/logic.service.ts)
-
-```typescript
-export class LogicService {
-  public slugify(text: string): string {
-    return text
-      .toLowerCase()
-      .trim()
-      .replace(/[\s\W-]+/g, '-');
-  }
-}
-```
-
----
-
-### **Test:** [LogicService - Test ](https://github.com/angularbuilders/angular-budget/blob/test_0_no-angular/src/app/core/services/logic.service.spec.ts)
-
-```typescript
-describe('GIVEN: the LogicService', () => {
-  let sut: LogicService;
-  beforeEach(() => {
-    // Arrange
-    sut = new LogicService();
-  });
-  it('WHEN slugifies Angular 10.1 THEN returns angular-10-1', () => {
-    // Act
-    const actual = sut.slugify('Angular 10.1');
-    // Assert
-    const expected = 'angular-10-1';
-    expect(actual).toEqual(expected);
-  });
-});
-```
-
----
 
 ### Ejercicio
 
@@ -182,15 +201,15 @@ THEN: returns default `dd/MM/yyyy`
 
 ### **Issue:** [Pruebas de un servicio con dependencias usando espías](https://github.com/angularbuilders/angular-budget/issues/39)
 
-Probar un servicio con dependencias (Title).
+Probar un servicio **con dependencias** (Title).
 
 Queremos hacer tests **unitarios**.
 
-Usamos un doble en lugar de la dependencia original.
+Usamos un **doble** en lugar de la dependencia original.
 
 Con _Jasmine_ lo aconsejable es usar un **spy**
 
-Probamos el buen comportamiento con los colaboradores
+Probamos el buen **comportamiento** con los colaboradores
 
 ---
 
@@ -256,15 +275,15 @@ THEN: sets the default `Angular.Budget`
 
 ### **Issue:** [Prueba de un servicio asíncrono](https://github.com/angularbuilders/angular-budget/issues/44)
 
-Probar un servicio con dependencias asíncrona (HttpClient).
+Probar un servicio con dependencias asíncrona (_HttpClient_).
 
-Los tests tienen ser **asíncronos**.
+Los tests tienen que ser **asíncronos**.
 
 Podemos probar:
 
-- la llamada
+- la **llamada** (_url_)
 
-- la subscripción
+- la **respuesta** (_subscripción_)
 
 [Jasmine Asynchronous Work](https://jasmine.github.io/tutorials/async)
 
@@ -304,7 +323,7 @@ describe('GIVEN: A dataService', () => {
   ```
   ---
   ```typescript
-  it('WHEN call the getProjects THEN the url is the expected', () => {
+  it('WHEN calling getProjects$ THEN the url is the expected', () => {
     // Act
     sut.getProjects$().subscribe();
     // Assert
@@ -317,7 +336,7 @@ describe('GIVEN: A dataService', () => {
   ```
   ---
   ```typescript
-  it('WHEN call the getProjects$ THEN returns an observable of a project list', () => {
+  it('WHEN calling getProjects$ THEN returns an observable of a project list', () => {
     // Act
     let actual: Object[];
     // La suscripción a observables funciona
