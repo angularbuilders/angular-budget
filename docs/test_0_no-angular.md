@@ -323,7 +323,7 @@ describe('GIVEN: A dataService', () => {
   ```
   ---
   ```typescript
-  it('WHEN call the getProjects THEN the url is the expected', () => {
+  it('WHEN calling getProjects$ THEN the url is the expected', () => {
     // Act
     sut.getProjects$().subscribe();
     // Assert
@@ -336,7 +336,7 @@ describe('GIVEN: A dataService', () => {
   ```
   ---
   ```typescript
-  it('WHEN call the getProjects$ THEN returns an observable of a project list', () => {
+  it('WHEN calling getProjects$ THEN returns an observable of a project list', () => {
     // Act
     let actual: Object[];
     // La suscripción a observables funciona

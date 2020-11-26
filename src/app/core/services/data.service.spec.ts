@@ -20,7 +20,7 @@ fdescribe('GIVEN: the DataService', () => {
     });
     sut = new DataService(httpClientSpy);
   });
-  it('WHEN call the getProjects THEN the url is the expected', () => {
+  it('WHEN calling getProjects$ THEN the url is the expected', () => {
     // Act
     sut.getProjects$().subscribe();
     // Assert
@@ -30,7 +30,7 @@ fdescribe('GIVEN: the DataService', () => {
     const expected = 'https://api-base.herokuapp.com/api/pub/projects';
     expect(actual).toEqual(expected);
   });
-  it('WHEN call the getProjects THEN returns an observable of a projects list', () => {
+  it('WHEN calling getProjects$ THEN returns an observable of a projects list', () => {
     // Act
     let actual: any[];
     // La suscripción a observables funciona
