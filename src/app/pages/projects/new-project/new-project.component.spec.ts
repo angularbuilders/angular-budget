@@ -12,6 +12,7 @@ import { NewProjectComponent } from './new-project.component';
  * 12 - Prueba de un formulario template driven
  * Mucha interacción con la template
  * Dificultad de pruebas detalladas
+ * wait for whenStable
  * Los model driven, son más sencillos +ts -html
  */
 
@@ -59,7 +60,6 @@ fdescribe('GIVEN the NewProjectComponent', () => {
     // Act
     component.ngOnInit();
     const actual = component.newProject;
-
     // Assert
     const expected = {
       id: '',
@@ -72,16 +72,15 @@ fdescribe('GIVEN the NewProjectComponent', () => {
     expect(actual).toEqual(expected);
   });
 
-  it('WHEN I fill the from THEN should send the values', () => {
-    component.ngOnInit();
+  it('WHEN I fill the form THEN should send the values', async () => {
+    await fixture.whenStable();
     fixture.detectChanges();
     // Act
-    const titleDebug = debugEl.query(By.css('#title'));
-    const titleInput = titleDebug.nativeElement;
+    const titleDebug: DebugElement = debugEl.query(By.css('#title'));
+    const titleInput: HTMLInputElement = titleDebug.nativeElement;
     titleInput.value = 'Testing my apps';
-    titleDebug.triggerEventHandler('input', { target: titleInput });
+    titleInput.dispatchEvent(new Event('input'));
     fixture.detectChanges();
-    console.log(titleInput.value);
     const actual = component.newProject.title;
     // Assert
     const expected = 'Testing my apps';

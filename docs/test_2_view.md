@@ -213,6 +213,137 @@ class DummyComponent {
 
 ---
 
+## 11 - Pruebas de enrutado
+
+- usar `routerTestingModule`
+- _no realiza la navegación real_
+
+---
+
+###  **S.U.T:** [ProjectComponent ](https://github.com/angularbuilders/angular-budget/blob/test_2_view/src/app/pages/projects/project/project.component.ts)
+
+```html
+<header *ngIf="loaded">
+    <h2>
+      {{ project.title }}
+    </h2>
+    <p>{{ project.description }}</p>
+...
+</header>
+```
+```typescript
+ngOnInit(): void {
+  this.projectSlug = this.service.getSlugFromRoute();
+  this.loadData();
+}
+```
+
+---
+
+### **Test:** [ProjectComponent - spec ](https://github.com/angularbuilders/angular-budget/blob/test_2_view/src/app/pages/projects/project/project.component.spec.ts)
+
+```typescript
+  let router: Router;
+  let activatedRoute: ActivatedRoute;
+  beforeEach(async () => {
+    // Arrange
+    const routes: Routes = [{path:'projects/:id', component:ProjectComponent }];
+    await TestBed.configureTestingModule({
+      imports: [RouterTestingModule.withRoutes(routes), SharedModule],
+      declarations: [ProjectComponent],
+      schemas: [NO_ERRORS_SCHEMA],
+      providers: [
+        {
+          provide: ProjectFacadeService,
+          useValue: jasmine.createSpyObj('ProjectFacadeService', projectFacadeServiceMock),
+        },
+      ],
+    }).compileComponents();
+  });
+```
+---
+
+```typescript
+beforeEach(() => {
+  // Arrange
+  router = TestBed.inject(Router);
+  activatedRoute = TestBed.inject(ActivatedRoute);
+  fixture = TestBed.createComponent(ProjectComponent);
+  component = fixture.componentInstance;
+  debugEl = fixture.debugElement;
+  nativeEl = fixture.nativeElement;
+  router.initialNavigation();
+  fixture.detectChanges();
+});
+```
+---
+
+```typescript
+it('WHEN The location is projects/1 THEN the url is well formed', fakeAsync(() => {
+  // Act
+  router.navigate(['/projects/1']).then(() => {
+    const actual = router.url;
+    // Assert
+    const expected = '/projects/1';
+    expect(actual).toEqual(expected);
+  });
+  tick();
+}));
+```
+---
+
+## 12 - Prueba de un formulario template driven
+
+- Mucha interacción con la template
+- Dificultad de pruebas detalladas
+- Los _model driven_, son más sencillos `+ts -html`
+
+###  **S.U.T:** [ProjectComponent ](https://github.com/angularbuilders/angular-budget/blob/test_2_view/src/app/pages/projects/project/new-project/new-project.component.html)
+
+```html
+<form #f="ngForm"
+        (ngSubmit)="saveNewProject()">
+  <label for="title">Nombre:</label>
+  <input [(ngModel)]="newProject.title"
+        required
+        type="text"
+        id="title"
+        name="title"
+        size="20">
+  <button type="submit"
+        [disabled]="!f.valid">Crear</button>
+</form>
+```
+
+---
+
+### **Test:** [ProjectComponent - spec ](https://github.com/angularbuilders/angular-budget/blob/test_2_view/src/app/pages/projects/project/new-project/new-project.component.spec.ts)
+
+```typescript
+  it('WHEN I fill the form THEN should send the values', () => {
+    component.ngOnInit();
+    fixture.detectChanges();
+    // Act
+    const titleDebug = debugEl.query(By.css('#title'));
+    const titleInput = titleDebug.nativeElement;
+    titleInput.value = 'Testing my apps';
+    titleDebug.triggerEventHandler('input', { target: titleInput });
+    fixture.detectChanges();
+    console.log(titleInput.value);
+    const actual = component.newProject.title;
+    // Assert
+    const expected = 'Testing my apps';
+    expect(actual).toEqual(expected);
+  });
+```
+
+
+---
+
+
+
+
+
 ### Extra
 https://www.npmjs.com/package/ng-mocks
 
