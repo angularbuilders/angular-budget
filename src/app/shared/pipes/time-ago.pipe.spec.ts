@@ -44,7 +44,7 @@ fdescribe('GIVEN the TimeAgoPipe', () => {
   template: `<p>{{ theDate | timeAgo }}</p>`,
 })
 class DummyComponent {
-  theDate = new Date(2020, 0, 1);
+  theDate: Date;
 }
 
 fdescribe('GIVEN a DummyComponent using the TimeAgo pipe', () => {
@@ -71,9 +71,10 @@ fdescribe('GIVEN a DummyComponent using the TimeAgo pipe', () => {
 
   it('WHEN the date is 01/01/2020 THEN renders hace mucho tiempo ', () => {
     // Act
+    component.theDate = new Date(2020, 0, 1);
+    // Assert
     const actualNative: HTMLElement = nativeEl.querySelector('p');
     const actual = actualNative.textContent;
-    // Assert
     const expected = 'hace mucho tiempo';
     expect(actual).toEqual(expected);
   });

@@ -124,7 +124,7 @@ Tratar la vista como una unidad distinta del controlador
 
 ---
 
-### **Test:** [TimeAgoPipe - spec ](https://github.com/angularbuilders/angular-budget/blob/test_2_view/src/app/shared/atoms/value/value.component.spec.ts)
+### **Test:** [ValueComponent - spec ](https://github.com/angularbuilders/angular-budget/blob/test_2_view/src/app/shared/atoms/value/value.component.spec.ts)
 
 ```typescript
 it('WHEN the input value is 42 THEN it renders a string 42', () => {
@@ -155,6 +155,60 @@ it('WHEN the input isOK is true THEN it renders with css class ok ', () => {
 GIVEN: the DateTimeComponent
 WHEN: the input date is the New York WTC crash,
 THEN: it renders 11/09/2001
+```
+
+---
+
+## 10 - Pruebas con dummies
+
+- cuando lo que queremos probar no tienen sentido por si mismo
+- los pipes, muchas directivas
+- los incluimos en una vista artificial
+
+---
+
+###  **S.U.T:** [TimeAgoPipe ](https://github.com/angularbuilders/angular-budget/blob/test_2_view/src/app/shared/pipes/time-ago.pipe.ts)
+
+```html
+<p>{{ theDate | timeAgo }}</p>
+```
+
+---
+
+### **Test:** [TimeAgoPipe - spec ](https://github.com/angularbuilders/angular-budget/blob/test_2_view/src/app/shared/pipes/time-ago.pipe.spec.ts)
+
+```typescript
+@Component({
+  template: `<p>{{ theDate | timeAgo }}</p>`,
+})
+class DummyComponent {
+  theDate : Date;
+}
+...
+  beforeEach(async () => {
+    // Arrange
+    await TestBed.configureTestingModule({
+      declarations: [DummyComponent, TimeAgoPipe],
+    }).compileComponents();
+  });
+   beforeEach(() => {
+    // Arrange
+    fixture = TestBed.createComponent(DummyComponent);
+    ...
+  });
+```
+---
+
+```typescript
+  it('WHEN the date is 01/01/2020 THEN renders hace mucho tiempo ', () => {
+    // Act
+    component.theDate = new Date(2020, 0, 1);
+    // Assert
+    const actualNative: HTMLElement = nativeEl.querySelector('p');
+    const actual = actualNative.textContent;
+    const expected = 'hace mucho tiempo';
+    expect(actual).toEqual(expected);
+  });
 ```
 
 ---
