@@ -60,7 +60,7 @@ fdescribe('GIVEN the ProjectsComponent', () => {
   });
   it('WHEN starts THEN the title is Lista de proyectos', () => {
     // Act
-    // Consultando desde el wrapper
+    /// Consultando desde el wrapper angular
     const titleDebug: DebugElement = debugEl.query(By.css('h2'));
     const titleNative: HTMLElement = titleDebug.nativeElement;
     const actual = titleNative.textContent;

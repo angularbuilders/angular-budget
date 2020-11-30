@@ -4,7 +4,7 @@ marp: true
 
 # 2 - Pruebas de las vistas
 
-## Pruebas de HTML y platillas Angular
+## 🖼 Pruebas de HTML y plantillas Angular
 
 ---
 
@@ -36,18 +36,16 @@ marp: true
 
 ---
 
-### **Test:** [AboutComponent - spec ](https://github.com/angularbuilders/angular-budget/blob/test_1_test-bed/src/app/pages/about/about.component.spec.ts)
+### **Test:** [ProjectsComponent - spec ](https://github.com/angularbuilders/angular-budget/blob/test_2_view/src/app/pages/projects/projects.component.spec.ts)
 
 ```typescript
 describe('GIVEN: the ProjectsComponent', () => {
   let fixture: ComponentFixture<ProjectsComponent>;
   let component: ProjectsComponent;
-  let debugEl: DebugElement;
-  let nativeEl: HTMLElement;
+  let debugEl: DebugElement; let nativeEl: HTMLElement;
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SharedModule],
-      declarations: [ProjectsComponent],
+      imports: [SharedModule], declarations: [ProjectsComponent],
       providers: [
         {
           provide: ProjectsFacadeService,
@@ -63,8 +61,7 @@ describe('GIVEN: the ProjectsComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ProjectsComponent);
     component = fixture.componentInstance;
-    debugEl = fixture.debugElement;
-    nativeEl = fixture.nativeElement;
+    debugEl = fixture.debugElement; nativeEl = fixture.nativeElement;
   });
 });
 ```
@@ -78,8 +75,9 @@ it('WHEN starts THEN has a header', () => {
   expect(actual).toBeTruthy();
 });
 it('WHEN initializing THEN there is Esperando datos...', () => {
-  // forzar al evaluación de datos para contenido dinámico
+  // forzar la evaluación de datos para contenido dinámico
   fixture.detectChanges();
+  // Consultando desde el wrapper angular
   const quoteDebug: DebugElement = debugEl.query(By.css('blockquote'));
   const quoteNative: HTMLElement = quoteDebug.nativeElement;
   const actual = quoteNative.textContent;
@@ -113,7 +111,8 @@ THEN: there is no Esperando datos..
 
 ### **Issue:** [Entrada de datos y efecto css en value objects ](https://github.com/angularbuilders/angular-budget/issues/62)
 
-A veces es lo único que podemos probar...
+Probar el efecto de los datos en la presentación
+Tratar la vista como una unidad distinta del controlador
 
 ---
 
@@ -125,7 +124,7 @@ A veces es lo único que podemos probar...
 
 ---
 
-### **Test:** [TimeAgoPipe - spec ](https://github.com/angularbuilders/angular-budget/blob/test_1_test-bed/src/app/shared/pipes/time-ago.pipe.spec.ts)
+### **Test:** [TimeAgoPipe - spec ](https://github.com/angularbuilders/angular-budget/blob/test_2_view/src/app/shared/atoms/value/value.component.spec.ts)
 
 ```typescript
 it('WHEN the input value is 42 THEN it renders a string 42', () => {
@@ -160,11 +159,11 @@ THEN: it renders 11/09/2001
 
 ---
 
-###Extra
+### Extra
 https://www.npmjs.com/package/ng-mocks
 
 ---
 
-> **Repositorio:** [angularbuilders/angular-budget/test_1_test-bed](https://github.com/angularbuilders/angular-budget/tree/test_1_test-bed)
+> **Repositorio:** [angularbuilders/angular-budget/test_2_view](https://github.com/angularbuilders/angular-budget/tree/test_2_view)
 
 > > By [Alberto Basalo](https://twitter.com/albertobasalo)
