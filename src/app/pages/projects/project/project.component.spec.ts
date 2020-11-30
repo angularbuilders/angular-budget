@@ -1,5 +1,5 @@
 import { DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute, Router, Routes } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
@@ -59,18 +59,32 @@ fdescribe('GIVEN the ProjectComponent', () => {
     component = fixture.componentInstance;
     debugEl = fixture.debugElement;
     nativeEl = fixture.nativeElement;
-    router.initialNavigation();
+    // router.initialNavigation();
     fixture.detectChanges();
   });
 
-  it('WHEN The location is projects/1 THEN the url is well formed', fakeAsync(() => {
+  // it('WHEN The location is projects/1 THEN the url is well formed', fakeAsync(() => {
+  //   // Act
+  //   router.navigate(['/projects/1']).then(() => {
+  //     const actual = router.url;
+  //     // Assert
+  //     const expected = '/projects/1';
+  //     expect(actual).toEqual(expected);
+  //   });
+  //   tick();
+  // }));
+
+  it('WHEN The location is projects/1 THEN the url is well formed _ZONE_', async () => {
     // Act
-    router.navigate(['/projects/1']).then(() => {
-      const actual = router.url;
-      // Assert
-      const expected = '/projects/1';
-      expect(actual).toEqual(expected);
+    fixture.ngZone.run(() => {
+      router.navigate(['/projects/1']);
+      fixture.detectChanges();
+      fixture.whenStable().then(() => {
+        // Assert
+        const actual = router.url;
+        const expected = '/projects/1';
+        expect(actual).toEqual(expected);
+      });
     });
-    tick();
-  }));
+  });
 });
