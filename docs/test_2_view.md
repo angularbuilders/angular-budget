@@ -161,6 +161,8 @@ THEN: it renders 11/09/2001
 
 ## 10 - Pruebas con dummies
 
+### **Issue:** [Pruebas del timeAgo pipe usando un componente dummy ](https://github.com/angularbuilders/angular-budget/issues/64)
+
 - cuando lo que queremos probar no tienen sentido por si mismo
 - los pipes, muchas directivas
 - los incluimos en una vista artificial
@@ -214,6 +216,8 @@ class DummyComponent {
 ---
 
 ## 11 - Pruebas de enrutado
+
+### **Issue:** [Prueba del router con projectComponent ](https://github.com/angularbuilders/angular-budget/issues/66)
 
 - usar `routerTestingModule`
 - _no realiza la navegación real_
@@ -294,11 +298,13 @@ it('WHEN The location is projects/1 THEN the url is well formed', fakeAsync(() =
 
 ## 12 - Prueba de un formulario template driven
 
+### **Issue:** [Alta de proyectos en NewProject con ngModel ](https://github.com/angularbuilders/angular-budget/issues/68)
+
 - Mucha interacción con la template
 - Dificultad de pruebas detalladas
 - Los _model driven_, son más sencillos `+ts -html`
 
-###  **S.U.T:** [ProjectComponent ](https://github.com/angularbuilders/angular-budget/blob/test_2_view/src/app/pages/projects/project/new-project/new-project.component.html)
+###  **S.U.T:** [NewProjectComponent ](https://github.com/angularbuilders/angular-budget/blob/test_2_view/src/app/pages/projects/project/new-project/new-project.component.html)
 
 ```html
 <form #f="ngForm"
@@ -317,19 +323,18 @@ it('WHEN The location is projects/1 THEN the url is well formed', fakeAsync(() =
 
 ---
 
-### **Test:** [ProjectComponent - spec ](https://github.com/angularbuilders/angular-budget/blob/test_2_view/src/app/pages/projects/project/new-project/new-project.component.spec.ts)
+### **Test:** [NewProjectComponent - spec ](https://github.com/angularbuilders/angular-budget/blob/test_2_view/src/app/pages/projects/project/new-project/new-project.component.spec.ts)
 
 ```typescript
-  it('WHEN I fill the form THEN should send the values', () => {
-    component.ngOnInit();
+  it('WHEN I fill the form THEN should send the values', async () => {
+    await fixture.whenStable();
     fixture.detectChanges();
     // Act
-    const titleDebug = debugEl.query(By.css('#title'));
-    const titleInput = titleDebug.nativeElement;
+    const titleDebug: DebugElement = debugEl.query(By.css('#title'));
+    const titleInput: HTMLInputElement = titleDebug.nativeElement;
     titleInput.value = 'Testing my apps';
-    titleDebug.triggerEventHandler('input', { target: titleInput });
+    titleInput.dispatchEvent(new Event('input'));
     fixture.detectChanges();
-    console.log(titleInput.value);
     const actual = component.newProject.title;
     // Assert
     const expected = 'Testing my apps';
@@ -339,10 +344,6 @@ it('WHEN The location is projects/1 THEN the url is well formed', fakeAsync(() =
 
 
 ---
-
-
-
-
 
 ### Extra
 https://www.npmjs.com/package/ng-mocks
