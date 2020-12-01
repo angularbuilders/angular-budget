@@ -27,4 +27,5 @@
     "html",
     "typescript"
   ],
+  "git.ignoreLimitWarning": true,
 }
