@@ -3,6 +3,8 @@
 // 14. Prueba organizada
 // AAA
 // GWT
+// describe, context, it, NO expect
+// Features, scenarios, user stories...
 
 // FEATURE:     have web site with a title
 // As a:        visitor

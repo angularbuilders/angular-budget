@@ -1,8 +1,11 @@
 /// <reference types="Cypress" />
 
+// 15. validate visible content
+// usos creativos de actual y expected
+
 // FEATURE:     General status of my projects
 // As a:        user with various projects
-// I want to:   view a list of projects and a summary of taskss
+// I want to:   view a list of projects and a summary of tasks
 // In order to: plan my work
 
 // SUT: https://angularbuilders.github.io/angular-budget/

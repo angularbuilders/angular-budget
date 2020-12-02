@@ -1,1 +1,19 @@
-{}
+{
+  "chromeWebSecurity": false,
+  "env": {
+    "baseUrl": "https://angularbuilders.github.io/angular-budget/",
+    "apiUrl": "https://api-base.herokuapp.com/api/pub/"
+  },
+  "video": true,
+  "screenshotOnRunFailure": true,
+  "trashAssetsBeforeRuns": true,
+  "reporter": "mochawesome",
+  "reporterOptions": {
+    "charts": false,
+    "html": true,
+    "json": true,
+    "reportDir": "cypress/reports",
+    "reportFilename": "report",
+    "overwrite": false
+  }
+}

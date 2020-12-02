@@ -1,0 +1,9 @@
+{
+  "id": "mi-primer-proyecto",
+  "title": "Mi primer proyecto",
+  "description": "Este es un proyecto de prueba. Para ver de qué soy capaz.",
+  "start": "2020-10-10T00:00:00.000Z",
+  "end": "2020-10-30T00:00:00.000Z",
+  "budget": 1000,
+  "status": "En marcha"
+}
