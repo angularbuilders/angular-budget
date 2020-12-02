@@ -1,0 +1,38 @@
+{
+  "env": {
+    "cypress/globals": true
+  },
+
+  "extends": ["plugin:prettier/recommended", "plugin:cypress/recommended"],
+
+  "parserOptions": {
+    "ecmaVersion": 9,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+
+  "plugins": ["prettier", "cypress"],
+
+  "rules": {
+    "prettier/prettier": "warn",
+
+    "endOfLine": "auto",
+    "complexity": ["error", { "max": 8 }],
+    "max-depth": ["error", 2],
+    "max-lines": ["warn", 160],
+    "max-lines-per-function": ["warn", 36],
+    "max-nested-callbacks": ["error", 4],
+    "max-params": ["warn", 2],
+    "no-magic-numbers": [
+      "warn",
+      { "detectObjects": false, "enforceConst": true, "ignore": [1], "ignoreArrayIndexes": true }
+    ],
+    "no-multiple-empty-lines": ["warn", { "max": 2, "maxEOF": 1 }],
+    "no-nested-ternary": "error",
+    "no-unused-vars": [0],
+    "@typescript-eslint/no-use-before-define": "off",
+    "@typescript-eslint/no-explicit-any": "off"
+  }
+}

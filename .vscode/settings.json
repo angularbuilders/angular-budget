@@ -25,7 +25,8 @@
     "latex",
     "plaintext",
     "html",
-    "typescript"
+    "typescript",
+    "javascript"
   ],
   "git.ignoreLimitWarning": true,
 }
