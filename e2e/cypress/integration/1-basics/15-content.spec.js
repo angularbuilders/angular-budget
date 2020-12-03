@@ -25,13 +25,14 @@ describe(`GIVEN: A web app where i have 2 projects`, () => {
     it(`THEN: should have a section called Mis Proyectos`, () => {
       const expected = 'Mis Proyectos';
       // Assert
-      const actual = cy.contains(expected);
-      actual.should('exist');
+      const actual = cy.contains(expected); // implícito
+      actual.should('exist'); // explícito
     });
     it(`THEN: should show 2 items on the projects list`, () => {
       // Assert
       const expected = 2;
-      cy.get('aside:nth-child(1) dt').should('have.length', expected);
+      const actual = cy.get('aside:nth-child(1) dt');
+      actual.should('have.length', expected);
     });
   });
 });

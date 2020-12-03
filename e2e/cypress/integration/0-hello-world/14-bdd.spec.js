@@ -1,9 +1,9 @@
 /// <reference types="Cypress" />
 
-// 14. Prueba organizada
+// 14. Prueba organizada : Behavior Driven
 // AAA
 // GWT
-// describe, context, it, NO expect
+// describe, context, it, expect?
 // Features, scenarios, user stories...
 
 // FEATURE:     have web site with a title

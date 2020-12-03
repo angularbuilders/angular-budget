@@ -1,9 +1,9 @@
 /// <reference types="Cypress" />
 
 // 17 exploring data
-// NAVENGANDO ANGULAR 404
-// USANDO CONFIGURACION
-// USANDO MOCK SERVER
+// navegando ANGULAR 404
+// usando configuración
+// usando mock server
 
 describe(`GIVEN: the url of a project`, () => {
   // Arrange

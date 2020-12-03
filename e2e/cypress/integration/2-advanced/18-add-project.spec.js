@@ -2,6 +2,9 @@
 
 // 18 form interact
 // commands
+// alias
+// esperas
+
 describe(`GIVEN: th page for creating a project`, () => {
   context(`WHEN: the project name form is empty `, () => {
     before(() => {
