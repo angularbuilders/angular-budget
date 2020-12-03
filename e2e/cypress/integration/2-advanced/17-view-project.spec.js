@@ -5,7 +5,7 @@
 // USANDO CONFIGURACION
 // USANDO MOCK SERVER
 
-describe(`GIVEN: th url of a project`, () => {
+describe(`GIVEN: the url of a project`, () => {
   // Arrange
   const projectsApiMatcher = RegExp(`^${Cypress.env('apiUrl')}projects$`);
   const fixtureProjectsResponse = { fixture: 'projects.json' };

@@ -23,3 +23,8 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('goToNewProject', () => {
+  cy.visit(Cypress.env('baseUrl'));
+  cy.get('a').contains('Nuevo').click();
+});
