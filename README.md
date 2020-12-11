@@ -1,5 +1,9 @@
 # AngularBudget
 
+## Manage budgets, projects and tasks. 
+
+### A sample webapp made with Angular used for training.
+
 This sample project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.2.0.
 
 Run `npm i` after clone or fork
