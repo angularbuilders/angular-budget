@@ -35,6 +35,7 @@ export class ProjectComponent implements OnInit {
   };
   private onTasksLoaded = {
     next: (tasksData: Task[]) => {
+      if (tasksData === null) tasksData = [];
       this.tasks = this.logicService.filterTasksByProjectId(tasksData, this.projectSlug);
       this.projectView = this.logicService.composeProjectView(this.project, this.transactions);
       this.loaded = true;

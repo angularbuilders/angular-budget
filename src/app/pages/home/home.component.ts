@@ -38,6 +38,7 @@ export class HomeComponent implements OnInit {
 
   private onTasksLoaded = {
     next: (tasksData: Task[]) => {
+      if (tasksData === null) tasksData = [];
       this.tasks = tasksData;
       this.setDataViews();
     },
