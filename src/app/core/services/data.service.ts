@@ -9,7 +9,7 @@ import { Transaction } from '../model/transaction.interface';
   providedIn: 'root',
 })
 export class DataService {
-  private rootUrl = `https://api-base.herokuapp.com/api/pub`;
+  private rootUrl = `https://api-base-21.herokuapp.com/api/pub`;
 
   constructor(private httpClient: HttpClient) {}
 
