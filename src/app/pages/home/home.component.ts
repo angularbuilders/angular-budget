@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TASKS } from 'src/data/tasks.data';
 import { ProjectView } from '../../core/model/project-view.interface';
 import { Project } from '../../core/model/project.interface';
 import { Task } from '../../core/model/task.interface';
@@ -38,7 +39,7 @@ export class HomeComponent implements OnInit {
 
   private onTasksLoaded = {
     next: (tasksData: Task[]) => {
-      if (tasksData === null) tasksData = [];
+      if (tasksData === null) tasksData = TASKS;
       this.tasks = tasksData;
       this.setDataViews();
     },
