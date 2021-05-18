@@ -26,4 +26,7 @@
     "plaintext",
     "html"
   ],
+  "conventionalCommits.scopes": [
+    "npm"
+  ],
 }
