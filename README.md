@@ -1,10 +1,12 @@
 # AngularBudget
 
-## Manage budgets, projects and tasks. 
+## Manage budgets, projects and tasks.
 
 ### A sample webapp made with Angular used for training.
 
 This sample project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.2.0.
+
+## Upgraded to angular 12
 
 Run `npm i` after clone or fork
 
@@ -20,7 +22,6 @@ Run `npm run release` for a new release pushed to remote origin.
 
 Run `npm run deploy` for generate a build for production and deploy it to gitHub Pages. Navigate to `https://angularbuilders.github.io/angular-budget/`
 
-
 ## Running unit tests
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
@@ -32,7 +33,6 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
-
 
 ## Architecture
 
